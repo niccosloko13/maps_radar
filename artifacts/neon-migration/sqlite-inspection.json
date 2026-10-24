@@ -1,0 +1,4600 @@
+{
+  "database": "C:\\Users\\veigh\\AppData\\Local\\RadarSP\\data\\radar.db",
+  "readonly_audit": true,
+  "pragmas": {
+    "user_version": 0,
+    "schema_version": 43,
+    "journal_mode": "wal",
+    "encoding": "UTF-8"
+  },
+  "tables": [
+    {
+      "name": "admin_events",
+      "count": 79,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "kind",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "message",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "details",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE admin_events(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,kind TEXT NOT NULL,message TEXT NOT NULL,details TEXT)"
+    },
+    {
+      "name": "assistant_update_runs",
+      "count": 1,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "batch_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "actor",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "started_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "finished_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "targets_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "summary_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "error",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "batch_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_assistant_update_runs_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE assistant_update_runs(batch_id TEXT PRIMARY KEY,actor TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,targets_json TEXT,summary_json TEXT,error TEXT)"
+    },
+    {
+      "name": "city_scan_jobs",
+      "count": 4,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "started_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "finished_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "municipalities_json",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "summary_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "error",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "include_osm",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "result_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "mode",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'all'",
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE city_scan_jobs(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,municipalities_json TEXT NOT NULL,summary_json TEXT,error TEXT, include_osm INTEGER DEFAULT 1, result_json TEXT, mode TEXT DEFAULT 'all')"
+    },
+    {
+      "name": "community_batches",
+      "count": 1,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "batch_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "filename",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "sha256",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "summary_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "batch_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_community_batches_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE community_batches(batch_id TEXT PRIMARY KEY,created_at TEXT,filename TEXT,sha256 TEXT,summary_json TEXT)"
+    },
+    {
+      "name": "manual_entries",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "entry_type",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "entity_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "created_by",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'admin'",
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "notes",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE manual_entries(id INTEGER PRIMARY KEY AUTOINCREMENT,entry_type TEXT NOT NULL,entity_id TEXT NOT NULL,created_at TEXT NOT NULL,created_by TEXT NOT NULL DEFAULT 'admin',notes TEXT)"
+    },
+    {
+      "name": "map_audit",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "action",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "ids_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE map_audit(id INTEGER PRIMARY KEY,created_at TEXT,action TEXT,ids_json TEXT)"
+    },
+    {
+      "name": "map_feedback",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "point_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "action",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE map_feedback(id INTEGER PRIMARY KEY,point_id TEXT,action TEXT,created_at TEXT)"
+    },
+    {
+      "name": "map_points",
+      "count": 8259,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "longitude",
+          "type": "REAL",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "latitude",
+          "type": "REAL",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "kind",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "speed_limit",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "direction",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "direction_type",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "original_type",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "source_type",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "ingested_by",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "imported_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "batch_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "name": "trust",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'community'",
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "name": "linked_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "name": "hidden",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 17,
+          "name": "updated_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 18,
+          "name": "expires_at",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 19,
+          "name": "raw_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 20,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 21,
+          "name": "report_kind",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "map_updated",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 1,
+          "name": "map_source_trust",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 2,
+          "name": "map_city_type",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 3,
+          "name": "map_bbox",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 4,
+          "name": "sqlite_autoindex_map_points_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE map_points(id TEXT PRIMARY KEY,longitude REAL NOT NULL,latitude REAL NOT NULL,kind TEXT NOT NULL,speed_limit INTEGER,direction REAL,direction_type INTEGER,original_type INTEGER,source TEXT,source_type TEXT,ingested_by TEXT,imported_at TEXT,batch_id TEXT,municipality TEXT,trust TEXT DEFAULT 'community',linked_id TEXT,hidden INTEGER DEFAULT 0,updated_at TEXT,expires_at REAL,raw_json TEXT, name TEXT, report_kind TEXT)"
+    },
+    {
+      "name": "municipalities",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "ibge_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "state",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'SP'",
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "last_refresh",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "ibge_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_municipalities_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE municipalities(ibge_id TEXT PRIMARY KEY,name TEXT NOT NULL,state TEXT NOT NULL DEFAULT 'SP',last_refresh TEXT)"
+    },
+    {
+      "name": "municipality_profiles",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "radar_enabled",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "signals_enabled",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "objects_enabled",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "last_radar_scan",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "last_signal_scan",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "last_full_scan",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "notes",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "municipality"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_municipality_profiles_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE municipality_profiles(municipality TEXT PRIMARY KEY,radar_enabled INTEGER DEFAULT 1,signals_enabled INTEGER DEFAULT 1,objects_enabled INTEGER DEFAULT 1,last_radar_scan TEXT,last_signal_scan TEXT,last_full_scan TEXT,notes TEXT)"
+    },
+    {
+      "name": "municipality_sources",
+      "count": 2,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "source_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 2
+        },
+        {
+          "cid": 2,
+          "name": "source_name",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "source_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "source_type",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'candidate'",
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "official",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "first_seen",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "last_attempt",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "last_success",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "item_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "mapped_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "diagnostic",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "municipality",
+        "source_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_municipality_sources_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE municipality_sources(municipality TEXT NOT NULL,source_id TEXT NOT NULL,source_name TEXT,source_url TEXT,source_type TEXT,status TEXT NOT NULL DEFAULT 'candidate',official INTEGER DEFAULT 0,first_seen TEXT NOT NULL,last_attempt TEXT,last_success TEXT,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,PRIMARY KEY(municipality,source_id))"
+    },
+    {
+      "name": "operation_logs",
+      "count": 53,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "operation_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "level",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'info'",
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "stage",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "source_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "message",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "details",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "idx_operation_logs_op",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE operation_logs(id INTEGER PRIMARY KEY AUTOINCREMENT,operation_id TEXT NOT NULL,created_at TEXT NOT NULL,level TEXT NOT NULL DEFAULT 'info',stage TEXT,municipality TEXT,source_id TEXT,message TEXT NOT NULL,details TEXT)"
+    },
+    {
+      "name": "radar_history",
+      "count": 224,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "history_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "radar_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "version_hash",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "captured_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "valid_to",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "raw_json",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "history_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE radar_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,source TEXT NOT NULL,version_hash TEXT NOT NULL,captured_at TEXT NOT NULL,valid_to TEXT,raw_json TEXT NOT NULL)"
+    },
+    {
+      "name": "radar_validations",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "radar_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "checked_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "valid_from",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "valid_until",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "certificate",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "notes",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE radar_validations(id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,checked_at TEXT NOT NULL,status TEXT NOT NULL,valid_from TEXT,valid_until TEXT,source TEXT,certificate TEXT,notes TEXT)"
+    },
+    {
+      "name": "radars",
+      "count": 196,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "physical_radar_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "external_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "latitude",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "longitude",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "speed_limit",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "speed_text",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "direction",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'active'",
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "confidence",
+          "type": "INTEGER",
+          "notnull": 1,
+          "dflt_value": "90",
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "state",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'SP'",
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "name": "road",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "name": "km",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "name": "radar_type",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 17,
+          "name": "der_number",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 18,
+          "name": "serial_number",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 19,
+          "name": "schedule",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 20,
+          "name": "study_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 21,
+          "name": "source_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 22,
+          "name": "source_date",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 23,
+          "name": "position_quality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 24,
+          "name": "inmetro_registration",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 25,
+          "name": "lanes",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 26,
+          "name": "local_code",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 27,
+          "name": "quality_grade",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 28,
+          "name": "first_seen",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 29,
+          "name": "last_seen",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 30,
+          "name": "current_hash",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 31,
+          "name": "raw_json",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 32,
+          "name": "ingested_by",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 33,
+          "name": "ingestion_batch",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 34,
+          "name": "provenance_note",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "radar_viewport",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 1,
+          "name": "sqlite_autoindex_radars_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE radars(id TEXT PRIMARY KEY,physical_radar_id TEXT,source TEXT NOT NULL,external_id TEXT,name TEXT NOT NULL,latitude REAL,longitude REAL,speed_limit INTEGER,speed_text TEXT,direction TEXT,status TEXT NOT NULL DEFAULT 'active',confidence INTEGER NOT NULL DEFAULT 90,municipality TEXT,state TEXT DEFAULT 'SP',road TEXT,km TEXT,radar_type TEXT,der_number TEXT,serial_number TEXT,schedule TEXT,study_url TEXT,source_url TEXT,source_date TEXT,position_quality TEXT,inmetro_registration TEXT,lanes INTEGER,local_code TEXT,quality_grade TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,current_hash TEXT NOT NULL,raw_json TEXT NOT NULL, ingested_by TEXT, ingestion_batch TEXT, provenance_note TEXT)"
+    },
+    {
+      "name": "road_network_meta",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "source_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "fetched_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "segments",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "usable_segments",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "sha256",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "error",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE road_network_meta(id INTEGER PRIMARY KEY CHECK(id=1), source_url TEXT, fetched_at TEXT, segments INTEGER DEFAULT 0, usable_segments INTEGER DEFAULT 0, sha256 TEXT, error TEXT)"
+    },
+    {
+      "name": "road_object_history",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "history_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "object_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "captured_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "raw_json",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "history_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE road_object_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,object_id TEXT NOT NULL,source TEXT NOT NULL,captured_at TEXT NOT NULL,raw_json TEXT NOT NULL)"
+    },
+    {
+      "name": "road_objects",
+      "count": 6426,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "source",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "external_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "object_type",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "latitude",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "longitude",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "state",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'SP'",
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'active'",
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "confidence",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "70",
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "official",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "speed_limit",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "direction",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 14,
+          "name": "timing_mode",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": "'unknown'",
+          "pk": 0
+        },
+        {
+          "cid": 15,
+          "name": "cycle_seconds",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 16,
+          "name": "green_seconds",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 17,
+          "name": "red_seconds",
+          "type": "REAL",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 18,
+          "name": "adaptive",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 19,
+          "name": "timing_source",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 20,
+          "name": "source_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 21,
+          "name": "source_date",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 22,
+          "name": "first_seen",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 23,
+          "name": "last_seen",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 24,
+          "name": "raw_json",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 25,
+          "name": "ingested_by",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 26,
+          "name": "ingestion_batch",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 27,
+          "name": "provenance_note",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "object_viewport",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        },
+        {
+          "seq": 1,
+          "name": "sqlite_autoindex_road_objects_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE road_objects(id TEXT PRIMARY KEY,source TEXT NOT NULL,external_id TEXT,object_type TEXT NOT NULL,name TEXT,latitude REAL,longitude REAL,municipality TEXT,state TEXT DEFAULT 'SP',status TEXT DEFAULT 'active',confidence INTEGER DEFAULT 70,official INTEGER DEFAULT 0,speed_limit INTEGER,direction TEXT,timing_mode TEXT DEFAULT 'unknown',cycle_seconds REAL,green_seconds REAL,red_seconds REAL,adaptive INTEGER DEFAULT 0,timing_source TEXT,source_url TEXT,source_date TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,raw_json TEXT NOT NULL, ingested_by TEXT, ingestion_batch TEXT, provenance_note TEXT)"
+    },
+    {
+      "name": "signal_networks",
+      "count": 3,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "mode",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "count_known",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "live_timing",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "source_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "source_date",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "last_seen",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_signal_networks_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE signal_networks(id TEXT PRIMARY KEY,municipality TEXT NOT NULL,name TEXT NOT NULL,mode TEXT NOT NULL,count_known INTEGER,live_timing INTEGER DEFAULT 0,description TEXT,source_url TEXT,source_date TEXT,last_seen TEXT NOT NULL)"
+    },
+    {
+      "name": "source_attempts",
+      "count": 6,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "source_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "attempted_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "item_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "mapped_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "diagnostic",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE source_attempts(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT NOT NULL,source_id TEXT,attempted_at TEXT NOT NULL,status TEXT NOT NULL,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,url TEXT)"
+    },
+    {
+      "name": "source_gaps",
+      "count": 0,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'needs_source'",
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "reason",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "attempts",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "last_checked",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "next_retry",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "notes",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "municipality"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_source_gaps_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE source_gaps(municipality TEXT PRIMARY KEY,status TEXT NOT NULL DEFAULT 'needs_source',reason TEXT,attempts INTEGER DEFAULT 0,last_checked TEXT,next_retry TEXT,notes TEXT)"
+    },
+    {
+      "name": "source_registry",
+      "count": 19,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "source_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "scope",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "coverage",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "mode",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "priority",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "50",
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "official",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "enabled",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "1",
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "last_seen",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "notes",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "source_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_source_registry_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE source_registry(source_id TEXT PRIMARY KEY,name TEXT NOT NULL,scope TEXT,coverage TEXT,mode TEXT,priority INTEGER DEFAULT 50,url TEXT,official INTEGER DEFAULT 1,enabled INTEGER DEFAULT 1,last_seen TEXT,notes TEXT)"
+    },
+    {
+      "name": "source_syncs",
+      "count": 5,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "source_id",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "started_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "finished_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "http_status",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "imported",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "updated",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "unchanged",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "skipped",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 9,
+          "name": "mapped",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 10,
+          "name": "roads",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": "0",
+          "pk": 0
+        },
+        {
+          "cid": 11,
+          "name": "source_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 12,
+          "name": "error",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 13,
+          "name": "diagnostic",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "source_id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "sqlite_autoindex_source_syncs_1",
+          "unique": 1,
+          "origin": "pk",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE source_syncs(source_id TEXT PRIMARY KEY,status TEXT NOT NULL,started_at TEXT,finished_at TEXT,http_status INTEGER,imported INTEGER DEFAULT 0,updated INTEGER DEFAULT 0,unchanged INTEGER DEFAULT 0,skipped INTEGER DEFAULT 0,mapped INTEGER DEFAULT 0,roads INTEGER DEFAULT 0,source_url TEXT,error TEXT,diagnostic TEXT)"
+    },
+    {
+      "name": "update_queue",
+      "count": 4,
+      "columns": [
+        {
+          "cid": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 1
+        },
+        {
+          "cid": 1,
+          "name": "municipality",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 2,
+          "name": "category",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 3,
+          "name": "source_id",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 4,
+          "name": "label",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 5,
+          "name": "status",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": "'pending'",
+          "pk": 0
+        },
+        {
+          "cid": 6,
+          "name": "discovered_at",
+          "type": "TEXT",
+          "notnull": 1,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 7,
+          "name": "applied_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        },
+        {
+          "cid": 8,
+          "name": "details",
+          "type": "TEXT",
+          "notnull": 0,
+          "dflt_value": null,
+          "pk": 0
+        }
+      ],
+      "primary_key": [
+        "id"
+      ],
+      "null_primary_keys": 0,
+      "indexes": [
+        {
+          "seq": 0,
+          "name": "idx_update_queue_status",
+          "unique": 0,
+          "origin": "c",
+          "partial": 0
+        }
+      ],
+      "foreign_keys": [],
+      "sql": "CREATE TABLE update_queue(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT,category TEXT NOT NULL,source_id TEXT NOT NULL,label TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',discovered_at TEXT NOT NULL,applied_at TEXT,details TEXT)"
+    }
+  ],
+  "objects": [
+    {
+      "type": "index",
+      "name": "idx_operation_logs_op",
+      "tbl_name": "operation_logs",
+      "sql": "CREATE INDEX idx_operation_logs_op ON operation_logs(operation_id,id)"
+    },
+    {
+      "type": "index",
+      "name": "idx_update_queue_status",
+      "tbl_name": "update_queue",
+      "sql": "CREATE INDEX idx_update_queue_status ON update_queue(status,id)"
+    },
+    {
+      "type": "index",
+      "name": "map_bbox",
+      "tbl_name": "map_points",
+      "sql": "CREATE INDEX map_bbox ON map_points(longitude,latitude)"
+    },
+    {
+      "type": "index",
+      "name": "map_city_type",
+      "tbl_name": "map_points",
+      "sql": "CREATE INDEX map_city_type ON map_points(municipality,kind)"
+    },
+    {
+      "type": "index",
+      "name": "map_source_trust",
+      "tbl_name": "map_points",
+      "sql": "CREATE INDEX map_source_trust ON map_points(source,trust)"
+    },
+    {
+      "type": "index",
+      "name": "map_updated",
+      "tbl_name": "map_points",
+      "sql": "CREATE INDEX map_updated ON map_points(updated_at)"
+    },
+    {
+      "type": "index",
+      "name": "object_viewport",
+      "tbl_name": "road_objects",
+      "sql": "CREATE INDEX object_viewport ON road_objects(longitude,latitude)"
+    },
+    {
+      "type": "index",
+      "name": "radar_viewport",
+      "tbl_name": "radars",
+      "sql": "CREATE INDEX radar_viewport ON radars(longitude,latitude)"
+    },
+    {
+      "type": "table",
+      "name": "admin_events",
+      "tbl_name": "admin_events",
+      "sql": "CREATE TABLE admin_events(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,kind TEXT NOT NULL,message TEXT NOT NULL,details TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "assistant_update_runs",
+      "tbl_name": "assistant_update_runs",
+      "sql": "CREATE TABLE assistant_update_runs(batch_id TEXT PRIMARY KEY,actor TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,targets_json TEXT,summary_json TEXT,error TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "city_scan_jobs",
+      "tbl_name": "city_scan_jobs",
+      "sql": "CREATE TABLE city_scan_jobs(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,municipalities_json TEXT NOT NULL,summary_json TEXT,error TEXT, include_osm INTEGER DEFAULT 1, result_json TEXT, mode TEXT DEFAULT 'all')"
+    },
+    {
+      "type": "table",
+      "name": "community_batches",
+      "tbl_name": "community_batches",
+      "sql": "CREATE TABLE community_batches(batch_id TEXT PRIMARY KEY,created_at TEXT,filename TEXT,sha256 TEXT,summary_json TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "manual_entries",
+      "tbl_name": "manual_entries",
+      "sql": "CREATE TABLE manual_entries(id INTEGER PRIMARY KEY AUTOINCREMENT,entry_type TEXT NOT NULL,entity_id TEXT NOT NULL,created_at TEXT NOT NULL,created_by TEXT NOT NULL DEFAULT 'admin',notes TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "map_audit",
+      "tbl_name": "map_audit",
+      "sql": "CREATE TABLE map_audit(id INTEGER PRIMARY KEY,created_at TEXT,action TEXT,ids_json TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "map_feedback",
+      "tbl_name": "map_feedback",
+      "sql": "CREATE TABLE map_feedback(id INTEGER PRIMARY KEY,point_id TEXT,action TEXT,created_at TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "map_points",
+      "tbl_name": "map_points",
+      "sql": "CREATE TABLE map_points(id TEXT PRIMARY KEY,longitude REAL NOT NULL,latitude REAL NOT NULL,kind TEXT NOT NULL,speed_limit INTEGER,direction REAL,direction_type INTEGER,original_type INTEGER,source TEXT,source_type TEXT,ingested_by TEXT,imported_at TEXT,batch_id TEXT,municipality TEXT,trust TEXT DEFAULT 'community',linked_id TEXT,hidden INTEGER DEFAULT 0,updated_at TEXT,expires_at REAL,raw_json TEXT, name TEXT, report_kind TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "municipalities",
+      "tbl_name": "municipalities",
+      "sql": "CREATE TABLE municipalities(ibge_id TEXT PRIMARY KEY,name TEXT NOT NULL,state TEXT NOT NULL DEFAULT 'SP',last_refresh TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "municipality_profiles",
+      "tbl_name": "municipality_profiles",
+      "sql": "CREATE TABLE municipality_profiles(municipality TEXT PRIMARY KEY,radar_enabled INTEGER DEFAULT 1,signals_enabled INTEGER DEFAULT 1,objects_enabled INTEGER DEFAULT 1,last_radar_scan TEXT,last_signal_scan TEXT,last_full_scan TEXT,notes TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "municipality_sources",
+      "tbl_name": "municipality_sources",
+      "sql": "CREATE TABLE municipality_sources(municipality TEXT NOT NULL,source_id TEXT NOT NULL,source_name TEXT,source_url TEXT,source_type TEXT,status TEXT NOT NULL DEFAULT 'candidate',official INTEGER DEFAULT 0,first_seen TEXT NOT NULL,last_attempt TEXT,last_success TEXT,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,PRIMARY KEY(municipality,source_id))"
+    },
+    {
+      "type": "table",
+      "name": "operation_logs",
+      "tbl_name": "operation_logs",
+      "sql": "CREATE TABLE operation_logs(id INTEGER PRIMARY KEY AUTOINCREMENT,operation_id TEXT NOT NULL,created_at TEXT NOT NULL,level TEXT NOT NULL DEFAULT 'info',stage TEXT,municipality TEXT,source_id TEXT,message TEXT NOT NULL,details TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "radar_history",
+      "tbl_name": "radar_history",
+      "sql": "CREATE TABLE radar_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,source TEXT NOT NULL,version_hash TEXT NOT NULL,captured_at TEXT NOT NULL,valid_to TEXT,raw_json TEXT NOT NULL)"
+    },
+    {
+      "type": "table",
+      "name": "radar_validations",
+      "tbl_name": "radar_validations",
+      "sql": "CREATE TABLE radar_validations(id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,checked_at TEXT NOT NULL,status TEXT NOT NULL,valid_from TEXT,valid_until TEXT,source TEXT,certificate TEXT,notes TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "radars",
+      "tbl_name": "radars",
+      "sql": "CREATE TABLE radars(id TEXT PRIMARY KEY,physical_radar_id TEXT,source TEXT NOT NULL,external_id TEXT,name TEXT NOT NULL,latitude REAL,longitude REAL,speed_limit INTEGER,speed_text TEXT,direction TEXT,status TEXT NOT NULL DEFAULT 'active',confidence INTEGER NOT NULL DEFAULT 90,municipality TEXT,state TEXT DEFAULT 'SP',road TEXT,km TEXT,radar_type TEXT,der_number TEXT,serial_number TEXT,schedule TEXT,study_url TEXT,source_url TEXT,source_date TEXT,position_quality TEXT,inmetro_registration TEXT,lanes INTEGER,local_code TEXT,quality_grade TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,current_hash TEXT NOT NULL,raw_json TEXT NOT NULL, ingested_by TEXT, ingestion_batch TEXT, provenance_note TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "road_network_meta",
+      "tbl_name": "road_network_meta",
+      "sql": "CREATE TABLE road_network_meta(id INTEGER PRIMARY KEY CHECK(id=1), source_url TEXT, fetched_at TEXT, segments INTEGER DEFAULT 0, usable_segments INTEGER DEFAULT 0, sha256 TEXT, error TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "road_object_history",
+      "tbl_name": "road_object_history",
+      "sql": "CREATE TABLE road_object_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,object_id TEXT NOT NULL,source TEXT NOT NULL,captured_at TEXT NOT NULL,raw_json TEXT NOT NULL)"
+    },
+    {
+      "type": "table",
+      "name": "road_objects",
+      "tbl_name": "road_objects",
+      "sql": "CREATE TABLE road_objects(id TEXT PRIMARY KEY,source TEXT NOT NULL,external_id TEXT,object_type TEXT NOT NULL,name TEXT,latitude REAL,longitude REAL,municipality TEXT,state TEXT DEFAULT 'SP',status TEXT DEFAULT 'active',confidence INTEGER DEFAULT 70,official INTEGER DEFAULT 0,speed_limit INTEGER,direction TEXT,timing_mode TEXT DEFAULT 'unknown',cycle_seconds REAL,green_seconds REAL,red_seconds REAL,adaptive INTEGER DEFAULT 0,timing_source TEXT,source_url TEXT,source_date TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,raw_json TEXT NOT NULL, ingested_by TEXT, ingestion_batch TEXT, provenance_note TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "signal_networks",
+      "tbl_name": "signal_networks",
+      "sql": "CREATE TABLE signal_networks(id TEXT PRIMARY KEY,municipality TEXT NOT NULL,name TEXT NOT NULL,mode TEXT NOT NULL,count_known INTEGER,live_timing INTEGER DEFAULT 0,description TEXT,source_url TEXT,source_date TEXT,last_seen TEXT NOT NULL)"
+    },
+    {
+      "type": "table",
+      "name": "source_attempts",
+      "tbl_name": "source_attempts",
+      "sql": "CREATE TABLE source_attempts(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT NOT NULL,source_id TEXT,attempted_at TEXT NOT NULL,status TEXT NOT NULL,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,url TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "source_gaps",
+      "tbl_name": "source_gaps",
+      "sql": "CREATE TABLE source_gaps(municipality TEXT PRIMARY KEY,status TEXT NOT NULL DEFAULT 'needs_source',reason TEXT,attempts INTEGER DEFAULT 0,last_checked TEXT,next_retry TEXT,notes TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "source_registry",
+      "tbl_name": "source_registry",
+      "sql": "CREATE TABLE source_registry(source_id TEXT PRIMARY KEY,name TEXT NOT NULL,scope TEXT,coverage TEXT,mode TEXT,priority INTEGER DEFAULT 50,url TEXT,official INTEGER DEFAULT 1,enabled INTEGER DEFAULT 1,last_seen TEXT,notes TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "source_syncs",
+      "tbl_name": "source_syncs",
+      "sql": "CREATE TABLE source_syncs(source_id TEXT PRIMARY KEY,status TEXT NOT NULL,started_at TEXT,finished_at TEXT,http_status INTEGER,imported INTEGER DEFAULT 0,updated INTEGER DEFAULT 0,unchanged INTEGER DEFAULT 0,skipped INTEGER DEFAULT 0,mapped INTEGER DEFAULT 0,roads INTEGER DEFAULT 0,source_url TEXT,error TEXT,diagnostic TEXT)"
+    },
+    {
+      "type": "table",
+      "name": "update_queue",
+      "tbl_name": "update_queue",
+      "sql": "CREATE TABLE update_queue(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT,category TEXT NOT NULL,source_id TEXT NOT NULL,label TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',discovered_at TEXT NOT NULL,applied_at TEXT,details TEXT)"
+    }
+  ],
+  "sql_calls": [
+    {
+      "file": "server.py",
+      "line": 189,
+      "function": "lan_ip",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 207,
+      "function": "db",
+      "method": "execute",
+      "expression": "'PRAGMA busy_timeout=30000'"
+    },
+    {
+      "file": "server.py",
+      "line": 208,
+      "function": "db",
+      "method": "execute",
+      "expression": "'PRAGMA journal_mode=WAL'"
+    },
+    {
+      "file": "server.py",
+      "line": 209,
+      "function": "db",
+      "method": "execute",
+      "expression": "'PRAGMA synchronous=NORMAL'"
+    },
+    {
+      "file": "server.py",
+      "line": 210,
+      "function": "db",
+      "method": "execute",
+      "expression": "'PRAGMA foreign_keys=ON'"
+    },
+    {
+      "file": "server.py",
+      "line": 215,
+      "function": "checkpoint_db",
+      "method": "execute",
+      "expression": "'PRAGMA wal_checkpoint(TRUNCATE)'"
+    },
+    {
+      "file": "server.py",
+      "line": 215,
+      "function": "checkpoint_db",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 215,
+      "function": "checkpoint_db",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 219,
+      "function": "init_db",
+      "method": "executescript",
+      "expression": "'''\n CREATE TABLE IF NOT EXISTS radars(id TEXT PRIMARY KEY,physical_radar_id TEXT,source TEXT NOT NULL,external_id TEXT,name TEXT NOT NULL,latitude REAL,longitude REAL,speed_limit INTEGER,speed_text TEXT,direction TEXT,status TEXT NOT NULL DEFAULT 'active',confidence INTEGER NOT NULL DEFAULT 90,municipality TEXT,state TEXT DEFAULT 'SP',road TEXT,km TEXT,radar_type TEXT,der_number TEXT,serial_number TEXT,schedule TEXT,study_url TEXT,source_url TEXT,source_date TEXT,position_quality TEXT,inmetro_registration TEXT,lanes INTEGER,local_code TEXT,quality_grade TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,current_hash TEXT NOT NULL,raw_json TEXT NOT NULL);\n CREATE TABLE IF NOT EXISTS radar_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,source TEXT NOT NULL,version_hash TEXT NOT NULL,captured_at TEXT NOT NULL,valid_to TEXT,raw_json TEXT NOT NULL);\n CREATE TABLE IF NOT EXISTS source_syncs(source_id TEXT PRIMARY KEY,status TEXT NOT NULL,started_at TEXT,finished_at TEXT,http_status INTEGER,imported INTEGER DEFAULT 0,updated INTEGER DEFAULT 0,unchanged INTEGER DEFAULT 0,skipped INTEGER DEFAULT 0,mapped INTEGER DEFAULT 0,roads INTEGER DEFAULT 0,source_url TEXT,error TEXT,diagnostic TEXT);\n CREATE TABLE IF NOT EXISTS road_network_meta(id INTEGER PRIMARY KEY CHECK(id=1), source_url TEXT, fetched_at TEXT, segments INTEGER DEFAULT 0, usable_segments INTEGER DEFAULT 0, sha256 TEXT, error TEXT);\n CREATE TABLE IF NOT EXISTS municipalities(ibge_id TEXT PRIMARY KEY,name TEXT NOT NULL,state TEXT NOT NULL DEFAULT 'SP',last_refresh TEXT);\n CREATE TABLE IF NOT EXISTS source_registry(source_id TEXT PRIMARY KEY,name TEXT NOT NULL,scope TEXT,coverage TEXT,mode TEXT,priority INTEGER DEFAULT 50,url TEXT,official INTEGER DEFAULT 1,enabled INTEGER DEFAULT 1,last_seen TEXT,notes TEXT);\n CREATE TABLE IF NOT EXISTS admin_events(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,kind TEXT NOT NULL,message TEXT NOT NULL,details TEXT);\n CREATE TABLE IF NOT EXISTS road_objects(id TEXT PRIMARY KEY,source TEXT NOT NULL,external_id TEXT,object_type TEXT NOT NULL,name TEXT,latitude REAL,longitude REAL,municipality TEXT,state TEXT DEFAULT 'SP',status TEXT DEFAULT 'active',confidence INTEGER DEFAULT 70,official INTEGER DEFAULT 0,speed_limit INTEGER,direction TEXT,timing_mode TEXT DEFAULT 'unknown',cycle_seconds REAL,green_seconds REAL,red_seconds REAL,adaptive INTEGER DEFAULT 0,timing_source TEXT,source_url TEXT,source_date TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,raw_json TEXT NOT NULL);\n CREATE TABLE IF NOT EXISTS road_object_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,object_id TEXT NOT NULL,source TEXT NOT NULL,captured_at TEXT NOT NULL,raw_json TEXT NOT NULL);\n CREATE TABLE IF NOT EXISTS signal_networks(id TEXT PRIMARY KEY,municipality TEXT NOT NULL,name TEXT NOT NULL,mode TEXT NOT NULL,count_known INTEGER,live_timing INTEGER DEFAULT 0,description TEXT,source_url TEXT,source_date TEXT,last_seen TEXT NOT NULL);\n CREATE TABLE IF NOT EXISTS municipality_sources(municipality TEXT NOT NULL,source_id TEXT NOT NULL,source_name TEXT,source_url TEXT,source_type TEXT,status TEXT NOT NULL DEFAULT 'candidate',official INTEGER DEFAULT 0,first_seen TEXT NOT NULL,last_attempt TEXT,last_success TEXT,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,PRIMARY KEY(municipality,source_id));\n CREATE TABLE IF NOT EXISTS source_gaps(municipality TEXT PRIMARY KEY,status TEXT NOT NULL DEFAULT 'needs_source',reason TEXT,attempts INTEGER DEFAULT 0,last_checked TEXT,next_retry TEXT,notes TEXT);\n CREATE TABLE IF NOT EXISTS city_scan_jobs(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,municipalities_json TEXT NOT NULL,summary_json TEXT,error TEXT);\n CREATE TABLE IF NOT EXISTS source_attempts(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT NOT NULL,source_id TEXT,attempted_at TEXT NOT NULL,status TEXT NOT NULL,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,url TEXT);\n CREATE TABLE IF NOT EXISTS municipality_profiles(municipality TEXT PRIMARY KEY,radar_enabled INTEGER DEFAULT 1,signals_enabled INTEGER DEFAULT 1,objects_enabled INTEGER DEFAULT 1,last_radar_scan TEXT,last_signal_scan TEXT,last_full_scan TEXT,notes TEXT);\n CREATE TABLE IF NOT EXISTS radar_validations(id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,checked_at TEXT NOT NULL,status TEXT NOT NULL,valid_from TEXT,valid_until TEXT,source TEXT,certificate TEXT,notes TEXT);\n CREATE TABLE IF NOT EXISTS manual_entries(id INTEGER PRIMARY KEY AUTOINCREMENT,entry_type TEXT NOT NULL,entity_id TEXT NOT NULL,created_at TEXT NOT NULL,created_by TEXT NOT NULL DEFAULT 'admin',notes TEXT);\n '''"
+    },
+    {
+      "file": "server.py",
+      "line": 239,
+      "function": "init_db",
+      "method": "execute",
+      "expression": "'PRAGMA table_info(radars)'"
+    },
+    {
+      "file": "server.py",
+      "line": 241,
+      "function": "init_db",
+      "method": "execute",
+      "expression": "f'ALTER TABLE radars ADD COLUMN {col} {typ}'"
+    },
+    {
+      "file": "server.py",
+      "line": 242,
+      "function": "init_db",
+      "method": "execute",
+      "expression": "'PRAGMA journal_mode=WAL'"
+    },
+    {
+      "file": "server.py",
+      "line": 242,
+      "function": "init_db",
+      "method": "execute",
+      "expression": "'PRAGMA busy_timeout=30000'"
+    },
+    {
+      "file": "server.py",
+      "line": 244,
+      "function": "init_db",
+      "method": "execute",
+      "expression": "\"UPDATE city_scan_jobs SET status='interrupted',finished_at=?,error=COALESCE(error,'Aplicativo encerrado antes da conclusão') WHERE status IN ('queued','running')\""
+    },
+    {
+      "file": "server.py",
+      "line": 246,
+      "function": "init_db",
+      "method": "execute",
+      "expression": "'INSERT INTO source_registry(source_id,name,scope,coverage,mode,priority,url,official,enabled,last_seen) VALUES(?,?,?,?,?,?,?,?,1,?) ON CONFLICT(source_id) DO UPDATE SET name=excluded.name,scope=excluded.scope,coverage=excluded.coverage,mode=excluded.mode,priority=excluded.priority,url=excluded.url,official=excluded.official'"
+    },
+    {
+      "file": "server.py",
+      "line": 247,
+      "function": "init_db",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 247,
+      "function": "init_db",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 295,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'SELECT current_hash FROM radars WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 298,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'INSERT INTO radars(id,'+','.join(cols)+',first_seen,last_seen,current_hash,raw_json) VALUES('+','.join(['?']*(1+len(cols)+4))+')'"
+    },
+    {
+      "file": "server.py",
+      "line": 298,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'INSERT INTO radar_history(radar_id,source,version_hash,captured_at,raw_json) VALUES(?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 300,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'UPDATE radar_history SET valid_to=? WHERE radar_id=? AND valid_to IS NULL'"
+    },
+    {
+      "file": "server.py",
+      "line": 300,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'INSERT INTO radar_history(radar_id,source,version_hash,captured_at,raw_json) VALUES(?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 300,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'UPDATE radars SET '+','.join(k+'=?' for k in cols)+',last_seen=?,current_hash=?,raw_json=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 301,
+      "function": "upsert",
+      "method": "execute",
+      "expression": "'UPDATE radars SET last_seen=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 552,
+      "function": "ensure_road_network",
+      "method": "execute",
+      "expression": "'INSERT OR REPLACE INTO road_network_meta(id,source_url,fetched_at,segments,usable_segments,sha256,error) VALUES(1,?,?,?,?,?,NULL)'"
+    },
+    {
+      "file": "server.py",
+      "line": 552,
+      "function": "ensure_road_network",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 552,
+      "function": "ensure_road_network",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 572,
+      "function": "georef_inventory",
+      "method": "execute",
+      "expression": "\"SELECT id,raw_json FROM radars WHERE state='SP' AND source='der_sp' AND (latitude IS NULL OR longitude IS NULL)\""
+    },
+    {
+      "file": "server.py",
+      "line": 579,
+      "function": "georef_inventory",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 579,
+      "function": "georef_inventory",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP' AND source='der_sp' AND latitude IS NOT NULL AND longitude IS NOT NULL\""
+    },
+    {
+      "file": "server.py",
+      "line": 579,
+      "function": "georef_inventory",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 583,
+      "function": "road_network_status",
+      "method": "execute",
+      "expression": "'SELECT * FROM road_network_meta WHERE id=1'"
+    },
+    {
+      "file": "server.py",
+      "line": 583,
+      "function": "road_network_status",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 596,
+      "function": "seed_santo_andre",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('santo_andre','ok',?,?,?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 597,
+      "function": "seed_santo_andre",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 598,
+      "function": "seed_santo_andre",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 637,
+      "function": "do_sync",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 638,
+      "function": "do_sync",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 651,
+      "function": "do_sync",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('der_sp',?,?,?,?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 651,
+      "function": "do_sync",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 652,
+      "function": "do_sync",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 660,
+      "function": "do_sync",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,error,source_url,diagnostic) VALUES('der_sp','error',?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 660,
+      "function": "do_sync",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 661,
+      "function": "do_sync",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 665,
+      "function": "do_sync",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 681,
+      "function": "refresh_physical_ids",
+      "method": "execute",
+      "expression": "\"SELECT id,source,latitude,longitude,speed_limit,direction,serial_number,inmetro_registration,physical_radar_id FROM radars WHERE state='SP'\""
+    },
+    {
+      "file": "server.py",
+      "line": 705,
+      "function": "refresh_physical_ids",
+      "method": "executemany",
+      "expression": "'UPDATE radars SET physical_radar_id=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 705,
+      "function": "refresh_physical_ids",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 706,
+      "function": "refresh_physical_ids",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 709,
+      "function": "get_radars",
+      "method": "execute",
+      "expression": "q"
+    },
+    {
+      "file": "server.py",
+      "line": 709,
+      "function": "get_radars",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP'\""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP' AND latitude IS NOT NULL AND longitude IS NOT NULL\""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP' AND status='active'\""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "'SELECT COUNT(*) FROM radar_history'"
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP' AND position_quality='exact_official'\""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE municipality IN ('Santo André','São Bernardo do Campo','São Caetano do Sul','Diadema','Mauá','Ribeirão Pires','Rio Grande da Serra')\""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(DISTINCT physical_radar_id) FROM radars WHERE state='SP' AND physical_radar_id IS NOT NULL\""
+    },
+    {
+      "file": "server.py",
+      "line": 714,
+      "function": "get_stats",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 716,
+      "function": "get_sources",
+      "method": "execute",
+      "expression": "'SELECT * FROM source_syncs'"
+    },
+    {
+      "file": "server.py",
+      "line": 716,
+      "function": "get_sources",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 941,
+      "function": "_seed_praia_grande_impl",
+      "method": "execute",
+      "expression": "'SELECT latitude,longitude,position_quality,quality_grade FROM radars WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 973,
+      "function": "_seed_praia_grande_impl",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,source_url,error,diagnostic) VALUES('praia_grande',?,?,?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 974,
+      "function": "_seed_praia_grande_impl",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 974,
+      "function": "_seed_praia_grande_impl",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 981,
+      "function": "_seed_santos_impl",
+      "method": "execute",
+      "expression": "'SELECT latitude,longitude,position_quality FROM radars WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1003,
+      "function": "_seed_santos_impl",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,source_url,error,diagnostic) VALUES('santos',?,?,?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1004,
+      "function": "_seed_santos_impl",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1004,
+      "function": "_seed_santos_impl",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1118,
+      "function": "_finish_route",
+      "method": "execute",
+      "expression": "\"SELECT 1 FROM sqlite_master WHERE name='map_points'\""
+    },
+    {
+      "file": "server.py",
+      "line": 1170,
+      "function": "_admin_event",
+      "method": "execute",
+      "expression": "'INSERT INTO admin_events(created_at,kind,message,details) VALUES(?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1170,
+      "function": "_admin_event",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1170,
+      "function": "_admin_event",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1184,
+      "function": "sync_municipalities_ibge",
+      "method": "execute",
+      "expression": "'INSERT INTO municipalities(ibge_id,name,state,last_refresh) VALUES(?,?,\\'SP\\',?) ON CONFLICT(ibge_id) DO UPDATE SET name=excluded.name,last_refresh=excluded.last_refresh'"
+    },
+    {
+      "file": "server.py",
+      "line": 1185,
+      "function": "sync_municipalities_ibge",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1186,
+      "function": "sync_municipalities_ibge",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1189,
+      "function": "sync_municipalities_ibge",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM municipalities WHERE state='SP'\""
+    },
+    {
+      "file": "server.py",
+      "line": 1189,
+      "function": "sync_municipalities_ibge",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1197,
+      "function": "municipality_coverage",
+      "method": "execute",
+      "expression": "\"SELECT ibge_id,name FROM municipalities ORDER BY name\""
+    },
+    {
+      "file": "server.py",
+      "line": 1198,
+      "function": "municipality_coverage",
+      "method": "execute",
+      "expression": "\"SELECT municipality,COUNT(*) inventory,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped,COUNT(DISTINCT source) sources FROM radars WHERE state='SP' AND municipality IS NOT NULL GROUP BY municipality\""
+    },
+    {
+      "file": "server.py",
+      "line": 1205,
+      "function": "municipality_coverage",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1208,
+      "function": "source_registry_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM source_registry ORDER BY priority DESC,name'"
+    },
+    {
+      "file": "server.py",
+      "line": 1208,
+      "function": "source_registry_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM source_syncs'"
+    },
+    {
+      "file": "server.py",
+      "line": 1208,
+      "function": "source_registry_state",
+      "method": "execute",
+      "expression": "\"SELECT source,COUNT(*) inventory,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped,COUNT(DISTINCT municipality) municipalities FROM radars WHERE state='SP' GROUP BY source\""
+    },
+    {
+      "file": "server.py",
+      "line": 1208,
+      "function": "source_registry_state",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1257,
+      "function": "sync_antt_sp",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('antt_sp',?,?,?,?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1258,
+      "function": "sync_antt_sp",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1258,
+      "function": "sync_antt_sp",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1262,
+      "function": "admin_dashboard",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) n,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped,COUNT(DISTINCT municipality) municipalities,COUNT(DISTINCT source) sources FROM radars WHERE state='SP'\""
+    },
+    {
+      "file": "server.py",
+      "line": 1262,
+      "function": "admin_dashboard",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP' AND (latitude IS NULL OR longitude IS NULL)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1262,
+      "function": "admin_dashboard",
+      "method": "execute",
+      "expression": "'SELECT * FROM admin_events ORDER BY id DESC LIMIT 20'"
+    },
+    {
+      "file": "server.py",
+      "line": 1262,
+      "function": "admin_dashboard",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1266,
+      "function": "stability_diagnostics",
+      "method": "execute",
+      "expression": "'SELECT * FROM source_syncs ORDER BY source_id'"
+    },
+    {
+      "file": "server.py",
+      "line": 1266,
+      "function": "stability_diagnostics",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP'\""
+    },
+    {
+      "file": "server.py",
+      "line": 1266,
+      "function": "stability_diagnostics",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) FROM radars WHERE state='SP' AND latitude IS NOT NULL AND longitude IS NOT NULL\""
+    },
+    {
+      "file": "server.py",
+      "line": 1266,
+      "function": "stability_diagnostics",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(DISTINCT physical_radar_id) FROM radars WHERE state='SP' AND physical_radar_id IS NOT NULL\""
+    },
+    {
+      "file": "server.py",
+      "line": 1266,
+      "function": "stability_diagnostics",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1281,
+      "function": "radar_type_stats",
+      "method": "execute",
+      "expression": "\"SELECT source,radar_type,COUNT(*) n,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped FROM radars WHERE state='SP' GROUP BY source,radar_type\""
+    },
+    {
+      "file": "server.py",
+      "line": 1281,
+      "function": "radar_type_stats",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1295,
+      "function": "seed_signal_networks",
+      "method": "execute",
+      "expression": "'INSERT OR REPLACE INTO signal_networks(id,municipality,name,mode,count_known,live_timing,description,source_url,source_date,last_seen) VALUES(?,?,?,?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1296,
+      "function": "seed_signal_networks",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1296,
+      "function": "seed_signal_networks",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1300,
+      "function": "signal_network_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM signal_networks ORDER BY municipality'"
+    },
+    {
+      "file": "server.py",
+      "line": 1300,
+      "function": "signal_network_state",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1303,
+      "function": "road_object_stats",
+      "method": "execute",
+      "expression": "\"SELECT object_type,COUNT(*) n,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped,COUNT(DISTINCT municipality) municipalities FROM road_objects WHERE state='SP' GROUP BY object_type\""
+    },
+    {
+      "file": "server.py",
+      "line": 1303,
+      "function": "road_object_stats",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1307,
+      "function": "_upsert_road_object",
+      "method": "execute",
+      "expression": "'SELECT first_seen,raw_json FROM road_objects WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1311,
+      "function": "_upsert_road_object",
+      "method": "execute",
+      "expression": "'UPDATE road_objects SET last_seen=?,ingested_by=COALESCE(?,ingested_by),ingestion_batch=COALESCE(?,ingestion_batch),provenance_note=COALESCE(?,provenance_note) WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1312,
+      "function": "_upsert_road_object",
+      "method": "execute",
+      "expression": "'INSERT INTO road_object_history(object_id,source,captured_at,raw_json) VALUES(?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1314,
+      "function": "_upsert_road_object",
+      "method": "execute",
+      "expression": "f'INSERT OR REPLACE INTO road_objects(id,{cols},first_seen,last_seen,raw_json) VALUES({qs})'"
+    },
+    {
+      "file": "server.py",
+      "line": 1440,
+      "function": "_sync_official_signal_wfs",
+      "method": "execute",
+      "expression": "'SELECT id,external_id FROM road_objects WHERE source=? AND abs(latitude-?)<0.0000001 AND abs(longitude-?)<0.0000001 LIMIT 1'"
+    },
+    {
+      "file": "server.py",
+      "line": 1445,
+      "function": "_sync_official_signal_wfs",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,mapped,source_url,diagnostic) VALUES(?,?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1446,
+      "function": "_sync_official_signal_wfs",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1447,
+      "function": "_sync_official_signal_wfs",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1498,
+      "function": "sync_osm_objects_city",
+      "method": "execute",
+      "expression": "\"INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,mapped,source_url,diagnostic) VALUES('osm_road_objects',?,?,?,?,?,?,?,?,?,?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1498,
+      "function": "sync_osm_objects_city",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1498,
+      "function": "sync_osm_objects_city",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1504,
+      "function": "get_road_objects",
+      "method": "execute",
+      "expression": "q"
+    },
+    {
+      "file": "server.py",
+      "line": 1504,
+      "function": "get_road_objects",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1533,
+      "function": "_record_source_attempt",
+      "method": "execute",
+      "expression": "'INSERT INTO source_attempts(municipality,source_id,attempted_at,status,item_count,mapped_count,diagnostic,url) VALUES(?,?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1534,
+      "function": "_record_source_attempt",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1534,
+      "function": "_record_source_attempt",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1537,
+      "function": "_save_municipality_source",
+      "method": "execute",
+      "expression": "'SELECT first_seen,last_success FROM municipality_sources WHERE municipality=? AND source_id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1539,
+      "function": "_save_municipality_source",
+      "method": "execute",
+      "expression": "'INSERT OR REPLACE INTO municipality_sources(municipality,source_id,source_name,source_url,source_type,status,official,first_seen,last_attempt,last_success,item_count,mapped_count,diagnostic) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1540,
+      "function": "_save_municipality_source",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1540,
+      "function": "_save_municipality_source",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1543,
+      "function": "_set_gap",
+      "method": "execute",
+      "expression": "'SELECT attempts FROM source_gaps WHERE municipality=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1545,
+      "function": "_set_gap",
+      "method": "execute",
+      "expression": "'INSERT OR REPLACE INTO source_gaps(municipality,status,reason,attempts,last_checked,next_retry,notes) VALUES(?,?,?,?,?,?,COALESCE((SELECT notes FROM source_gaps WHERE municipality=?),NULL))'"
+    },
+    {
+      "file": "server.py",
+      "line": 1546,
+      "function": "_set_gap",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1546,
+      "function": "_set_gap",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1551,
+      "function": "_clear_gap",
+      "method": "execute",
+      "expression": "'DELETE FROM source_gaps WHERE municipality=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1551,
+      "function": "_clear_gap",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1551,
+      "function": "_clear_gap",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1554,
+      "function": "_city_counts",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) n,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped,COUNT(DISTINCT source) sources FROM radars WHERE state='SP' AND lower(municipality)=lower(?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1554,
+      "function": "_city_counts",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) n FROM road_objects WHERE state='SP' AND lower(municipality)=lower(?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1554,
+      "function": "_city_counts",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1557,
+      "function": "_probe_backbones",
+      "method": "execute",
+      "expression": "\"SELECT source,COUNT(*) n,SUM(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL THEN 1 ELSE 0 END) mapped FROM radars WHERE state='SP' AND lower(municipality)=lower(?) GROUP BY source\""
+    },
+    {
+      "file": "server.py",
+      "line": 1557,
+      "function": "_probe_backbones",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1641,
+      "function": "_run_city_batch_worker",
+      "method": "execute",
+      "expression": "'UPDATE city_scan_jobs SET started_at=?,status=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1641,
+      "function": "_run_city_batch_worker",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1642,
+      "function": "_run_city_batch_worker",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1647,
+      "function": "_run_city_batch_worker",
+      "method": "execute",
+      "expression": "'UPDATE city_scan_jobs SET summary_json=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1647,
+      "function": "_run_city_batch_worker",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1648,
+      "function": "_run_city_batch_worker",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1654,
+      "function": "_run_city_batch_worker",
+      "method": "execute",
+      "expression": "'UPDATE city_scan_jobs SET finished_at=?,status=?,summary_json=?,error=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1654,
+      "function": "_run_city_batch_worker",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1655,
+      "function": "_run_city_batch_worker",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1662,
+      "function": "start_city_batch",
+      "method": "execute",
+      "expression": "'INSERT INTO city_scan_jobs(created_at,status,municipalities_json,summary_json) VALUES(?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1663,
+      "function": "start_city_batch",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1664,
+      "function": "start_city_batch",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1669,
+      "function": "admin_ops_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM source_gaps ORDER BY attempts DESC, municipality'"
+    },
+    {
+      "file": "server.py",
+      "line": 1669,
+      "function": "admin_ops_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM municipality_sources ORDER BY COALESCE(last_success,last_attempt) DESC, municipality LIMIT 500'"
+    },
+    {
+      "file": "server.py",
+      "line": 1669,
+      "function": "admin_ops_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM city_scan_jobs ORDER BY id DESC LIMIT 20'"
+    },
+    {
+      "file": "server.py",
+      "line": 1669,
+      "function": "admin_ops_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM source_attempts ORDER BY id DESC LIMIT 100'"
+    },
+    {
+      "file": "server.py",
+      "line": 1669,
+      "function": "admin_ops_state",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1699,
+      "function": "_manual_radar",
+      "method": "execute",
+      "expression": "'INSERT INTO manual_entries(entry_type,entity_id,created_at,notes) VALUES(?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1700,
+      "function": "_manual_radar",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1701,
+      "function": "_manual_radar",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1714,
+      "function": "_manual_signal",
+      "method": "execute",
+      "expression": "'INSERT INTO manual_entries(entry_type,entity_id,created_at,notes) VALUES(?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1715,
+      "function": "_manual_signal",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1716,
+      "function": "_manual_signal",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1733,
+      "function": "update_city_scope",
+      "method": "execute",
+      "expression": "'INSERT INTO municipality_profiles(municipality,last_radar_scan,last_signal_scan,last_full_scan) VALUES(?,?,?,?) ON CONFLICT(municipality) DO UPDATE SET last_radar_scan=CASE WHEN ? IN (\\'all\\',\\'radars\\') THEN excluded.last_radar_scan ELSE municipality_profiles.last_radar_scan END,last_signal_scan=CASE WHEN ? IN (\\'all\\',\\'signals\\',\\'objects\\') THEN excluded.last_signal_scan ELSE municipality_profiles.last_signal_scan END,last_full_scan=CASE WHEN ?=\\'all\\' THEN excluded.last_full_scan ELSE municipality_profiles.last_full_scan END'"
+    },
+    {
+      "file": "server.py",
+      "line": 1733,
+      "function": "update_city_scope",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1734,
+      "function": "update_city_scope",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1740,
+      "function": "admin_inventory",
+      "method": "execute",
+      "expression": "'SELECT id,name,municipality,radar_type,speed_limit,direction,status,position_quality,source,last_seen,inmetro_registration,serial_number,latitude,longitude FROM radars'+wr+' ORDER BY last_seen DESC LIMIT 500'"
+    },
+    {
+      "file": "server.py",
+      "line": 1741,
+      "function": "admin_inventory",
+      "method": "execute",
+      "expression": "'SELECT id,name,municipality,object_type,status,timing_mode,adaptive,source,last_seen,latitude,longitude FROM road_objects'+wor+' ORDER BY last_seen DESC LIMIT 500'"
+    },
+    {
+      "file": "server.py",
+      "line": 1742,
+      "function": "admin_inventory",
+      "method": "execute",
+      "expression": "'SELECT * FROM municipality_profiles ORDER BY municipality'"
+    },
+    {
+      "file": "server.py",
+      "line": 1743,
+      "function": "admin_inventory",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1757,
+      "function": "ensure_v18_tables",
+      "method": "executescript",
+      "expression": "sql"
+    },
+    {
+      "file": "server.py",
+      "line": 1758,
+      "function": "ensure_v18_tables",
+      "method": "execute",
+      "expression": "'PRAGMA table_info(city_scan_jobs)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1760,
+      "function": "ensure_v18_tables",
+      "method": "execute",
+      "expression": "f'ALTER TABLE city_scan_jobs ADD COLUMN {col} {typ}'"
+    },
+    {
+      "file": "server.py",
+      "line": 1761,
+      "function": "ensure_v18_tables",
+      "method": "execute",
+      "expression": "'PRAGMA table_info(road_objects)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1763,
+      "function": "ensure_v18_tables",
+      "method": "execute",
+      "expression": "f'ALTER TABLE road_objects ADD COLUMN {col} {typ}'"
+    },
+    {
+      "file": "server.py",
+      "line": 1764,
+      "function": "ensure_v18_tables",
+      "method": "execute",
+      "expression": "'PRAGMA table_info(radars)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1766,
+      "function": "ensure_v18_tables",
+      "method": "execute",
+      "expression": "f'ALTER TABLE radars ADD COLUMN {col} {typ}'"
+    },
+    {
+      "file": "server.py",
+      "line": 1767,
+      "function": "ensure_v18_tables",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1768,
+      "function": "ensure_v18_tables",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1780,
+      "function": "_oplog",
+      "method": "execute",
+      "expression": "'INSERT INTO operation_logs(operation_id,created_at,level,stage,municipality,source_id,message,details) VALUES(?,?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1780,
+      "function": "_oplog",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1781,
+      "function": "_oplog",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1786,
+      "function": "_queue_update",
+      "method": "execute",
+      "expression": "'SELECT id FROM update_queue WHERE municipality=? AND category=? AND source_id=? AND label=? AND status=\"pending\"'"
+    },
+    {
+      "file": "server.py",
+      "line": 1787,
+      "function": "_queue_update",
+      "method": "execute",
+      "expression": "'INSERT INTO update_queue(municipality,category,source_id,label,status,discovered_at,details) VALUES(?,?,?,?,\"pending\",?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1788,
+      "function": "_queue_update",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1789,
+      "function": "_queue_update",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1794,
+      "function": "update_queue_state",
+      "method": "execute",
+      "expression": "q"
+    },
+    {
+      "file": "server.py",
+      "line": 1794,
+      "function": "update_queue_state",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1800,
+      "function": "operation_logs_state",
+      "method": "execute",
+      "expression": "q"
+    },
+    {
+      "file": "server.py",
+      "line": 1800,
+      "function": "operation_logs_state",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1861,
+      "function": "_run_city_batch_worker_v17",
+      "method": "execute",
+      "expression": "'UPDATE city_scan_jobs SET status=?,started_at=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1861,
+      "function": "_run_city_batch_worker_v17",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1862,
+      "function": "_run_city_batch_worker_v17",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1868,
+      "function": "_run_city_batch_worker_v17",
+      "method": "execute",
+      "expression": "'UPDATE city_scan_jobs SET status=?,finished_at=?,result_json=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1868,
+      "function": "_run_city_batch_worker_v17",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1869,
+      "function": "_run_city_batch_worker_v17",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1872,
+      "function": "_run_city_batch_worker_v17",
+      "method": "execute",
+      "expression": "'UPDATE city_scan_jobs SET status=?,finished_at=?,result_json=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1872,
+      "function": "_run_city_batch_worker_v17",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1873,
+      "function": "_run_city_batch_worker_v17",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1877,
+      "function": "start_city_batch_v17",
+      "method": "execute",
+      "expression": "'INSERT INTO city_scan_jobs(created_at,status,municipalities_json,include_osm,result_json) VALUES(?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1877,
+      "function": "start_city_batch_v17",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1878,
+      "function": "start_city_batch_v17",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1947,
+      "function": "apply_update_decisions",
+      "method": "execute",
+      "expression": "'SELECT * FROM update_queue WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1951,
+      "function": "apply_update_decisions",
+      "method": "execute",
+      "expression": "'UPDATE update_queue SET status=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1951,
+      "function": "apply_update_decisions",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1955,
+      "function": "apply_update_decisions",
+      "method": "execute",
+      "expression": "'UPDATE update_queue SET status=?,applied_at=? WHERE id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1955,
+      "function": "apply_update_decisions",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1958,
+      "function": "apply_update_decisions",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1963,
+      "function": "_mark_assistant_provenance",
+      "method": "execute",
+      "expression": "q"
+    },
+    {
+      "file": "server.py",
+      "line": 1963,
+      "function": "_mark_assistant_provenance",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1964,
+      "function": "_mark_assistant_provenance",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1973,
+      "function": "_assistant_seed_official_crossings",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1976,
+      "function": "_assistant_seed_official_crossings",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1979,
+      "function": "assistant_pack_state",
+      "method": "execute",
+      "expression": "'SELECT * FROM assistant_update_runs WHERE batch_id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1981,
+      "function": "assistant_pack_state",
+      "method": "execute",
+      "expression": "\"SELECT COUNT(*) n,SUM(CASE WHEN object_type='traffic_signal' THEN 1 ELSE 0 END) signals,SUM(CASE WHEN ingested_by=? THEN 1 ELSE 0 END) mine FROM road_objects WHERE lower(municipality)=lower(?)\""
+    },
+    {
+      "file": "server.py",
+      "line": 1982,
+      "function": "assistant_pack_state",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1985,
+      "function": "run_assistant_signal_pack",
+      "method": "execute",
+      "expression": "'SELECT status FROM assistant_update_runs WHERE batch_id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 1985,
+      "function": "run_assistant_signal_pack",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1988,
+      "function": "run_assistant_signal_pack",
+      "method": "execute",
+      "expression": "'INSERT OR REPLACE INTO assistant_update_runs(batch_id,actor,started_at,finished_at,status,targets_json,summary_json,error) VALUES(?,?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "server.py",
+      "line": 1988,
+      "function": "run_assistant_signal_pack",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 1989,
+      "function": "run_assistant_signal_pack",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 2006,
+      "function": "run_assistant_signal_pack",
+      "method": "execute",
+      "expression": "'UPDATE assistant_update_runs SET finished_at=?,status=?,summary_json=?,error=? WHERE batch_id=?'"
+    },
+    {
+      "file": "server.py",
+      "line": 2006,
+      "function": "run_assistant_signal_pack",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "server.py",
+      "line": 2007,
+      "function": "run_assistant_signal_pack",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "community.py",
+      "line": 16,
+      "function": "transaction",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "community.py",
+      "line": 20,
+      "function": "init",
+      "method": "executescript",
+      "expression": "'''CREATE TABLE IF NOT EXISTS map_points(id TEXT PRIMARY KEY,longitude REAL NOT NULL,latitude REAL NOT NULL,kind TEXT NOT NULL,speed_limit INTEGER,direction REAL,direction_type INTEGER,original_type INTEGER,source TEXT,source_type TEXT,ingested_by TEXT,imported_at TEXT,batch_id TEXT,municipality TEXT,trust TEXT DEFAULT 'community',linked_id TEXT,hidden INTEGER DEFAULT 0,updated_at TEXT,expires_at REAL,raw_json TEXT);\nCREATE INDEX IF NOT EXISTS radar_viewport ON radars(longitude,latitude);\nCREATE INDEX IF NOT EXISTS object_viewport ON road_objects(longitude,latitude);\nCREATE INDEX IF NOT EXISTS map_bbox ON map_points(longitude,latitude);\nCREATE INDEX IF NOT EXISTS map_city_type ON map_points(municipality,kind);\nCREATE INDEX IF NOT EXISTS map_source_trust ON map_points(source,trust);\nCREATE INDEX IF NOT EXISTS map_updated ON map_points(updated_at);\nCREATE TABLE IF NOT EXISTS community_batches(batch_id TEXT PRIMARY KEY,created_at TEXT,filename TEXT,sha256 TEXT,summary_json TEXT);\nCREATE TABLE IF NOT EXISTS map_feedback(id INTEGER PRIMARY KEY,point_id TEXT,action TEXT,created_at TEXT);\nCREATE TABLE IF NOT EXISTS map_audit(id INTEGER PRIMARY KEY,created_at TEXT,action TEXT,ids_json TEXT);\n'''"
+    },
+    {
+      "file": "community.py",
+      "line": 31,
+      "function": "init",
+      "method": "execute",
+      "expression": "'PRAGMA table_info(map_points)'"
+    },
+    {
+      "file": "community.py",
+      "line": 33,
+      "function": "init",
+      "method": "execute",
+      "expression": "'ALTER TABLE map_points ADD COLUMN '+col+' TEXT'"
+    },
+    {
+      "file": "community.py",
+      "line": 60,
+      "function": "legacy",
+      "method": "execute",
+      "expression": "\"SELECT * FROM \"+table+\" WHERE latitude IS NOT NULL AND longitude IS NOT NULL AND status NOT IN ('inactive','removed','hidden','retired')\"+(' AND longitude BETWEEN ? AND ? AND latitude BETWEEN ? AND ?' if bbox else '')"
+    },
+    {
+      "file": "community.py",
+      "line": 75,
+      "function": "reconcile",
+      "method": "execute",
+      "expression": "'SELECT id,direction,speed_limit,imported_at,longitude,latitude FROM map_points WHERE kind=? AND longitude BETWEEN ? AND ? AND latitude BETWEEN ? AND ? AND source_type=\"community\" AND id!=?'"
+    },
+    {
+      "file": "community.py",
+      "line": 93,
+      "function": "import_file",
+      "method": "execute",
+      "expression": "'SELECT summary_json FROM community_batches WHERE batch_id=?'"
+    },
+    {
+      "file": "community.py",
+      "line": 107,
+      "function": "import_file",
+      "method": "execute",
+      "expression": "'SELECT 1 FROM map_points WHERE id=?'"
+    },
+    {
+      "file": "community.py",
+      "line": 110,
+      "function": "import_file",
+      "method": "execute",
+      "expression": "'INSERT INTO map_points('+','.join(r)+') VALUES('+','.join('?' for _ in r)+')'"
+    },
+    {
+      "file": "community.py",
+      "line": 114,
+      "function": "import_file",
+      "method": "execute",
+      "expression": "'INSERT INTO community_batches VALUES(?,?,?,?,?)'"
+    },
+    {
+      "file": "community.py",
+      "line": 127,
+      "function": "features",
+      "method": "execute",
+      "expression": "'SELECT * FROM map_points WHERE '+' AND '.join(where)+' ORDER BY updated_at DESC LIMIT 25000'"
+    },
+    {
+      "file": "community.py",
+      "line": 137,
+      "function": "features",
+      "method": "execute",
+      "expression": "\"SELECT id FROM map_points WHERE longitude BETWEEN ? AND ? AND latitude BETWEEN ? AND ? AND (hidden=1 OR trust='duplicate' OR (trust='confirmed' AND linked_id IS NOT NULL) OR expires_at<=?)\""
+    },
+    {
+      "file": "community.py",
+      "line": 143,
+      "function": "summary",
+      "method": "execute",
+      "expression": "'SELECT * FROM community_batches'"
+    },
+    {
+      "file": "community.py",
+      "line": 182,
+      "function": "post",
+      "method": "execute",
+      "expression": "'INSERT OR IGNORE INTO map_points(id,longitude,latitude,kind,source,source_type,ingested_by,imported_at,municipality,trust,updated_at,expires_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "community.py",
+      "line": 183,
+      "function": "post",
+      "method": "execute",
+      "expression": "'UPDATE map_points SET name=?,report_kind=?,raw_json=? WHERE id=?'"
+    },
+    {
+      "file": "community.py",
+      "line": 187,
+      "function": "post",
+      "method": "execute",
+      "expression": "'INSERT INTO map_feedback(point_id,action,created_at) VALUES(?,?,?)'"
+    },
+    {
+      "file": "community.py",
+      "line": 197,
+      "function": "post",
+      "method": "execute",
+      "expression": "'SELECT * FROM map_points WHERE id=?'"
+    },
+    {
+      "file": "community.py",
+      "line": 199,
+      "function": "post",
+      "method": "execute",
+      "expression": "'UPDATE map_points SET trust=?,linked_id=?,updated_at=? WHERE id=?'"
+    },
+    {
+      "file": "community.py",
+      "line": 200,
+      "function": "post",
+      "method": "execute",
+      "expression": "'UPDATE map_points SET '+actions[action]+',updated_at=? WHERE id IN ('+','.join('?' for _ in ids)+')'"
+    },
+    {
+      "file": "community.py",
+      "line": 201,
+      "function": "post",
+      "method": "execute",
+      "expression": "'INSERT INTO map_audit(created_at,action,ids_json) VALUES(?,?,?)'"
+    },
+    {
+      "file": "community.py",
+      "line": 212,
+      "function": "bootstrap_public_data",
+      "method": "execute",
+      "expression": "\"SELECT longitude,latitude FROM road_objects WHERE source='geosampa_signals' AND longitude IS NOT NULL AND latitude IS NOT NULL\""
+    },
+    {
+      "file": "community.py",
+      "line": 220,
+      "function": "bootstrap_public_data",
+      "method": "execute",
+      "expression": "'SELECT 1 FROM community_batches LIMIT 1'"
+    },
+    {
+      "file": "selftest.py",
+      "line": 31,
+      "function": "main",
+      "method": "execute",
+      "expression": "\"update radars set latitude=-24.005,longitude=-46.412,position_quality='test_preserve' where id='pg_official_01'\""
+    },
+    {
+      "file": "selftest.py",
+      "line": 31,
+      "function": "main",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 31,
+      "function": "main",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 31,
+      "function": "main",
+      "method": "execute",
+      "expression": "\"select latitude,longitude from radars where id='pg_official_01'\""
+    },
+    {
+      "file": "selftest.py",
+      "line": 31,
+      "function": "main",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 33,
+      "function": "main",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 33,
+      "function": "main",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 39,
+      "function": "main",
+      "method": "commit",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 39,
+      "function": "main",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "selftest.py",
+      "line": 44,
+      "function": "main",
+      "method": "execute",
+      "expression": "\"SELECT name FROM sqlite_master WHERE type='table'\""
+    },
+    {
+      "file": "selftest.py",
+      "line": 44,
+      "function": "main",
+      "method": "close",
+      "expression": ""
+    },
+    {
+      "file": "test_community.py",
+      "line": 17,
+      "function": "test_reconcile_and_official_preserved",
+      "method": "execute",
+      "expression": "'select speed_limit from radars where id=\"official\"'"
+    },
+    {
+      "file": "test_community.py",
+      "line": 23,
+      "function": "test_direction_and_route_corridor",
+      "method": "execute",
+      "expression": "'INSERT INTO map_points(id,longitude,latitude,kind,direction,direction_type,trust) VALUES(?,?,?,?,?,?,?)'"
+    },
+    {
+      "file": "test_community.py",
+      "line": 28,
+      "function": "test_migration_repeat_and_bbox",
+      "method": "execute",
+      "expression": "'select name from sqlite_master'"
+    },
+    {
+      "file": "test_community.py",
+      "line": 30,
+      "function": "test_bulk_does_not_promote_source",
+      "method": "execute",
+      "expression": "\"INSERT INTO map_points(id,longitude,latitude,kind,source_type,trust,hidden) VALUES('x',-46,-23,'fixed','community','community',1)\""
+    },
+    {
+      "file": "test_community.py",
+      "line": 32,
+      "function": "test_bulk_does_not_promote_source",
+      "method": "execute",
+      "expression": "'select * from map_points'"
+    },
+    {
+      "file": "test_community.py",
+      "line": 39,
+      "function": "test_public_report_and_feedback",
+      "method": "execute",
+      "expression": "'select * from map_points'"
+    },
+    {
+      "file": "test_community.py",
+      "line": 39,
+      "function": "test_public_report_and_feedback",
+      "method": "execute",
+      "expression": "'select count(*) from map_feedback'"
+    },
+    {
+      "file": "test_community.py",
+      "line": 40,
+      "function": "test_public_report_and_feedback",
+      "method": "execute",
+      "expression": "'update map_points set expires_at=0'"
+    },
+    {
+      "file": "test_road_review.py",
+      "line": 21,
+      "function": "test_public_bootstrap_and_repeat_preserve_official",
+      "method": "execute",
+      "expression": "\"select name from road_objects where id='preserve-signal'\""
+    },
+    {
+      "file": "test_road_review.py",
+      "line": 22,
+      "function": "test_public_bootstrap_and_repeat_preserve_official",
+      "method": "execute",
+      "expression": "'select count(*) from map_points'"
+    },
+    {
+      "file": "test_road_review.py",
+      "line": 23,
+      "function": "test_public_bootstrap_and_repeat_preserve_official",
+      "method": "execute",
+      "expression": "'select longitude,latitude,direction,direction_type,original_type from map_points'"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 18,
+      "function": "",
+      "method": "execute",
+      "expression": "'SELECT original_type,count(*) FROM map_points WHERE source=\"community_speedcam\" GROUP BY original_type'"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 19,
+      "function": "",
+      "method": "execute",
+      "expression": "'SELECT count(*) FROM map_points WHERE longitude IS NULL OR latitude IS NULL OR direction<0 OR direction>360 OR direction_type NOT IN (0,1,2)'"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 20,
+      "function": "",
+      "method": "execute",
+      "expression": "'select count(*) from radars'"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 20,
+      "function": "",
+      "method": "execute",
+      "expression": "'select count(*) from radars where latitude is not null and longitude is not null'"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 21,
+      "function": "",
+      "method": "execute",
+      "expression": "\"select count(*) from road_objects where object_type='traffic_signal' and latitude is not null and longitude is not null\""
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 26,
+      "function": "",
+      "method": "execute",
+      "expression": "'select * from '+table"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 28,
+      "function": "",
+      "method": "execute",
+      "expression": "'select * from '+table+' where id=?'"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 33,
+      "function": "",
+      "method": "execute",
+      "expression": "'select count(*) from '+table"
+    },
+    {
+      "file": "scripts/road_audit.py",
+      "line": 34,
+      "function": "",
+      "method": "close",
+      "expression": ""
+    }
+  ]
+}

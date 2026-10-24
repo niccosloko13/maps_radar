@@ -1,0 +1,63 @@
+{
+  "requested_skill_url": "https://neon.com/.well-known/agent-skills/neon/SKILL.md",
+  "skill_fetch_status": 200,
+  "fetched_skill_sha256": "bffc8ca162bd668262a17bb6b098a0519c168f1ceb3e5194773d31bd86b30048",
+  "initial_cache_version": "2.3.0",
+  "initial_plugin_registered_in_codex_list": false,
+  "initial_neon_mcp_registered": false,
+  "skills_installed": [
+    "neon",
+    "neon-postgres"
+  ],
+  "new_setup_files": [
+    ".agents/skills/neon-postgres/SKILL.md",
+    ".agents/skills/neon-postgres/references/full-text-search.md",
+    ".agents/skills/neon-postgres/references/hybrid-search.md",
+    ".agents/skills/neon-postgres/references/lakebase-search-drizzle.md",
+    ".agents/skills/neon-postgres/references/vector-search.md",
+    ".agents/skills/neon/SKILL.md",
+    ".agents/skills/neon/references/auth.md",
+    ".agents/skills/neon/references/claimable-neon.md",
+    ".agents/skills/neon/references/function-triggers.md",
+    ".agents/skills/neon/references/logs-loki.md",
+    ".agents/skills/neon/references/parse-env.md",
+    ".agents/skills/neon/references/sdk.md",
+    ".codex/config.toml",
+    "skills-lock.json"
+  ],
+  "existing_configuration_unchanged": {
+    ".gitignore": true,
+    ".neon": true,
+    "neon.ts": true,
+    "package.json": true,
+    "package-lock.json": true
+  },
+  "mcp_scope": "project",
+  "mcp_url": "https://mcp.neon.tech/mcp?projectId=shy-art-03849128",
+  "authentication": "OAuth URL-only; no API key written",
+  "cli_authenticated": true,
+  "live_mcp_authenticated": false,
+  "project_trust": "trusted; explicitly approved by user",
+  "runtime_loader_status": "Codex mcp list recognizes Neon; skills/list recognizes both project skills with zero discovery errors",
+  "backup_directory": "~/.codex/.tmp/relas-neon-setup-20261024-203034",
+  "database_changes": false,
+  "user_config_existing_bytes_preserved": true,
+  "user_config_change": "Appended only the explicitly approved Relas project trust entry",
+  "trusted_project": "c:\\users\\veigh\\onedrive\\\u00c1rea de trabalho\\relas_v182",
+  "mcp_enabled": true,
+  "mcp_auth_status": "not_logged_in",
+  "recognized_skills": [
+    {
+      "name": "neon",
+      "scope": "repo",
+      "enabled": true
+    },
+    {
+      "name": "neon-postgres",
+      "scope": "repo",
+      "enabled": true
+    }
+  ],
+  "skill_discovery_errors": 0,
+  "pending_action": "Start a new Codex session for this project and complete Neon MCP OAuth on first use"
+}
