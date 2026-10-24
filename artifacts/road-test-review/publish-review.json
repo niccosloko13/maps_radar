@@ -1,0 +1,29 @@
+{
+  "files_checked": 79,
+  "private_runtime_files_staged": false,
+  "credential_patterns_detected": 0,
+  "local_admin_secret_found": false,
+  "largest_files": [
+    {
+      "bytes": 4913339,
+      "file": "data/sp-municipalities.geojson"
+    },
+    {
+      "bytes": 1275516,
+      "file": "pesquisaradar.txt"
+    },
+    {
+      "bytes": 1056837,
+      "file": "app/vendor/maplibre-gl.js"
+    },
+    {
+      "bytes": 417526,
+      "file": "artifacts/road-test-review/semaforos-map.png"
+    },
+    {
+      "bytes": 397711,
+      "file": "artifacts/road-test-review/before-mobile.png"
+    }
+  ],
+  "git_diff_check": "passed"
+}

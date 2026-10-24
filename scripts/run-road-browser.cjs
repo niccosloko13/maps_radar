@@ -1,0 +1,4 @@
+﻿// Optional standalone runner: npm install --no-save --package-lock=false playwright
+// Start `python server.py`, then: node scripts/run-road-browser.cjs
+const fs=require('node:fs');const path=require('node:path');
+(async()=>{const {chromium}=require('playwright');const browser=await chromium.launch({headless:true});const context=await browser.newContext({permissions:['geolocation'],geolocation:{latitude:-23.69,longitude:-46.55,accuracy:8}});const page=await context.newPage();fs.mkdirSync('artifacts/road-test-review',{recursive:true});try{for(const file of ['road-browser-smoke.js','road-navigation-smoke.js']){const run=eval('('+fs.readFileSync(path.join(__dirname,file),'utf8').replace(/^\uFEFF/,'')+')');const result=await run(page);fs.writeFileSync('artifacts/road-test-review/'+file.replace('.js','.json'),JSON.stringify(result,null,2));console.log(file,'PASS')}}finally{await browser.close()}})().catch(error=>{console.error(error.message);process.exitCode=1});

@@ -1,0 +1,26 @@
+# Local/runtime data — never publish
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.db
+*.db-*
+*.sqlite*
+*.key
+*.pfx
+*.p12
+admin_password.txt
+user-data/
+.playwright-mcp/
+artifacts/relas-map-redesign/
+artifacts/road-test-review/backups/
+artifacts/road-test-review/*.log
+artifacts/road-test-review/*.tmp
+artifacts/road-test-review/*.zip
+data/*cache*
+certs/*
+!certs/cacert.pem
+node_modules/
+.venv/
+venv/

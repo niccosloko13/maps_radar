@@ -1,0 +1,39 @@
+{
+  "batch_id": "chatgpt-openai-semaforos-baixada-sbc-2026-10-23-v1",
+  "actor": "ChatGPT/OpenAI",
+  "created_at": "2026-10-23",
+  "targets": [
+    "Bertioga", "Cubatão", "Guarujá", "Itanhaém", "Mongaguá", "Peruíbe",
+    "Praia Grande", "Santos", "São Vicente", "São Bernardo do Campo"
+  ],
+  "policy": {
+    "official_first": true,
+    "community_fallback": "OpenStreetMap",
+    "community_is_never_promoted_to_official": true,
+    "strict_osm_municipal_area_when_available": true,
+    "provenance_fields": ["ingested_by", "ingestion_batch", "provenance_note"]
+  },
+  "verified_official_sources": [
+    {
+      "municipality": "Santos",
+      "source": "SIGSantos / GeoServer WFS",
+      "url": "https://egov.santos.sp.gov.br/geoserver/ows"
+    },
+    {
+      "municipality": "São Vicente",
+      "source": "Prefeitura / SEMOB - semáforos de pedestres 2026",
+      "url": "https://www.saovicente.sp.gov.br/informacao/sao-vicente-instala-semaforos-para-pedestres-na-avenida-presidente-wilson"
+    },
+    {
+      "municipality": "Itanhaém",
+      "source": "Prefeitura - sinalização semafórica",
+      "url": "https://www2.itanhaem.sp.gov.br/2023/04/20/nao-e-radar-lombadas-eletronicas-educativas-sao-instaladas/"
+    },
+    {
+      "municipality": "São Bernardo do Campo",
+      "source": "SBCGEO",
+      "url": "https://geo.saobernardo.sp.gov.br/",
+      "note": "Portal municipal público. O lote usa OSM como complemento enquanto a camada específica de semáforos é validada."
+    }
+  ]
+}

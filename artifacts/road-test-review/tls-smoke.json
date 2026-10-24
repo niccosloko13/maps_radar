@@ -1,0 +1,7 @@
+{
+  "https_status": 200,
+  "certificate_verification": "required; trusted test CA; hostname localhost verified",
+  "health": "2.1.5-road-test",
+  "signals_in_test_bbox": 1682,
+  "isolated_fresh_database": true
+}

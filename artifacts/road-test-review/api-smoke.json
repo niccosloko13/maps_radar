@@ -1,0 +1,66 @@
+{
+  "/api/health": {
+    "status": 200,
+    "bytes": 120,
+    "milliseconds": 4.78,
+    "cache_control": "no-store",
+    "version": "2.1.5-road-test"
+  },
+  "/api/radars": {
+    "status": 200,
+    "bytes": 194962,
+    "milliseconds": 8.05,
+    "cache_control": "no-store",
+    "items": 196
+  },
+  "/api/road-objects": {
+    "status": 200,
+    "bytes": 11732521,
+    "milliseconds": 418.34,
+    "cache_control": "no-store",
+    "items": 6419
+  },
+  "/api/map/features?bbox=-46.68,-23.6,-46.60,-23.52&types=signal": {
+    "status": 200,
+    "bytes": 2359358,
+    "milliseconds": 152.88,
+    "cache_control": "no-store",
+    "features": 1695
+  },
+  "/?v=215": {
+    "status": 200,
+    "bytes": 2730,
+    "milliseconds": 46.87,
+    "cache_control": "no-store, no-cache, must-revalidate, max-age=0"
+  },
+  "/sw.js": {
+    "status": 200,
+    "bytes": 2002,
+    "milliseconds": 1.39,
+    "cache_control": "no-store, no-cache, must-revalidate, max-age=0"
+  },
+  "/app.js?v=215": {
+    "status": 200,
+    "bytes": 29228,
+    "milliseconds": 20.34,
+    "cache_control": null
+  },
+  "/styles.css?v=215": {
+    "status": 200,
+    "bytes": 13839,
+    "milliseconds": 1.88,
+    "cache_control": null
+  },
+  "/navigation-core.js?v=215": {
+    "status": 200,
+    "bytes": 1928,
+    "milliseconds": 1.61,
+    "cache_control": "no-store, no-cache, must-revalidate, max-age=0"
+  },
+  "/icons/signal.svg?v=215": {
+    "status": 200,
+    "bytes": 833,
+    "milliseconds": 1.13,
+    "cache_control": null
+  }
+}

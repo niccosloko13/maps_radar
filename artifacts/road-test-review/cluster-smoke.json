@@ -1,0 +1,11 @@
+{
+  "before": {
+    "zoom": 12,
+    "clusterCount": 139,
+    "pointCount": 13
+  },
+  "after": {
+    "zoom": 13,
+    "urbanSignals": 310
+  }
+}

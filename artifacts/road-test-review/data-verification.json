@@ -1,0 +1,50 @@
+{
+  "community_total": 8259,
+  "by_original_type": {
+    "1": 3395,
+    "2": 794,
+    "3": 367,
+    "5": 1309,
+    "7": 266,
+    "8": 1737,
+    "14": 391
+  },
+  "visible_map_by_kind": {
+    "bump": 1744,
+    "toll": 390,
+    "police": 266,
+    "signal_radar": 788,
+    "red_light": 364,
+    "mobile": 1307,
+    "fixed": 3491,
+    "signal": 6419
+  },
+  "trust": {
+    "community": 8165,
+    "duplicate": 41,
+    "confirmed": 51,
+    "conflict": 2
+  },
+  "municipalities": 424,
+  "radar_inventory": 196,
+  "radars_with_coordinates": 183,
+  "signals_with_coordinates": 6419,
+  "invalid_stored_coordinates_or_direction": 0,
+  "reimport_cached": true,
+  "preservation": {
+    "radars": {
+      "before": 196,
+      "after": 196,
+      "missing": [],
+      "content_changes": [],
+      "last_seen_refresh": 116
+    },
+    "road_objects": {
+      "before": 6426,
+      "after": 6426,
+      "missing": [],
+      "content_changes": [],
+      "last_seen_refresh": 0
+    }
+  }
+}

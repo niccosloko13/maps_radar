@@ -1,0 +1,25 @@
+{
+  "bbox": "-46.66336849212681,-23.579599210974948,-46.64663150787413,-23.546398691468184",
+  "zoom": 14,
+  "api_viewport": 223,
+  "signals_viewport": 198,
+  "signals_in_source": 198,
+  "signals_rendered": 77,
+  "total_by_kind": {
+    "bump": 1744,
+    "toll": 390,
+    "police": 266,
+    "signal_radar": 788,
+    "red_light": 364,
+    "mobile": 1307,
+    "fixed": 3491,
+    "signal": 6419
+  },
+  "sources": [
+    "relas-points",
+    "relas-route",
+    "relas-position",
+    "relas-route-alerts"
+  ],
+  "sw": true
+}

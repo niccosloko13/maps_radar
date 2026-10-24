@@ -1,0 +1,7 @@
+﻿const test=require('node:test');
+const assert=require('node:assert/strict');
+const nav=require('../app/navigation-core.js');
+test('heading crosses north without rotating almost 360 degrees',()=>{assert.ok(Math.abs(nav.angularDelta(359,1)-2)<.001);assert.ok(nav.smoothHeading(359,1,.5)<.001);assert.equal(nav.smoothHeading(null,90),90)});
+test('GPS rejects stale, invalid and inaccurate fixes',()=>{const c={latitude:-23.55,longitude:-46.63,accuracy:15};assert.equal(nav.validFix(c,100000,100001).ok,true);assert.equal(nav.validFix({...c,accuracy:130},100000,100001).ok,false);assert.equal(nav.validFix(c,50000,100001).ok,false);assert.equal(nav.validFix({...c,longitude:NaN},100000,100001).ok,false)});
+test('opposite direction is suppressed, both directions and unknown remain conservative',()=>{assert.equal(nav.directionMatches({direction:270,direction_type:1},90),false);assert.equal(nav.directionMatches({direction:270,direction_type:2},90),true);assert.equal(nav.directionMatches({direction:270,direction_type:0},90),true);assert.equal(nav.directionMatches({direction:270,direction_type:1},null),true);assert.equal(nav.directionMatches({direction:90,direction_type:1},144),true);assert.equal(nav.directionMatches({direction:90,direction_type:1},146),false)});
+test('position smoothing and speed-dependent camera are bounded',()=>{assert.deepEqual(nav.smoothPosition([0,0],[10,10],.6),[6,6]);assert.ok(nav.cameraZoom(30)<nav.cameraZoom(2))});

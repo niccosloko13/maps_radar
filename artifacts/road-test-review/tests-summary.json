@@ -1,0 +1,118 @@
+[
+  {
+    "name": "legacy",
+    "command": [
+      "C:\\Python310\\python.exe",
+      "selftest.py"
+    ],
+    "returncode": 0,
+    "seconds": 0.358
+  },
+  {
+    "name": "python-tests",
+    "command": [
+      "C:\\Python310\\python.exe",
+      "-m",
+      "unittest",
+      "test_community",
+      "test_road_review",
+      "-v"
+    ],
+    "returncode": 0,
+    "seconds": 8.361
+  },
+  {
+    "name": "navigation-tests",
+    "command": [
+      "node",
+      "--test",
+      "tests/navigation.test.cjs"
+    ],
+    "returncode": 0,
+    "seconds": 0.138
+  },
+  {
+    "name": "python-compile",
+    "command": [
+      "C:\\Python310\\python.exe",
+      "-m",
+      "py_compile",
+      "server.py",
+      "community.py",
+      "import_community.py",
+      "test_road_review.py"
+    ],
+    "returncode": 0,
+    "seconds": 0.101
+  },
+  {
+    "name": "syntax-app",
+    "command": [
+      "node",
+      "--check",
+      "app/app.js"
+    ],
+    "returncode": 0,
+    "seconds": 0.045
+  },
+  {
+    "name": "syntax-boot",
+    "command": [
+      "node",
+      "--check",
+      "app/boot.js"
+    ],
+    "returncode": 0,
+    "seconds": 0.037
+  },
+  {
+    "name": "syntax-sw",
+    "command": [
+      "node",
+      "--check",
+      "app/sw.js"
+    ],
+    "returncode": 0,
+    "seconds": 0.042
+  },
+  {
+    "name": "syntax-navigation-core",
+    "command": [
+      "node",
+      "--check",
+      "app/navigation-core.js"
+    ],
+    "returncode": 0,
+    "seconds": 0.044
+  },
+  {
+    "name": "syntax-community-admin",
+    "command": [
+      "node",
+      "--check",
+      "app/community-admin.js"
+    ],
+    "returncode": 0,
+    "seconds": 0.037
+  },
+  {
+    "name": "syntax-admin",
+    "command": [
+      "node",
+      "--check",
+      "app/admin.js"
+    ],
+    "returncode": 0,
+    "seconds": 0.039
+  },
+  {
+    "name": "syntax-run-road-browser",
+    "command": [
+      "node",
+      "--check",
+      "scripts/run-road-browser.cjs"
+    ],
+    "returncode": 0,
+    "seconds": 0.041
+  }
+]
