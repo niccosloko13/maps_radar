@@ -6,7 +6,7 @@ async(page)=>{
  await page.context().grantPermissions(['geolocation'],{origin:'http://127.0.0.1:8815'});
  await page.context().setGeolocation({longitude:-46.655,latitude:-23.563,accuracy:8});
  await page.setViewportSize({width:390,height:844});
- await page.goto('http://127.0.0.1:8815/?v=221');
+ await page.goto('http://127.0.0.1:8815/?v=222');
  await page.waitForFunction(()=>window.relas?.locationEngine&&relas.state.position&&relas.state.features.length>0);
  await page.evaluate(()=>{stopTracking();relas.state.follow=false;localStorage.removeItem('relas-location-debug');relas.setLocationMode('baseline')});
  result.defaults=await page.evaluate(()=>({mode:relas.state.locationMode,telemetryActive:relas.locationEngine.telemetry.active,debug:!!document.querySelector('#locationDebug')}));
@@ -56,6 +56,7 @@ async(page)=>{
  check(result.fallback.state==='BASELINE_FALLBACK'&&result.fallback.position&&result.fallback.diagnostics>0,'Fallback did not preserve navigation');
  const fallbackContext=await page.context().browser().newContext({serviceWorkers:'block',permissions:['geolocation'],geolocation:{longitude:-46.655,latitude:-23.563,accuracy:8}}),fallback=await fallbackContext.newPage(),bootstrapErrors=[];
  fallback.on('pageerror',e=>bootstrapErrors.push(e.message));
+ await fallback.route('https://tiles.openfreemap.org/styles/liberty',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({version:8,glyphs:'https://fonts.openmaptiles.org/{fontstack}/{range}.pbf',sources:{},layers:[{id:'background',type:'background',paint:{'background-color':'#f4f7f8'}}]})}));
  await fallback.route('**/location/motion-filter.js*',r=>r.fulfill({status:404,body:''}));
  await fallback.goto('http://127.0.0.1:8815/?bootstrap-fallback');await fallback.waitForFunction(()=>window.relas?.state.position);
  result.bootstrapFallback={working:await fallback.evaluate(()=>relas.state.locationMode==='baseline'&&!!relas.state.position),loadFailureObserved:await fallback.evaluate(()=>window.relasLocationLoadError===true&&window.RelasLocation===undefined),errors:bootstrapErrors};

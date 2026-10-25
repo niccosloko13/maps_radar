@@ -8,7 +8,7 @@ async (page) => {
   await page.context().grantPermissions(['geolocation'],{origin:'http://127.0.0.1:8815'});
   await page.context().setGeolocation({longitude:-46.655,latitude:-23.563,accuracy:8});
   await page.setViewportSize({width:390,height:844});
-  await page.goto('http://127.0.0.1:8815/?v=221');
+  await page.goto('http://127.0.0.1:8815/?v=222');
  await page.waitForLoadState('networkidle');
   await page.waitForFunction(()=>window.relas?.map.getSource('relas-signals')&&relas.state.features.length>0);
   await page.waitForFunction(()=>relas.state.watch!==null&&relas.state.position!==null);
@@ -18,7 +18,7 @@ async (page) => {
   async function settlePoint(feature,zoom=14){
     await page.evaluate(({p,zoom})=>{relas.state.follow=false;relas.map.jumpTo({center:p,zoom})},{p:feature.geometry.coordinates,zoom});
     await page.waitForFunction(id=>relas.state.features.some(f=>f.properties.id===id),feature.properties.id);
-    await page.waitForTimeout(600);
+    await page.waitForFunction(id=>relas.map.queryRenderedFeatures({layers:['relas-icons','relas-signal-icons']}).some(f=>f.properties.id===id),feature.properties.id);await page.waitForTimeout(250);
   }
   for(const kind of ['signal','fixed','signal_radar','red_light','mobile','police','bump','toll']){
     const feature=kind==='signal'?all.find(f=>f.properties.kind===kind&&Math.abs(f.geometry.coordinates[0]+46.655)<.002&&Math.abs(f.geometry.coordinates[1]+23.563)<.002):[...all.filter(f=>f.properties.kind===kind&&f.properties.municipality==='São Bernardo do Campo'),...all.filter(f=>f.properties.kind===kind)].find(f=>all.every(o=>o.properties.kind==='signal'||o.properties.kind===kind||Math.hypot((o.geometry.coordinates[0]-f.geometry.coordinates[0])*.92,o.geometry.coordinates[1]-f.geometry.coordinates[1])>.0005))||all.find(f=>f.properties.kind===kind);
@@ -41,7 +41,7 @@ async (page) => {
   await page.evaluate(()=>relas.map.jumpTo({center:[-46.655,-23.563],zoom:14}));await page.waitForTimeout(1100);
   result.semaphores=await page.evaluate(async()=>{const b=relas.map.getBounds(),bbox=[b.getWest(),b.getSouth(),b.getEast(),b.getNorth()].join(','),api=await(await fetch('/api/map/features?bbox='+bbox+'&types=signal')).json(),ids=new Set(api.features.map(f=>f.properties.id));return{bbox,api:api.features.length,source:(await relas.map.getSource('relas-signals').getData()).features.length,rendered:new Set(relas.map.queryRenderedFeatures({layers:['relas-signal-icons']}).filter(f=>ids.has(f.properties.id)).map(f=>f.properties.id)).size}});
   await page.screenshot({path:'artifacts/road-test-review/semaforos-map.png'});
-  await page.locator('#layersBtn').click();check(await page.locator('[data-layer]').count()===9,'Layer controls missing');await page.locator('[data-layer="signal"]').uncheck();await page.locator('#closeSheet').click();await page.waitForFunction(async()=>(await relas.map.getSource('relas-signals').getData()).features.length===0);
+  await page.locator('#layersBtn').click();check(await page.locator('[data-layer]').count()===11,'Layer controls missing');await page.locator('[data-layer="signal"]').uncheck();await page.locator('#closeSheet').click();await page.waitForFunction(async()=>(await relas.map.getSource('relas-signals').getData()).features.length===0);
   result.signalFilterOff=true;
   await page.reload();await page.waitForFunction(()=>window.relas?.map.getSource('relas-signals'));check(await page.evaluate(()=>!relas.state.enabled.has('signal')),'Layer setting did not persist');
   await page.locator('#layersBtn').click();await page.locator('[data-layer="signal"]').check();await page.screenshot({path:'artifacts/road-test-review/filters.png'});await page.locator('#closeSheet').click();

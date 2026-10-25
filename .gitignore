@@ -40,3 +40,6 @@ session_secret.txt
 artifacts/location-precision-v2/*.tmp
 artifacts/location-precision-v2/*.log
 artifacts/location-precision-v2/private/
+
+artifacts/map-ui-v3/*.tmp
+artifacts/map-ui-v3/*.log

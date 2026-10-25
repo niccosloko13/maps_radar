@@ -5,7 +5,7 @@ async (page) => {
  await page.context().grantPermissions(['geolocation'],{origin:'http://127.0.0.1:8815'});
  await page.context().setGeolocation({latitude:-23.69,longitude:-46.55,accuracy:8});
  await page.setViewportSize({width:390,height:844});
- await page.goto('http://127.0.0.1:8815/?v=221');
+ await page.goto('http://127.0.0.1:8815/?v=222');
  await page.waitForLoadState('networkidle');
  await page.waitForFunction(()=>window.relas?.state.position&&relas.map.getSource('relas-route-alerts'));
  result.gps.start=await page.evaluate(()=>({watch:relas.state.watch!==null,indicator:document.querySelector('#gpsIndicator').textContent}));
@@ -47,8 +47,8 @@ async (page) => {
  // Explicitly missing and denied GPS: product must remain usable, not crash.
  for(const mode of ['missing','denied']){
   const fallback=await page.context().newPage();await fallback.addInitScript(mode=>{if(mode==='missing')Object.defineProperty(navigator,'geolocation',{value:undefined,configurable:true});else Object.defineProperty(navigator,'geolocation',{value:{watchPosition:(ok,fail)=>{setTimeout(()=>fail({code:1}),0);return 1},clearWatch:()=>{},getCurrentPosition:(ok,fail)=>fail({code:1})},configurable:true})},mode);
-  await fallback.goto('http://127.0.0.1:8815/?v=221&gps-test='+mode);await fallback.waitForFunction(()=>window.relas?.state.gpsState==='error');const text=await fallback.locator('#gpsIndicator').innerText();check(text.includes(mode==='missing'?'indisponível':'negada'),'Wrong GPS fallback '+text);result.gps[mode]=text;await fallback.close();
+  await fallback.goto('http://127.0.0.1:8815/?v=222&gps-test='+mode);await fallback.waitForFunction(()=>window.relas?.state.gpsState==='error');const text=await fallback.locator('#gpsIndicator').innerText();check(text.includes(mode==='missing'?'indisponível':'negada'),'Wrong GPS fallback '+text);result.gps[mode]=text;await fallback.close();
  }
- result.sw=await page.evaluate(async()=>({controller:navigator.serviceWorker.controller?.scriptURL,caches:await caches.keys()}));check(result.sw.caches.includes('relas-v221-road-test'),'Wrong app cache');check(result.errors.length===0,'JS errors '+result.errors.join(';'));
+ result.sw=await page.evaluate(async()=>({controller:navigator.serviceWorker.controller?.scriptURL,caches:await caches.keys()}));check(result.sw.caches.includes('relas-v222-road-test'),'Wrong app cache');check(result.errors.length===0,'JS errors '+result.errors.join(';'));
  return result;
 }

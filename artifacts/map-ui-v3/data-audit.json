@@ -1,0 +1,26 @@
+{
+  "checkpoint": "f23e22aa8a1bbdabfc1b9146701839dd0169755f",
+  "features": 14769,
+  "by_kind": {
+    "bump": 1744,
+    "toll": 390,
+    "police": 266,
+    "signal_radar": 788,
+    "red_light": 364,
+    "mobile": 1307,
+    "fixed": 3491,
+    "signal": 6419
+  },
+  "road_objects": 6426,
+  "road_objects_mapped": 6419,
+  "road_objects_by_type": {
+    "traffic_signal": 6426
+  },
+  "radars_response_keys": [
+    "items",
+    "demo"
+  ],
+  "radars": 196,
+  "active_works_reports": 0,
+  "active_accident_reports": 0
+}
