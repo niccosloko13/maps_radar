@@ -1,4 +1,4 @@
-# Relas 2.1.5 ? revis?o para teste de rua
+# Relas 2.2.0 ? revis?o para teste de rua
 
 ## Rodar
 - Windows: `start.bat`
@@ -73,7 +73,7 @@ Endpoints novos:
 
 Validação: `python selftest.py`, `python -m unittest test_community -v` e o relatório em `artifacts/road-test-review/REPORT.md`. Tiles, geocoding e cálculo de rota continuam dependendo de serviços externos; GPS móvel requer contexto seguro HTTPS. O relatório distingue testes de navegador e testes físicos pendentes.
 
-## Teste de rua — 2.1.5
+## Teste de rua — 2.2.0
 
 Python 3.10+ e acesso à internet para mapa-base, busca e cálculo de rota. Backend e importador usam a biblioteca padrão; não é necessário instalar dependências Python.
 
@@ -82,7 +82,7 @@ python selftest.py
 python server.py
 ```
 
-Abra o endereço com versão informado no terminal, por exemplo `http://127.0.0.1:8815/?v=215`. Ele evita reutilizar o HTML que uma versão antiga deixou no cache HTTP. O shell atual registra service worker, atualiza HTML/bootstrap pela rede e usa assets com versão; APIs e autenticação não entram no cache.
+Abra o endereço com versão informado no terminal, por exemplo `http://127.0.0.1:8815/?v=220`. Ele evita reutilizar o HTML que uma versão antiga deixou no cache HTTP. O shell atual registra service worker, atualiza HTML/bootstrap pela rede e usa assets com versão; APIs e autenticação não entram no cache.
 
 Na primeira inicialização de um banco limpo, são carregados o snapshot público de cruzamentos do GeoSampa e o TXT comunitário de SP. As coordenadas públicas do snapshot estão em `data/geosampa_signals_snapshot.json`, com fonte e data; não há banco pessoal no repositório. Repetir a inicialização não multiplica os pontos nem substitui registros oficiais existentes. O snapshot possui 6.419 observações, que correspondem a 6.367 coordenadas únicas na precisão usada pela carga inicial. Bancos anteriores conservam seus registros.
 
@@ -124,3 +124,10 @@ Essas dependências são opcionais para testes; `node_modules` não é versionad
 Relatório inicial: [INITIAL_AUDIT.md](artifacts/road-test-review/INITIAL_AUDIT.md). Relatório final, screenshots e medições: [REPORT.md](artifacts/road-test-review/REPORT.md).
 
 Limites do teste: houve validação Chromium com os viewports solicitados e GPS simulado; sensores físicos, Safari/iOS, suspensão em segundo plano e conectividade de rua devem ser observados no primeiro teste controlado. O corredor é geométrico (35 m), sem correspondência topológica garantida em viadutos ou vias paralelas muito próximas. A convenção `DirType` adotada é 0 desconhecido/todos, 1 sentido cadastrado, 2 dois sentidos; os campos originais ficam preservados. A velocidade do radar não é tratada como prova do limite atual da via.
+
+
+## Vercel e Neon (2.2.0)
+
+O backend exporta `server:app` (FastAPI/ASGI). O modo local `python server.py` continua disponivel e usa SQLite por padrao. Instale `requirements.txt` antes de iniciar; Python 3.12 e a versao fixada para Vercel.
+
+Schema, migração explicita, variaveis, testes e rollback: [guia de operacao](artifacts/vercel-neon/DEPLOYMENT.md), [variaveis de ambiente](artifacts/vercel-neon/ENVIRONMENT_VARIABLES.md) e [relatorio de validacao](artifacts/vercel-neon/REPORT.md). A migracao nao apaga SQLite. A Vercel exige Postgres e credenciais seguras; migrations/preloads nao rodam no startup.

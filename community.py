@@ -1,4 +1,4 @@
-﻿"""Local SP ingestion and indexed map read model. Original inventory is never modified."""
+"""Local SP ingestion and indexed map read model. Original inventory is never modified."""
 import csv, hashlib, json, math, time
 from functools import lru_cache
 from contextlib import contextmanager
@@ -16,21 +16,9 @@ def transaction(s):
  finally:connection.close()
 
 def init(s):
- with transaction(s) as c:
-  c.executescript('''CREATE TABLE IF NOT EXISTS map_points(id TEXT PRIMARY KEY,longitude REAL NOT NULL,latitude REAL NOT NULL,kind TEXT NOT NULL,speed_limit INTEGER,direction REAL,direction_type INTEGER,original_type INTEGER,source TEXT,source_type TEXT,ingested_by TEXT,imported_at TEXT,batch_id TEXT,municipality TEXT,trust TEXT DEFAULT 'community',linked_id TEXT,hidden INTEGER DEFAULT 0,updated_at TEXT,expires_at REAL,raw_json TEXT);
-CREATE INDEX IF NOT EXISTS radar_viewport ON radars(longitude,latitude);
-CREATE INDEX IF NOT EXISTS object_viewport ON road_objects(longitude,latitude);
-CREATE INDEX IF NOT EXISTS map_bbox ON map_points(longitude,latitude);
-CREATE INDEX IF NOT EXISTS map_city_type ON map_points(municipality,kind);
-CREATE INDEX IF NOT EXISTS map_source_trust ON map_points(source,trust);
-CREATE INDEX IF NOT EXISTS map_updated ON map_points(updated_at);
-CREATE TABLE IF NOT EXISTS community_batches(batch_id TEXT PRIMARY KEY,created_at TEXT,filename TEXT,sha256 TEXT,summary_json TEXT);
-CREATE TABLE IF NOT EXISTS map_feedback(id INTEGER PRIMARY KEY,point_id TEXT,action TEXT,created_at TEXT);
-CREATE TABLE IF NOT EXISTS map_audit(id INTEGER PRIMARY KEY,created_at TEXT,action TEXT,ids_json TEXT);
-''')
-  columns={r[1] for r in c.execute('PRAGMA table_info(map_points)')}
-  for col in ['name','report_kind']:
-   if col not in columns:c.execute('ALTER TABLE map_points ADD COLUMN '+col+' TEXT')
+ if __import__('db').backend()=='sqlite':
+  from db.sqlite_schema import initialize_community
+  return initialize_community(s)
 class Municipalities:
  def __init__(self,root):
   names={str(x['id']):x['nome'] for x in json.loads((root/'data/sp-municipality-names.json').read_text(encoding='utf8'))};self.grid={}
@@ -179,7 +167,7 @@ def post(s,handler,path,data):
   city=boundaries(str(s.ROOT)).city(x,y)
   if not city:raise ValueError('Reporte disponível somente em SP')
   stamp=now();rid='report-'+hashlib.sha256(f'{handler.client_address[0]}:{x:.4f}:{y:.4f}:{kind}:{int(time.time()/300)}'.encode()).hexdigest()[:24]
-  with transaction(s) as c:c.execute('INSERT OR IGNORE INTO map_points(id,longitude,latitude,kind,source,source_type,ingested_by,imported_at,municipality,trust,updated_at,expires_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)',(rid,x,y,kind if kind in LABELS else 'other','public_report','recent','public_report',stamp,city,'recent',stamp,time.time()+7200))
+  with transaction(s) as c:c.execute('INSERT INTO map_points(id,longitude,latitude,kind,source,source_type,ingested_by,imported_at,municipality,trust,updated_at,expires_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING',(rid,x,y,kind if kind in LABELS else 'other','public_report','recent','public_report',stamp,city,'recent',stamp,time.time()+7200))
   with transaction(s) as c:c.execute('UPDATE map_points SET name=?,report_kind=?,raw_json=? WHERE id=?',(kind,kind,json.dumps(data),rid))
   return {'ok':True,'id':rid}
  if path=='/api/map/feedback':

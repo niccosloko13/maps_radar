@@ -45,7 +45,8 @@ class CommunityTests(unittest.TestCase):
   try:
    with self.assertRaises(urllib.error.HTTPError) as denied:urllib.request.urlopen(base+'/api/admin/community')
    self.assertEqual(denied.exception.code,401)
-   req=urllib.request.Request(base+'/api/admin/login',data=json.dumps({'username':'admin','password':server.ADMIN_PASSWORD}).encode(),headers={'Content-Type':'application/json'})
+   password=__import__('os').environ.get('RELAS_ADMIN_PASSWORD') or server.AUTH.local_value('admin_password.txt',lambda:'test-only-password')
+   req=urllib.request.Request(base+'/api/admin/login',data=json.dumps({'username':'admin','password':password}).encode(),headers={'Content-Type':'application/json'})
    login=json.load(urllib.request.urlopen(req));token=login['token']
    req=urllib.request.Request(base+'/api/admin/community',headers={'Authorization':'Bearer '+token});self.assertEqual(json.load(urllib.request.urlopen(req))['total'],0)
    with self.assertRaises(urllib.error.HTTPError) as bad:urllib.request.urlopen(base+'/api/map/features?bbox=nan,1,2,3')

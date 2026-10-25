@@ -1,0 +1,98 @@
+{
+  "admin_events": {
+    "count": 79,
+    "unchanged": true
+  },
+  "assistant_update_runs": {
+    "count": 1,
+    "unchanged": true
+  },
+  "city_scan_jobs": {
+    "count": 4,
+    "unchanged": true
+  },
+  "community_batches": {
+    "count": 1,
+    "unchanged": true
+  },
+  "manual_entries": {
+    "count": 0,
+    "unchanged": true
+  },
+  "map_audit": {
+    "count": 0,
+    "unchanged": true
+  },
+  "map_feedback": {
+    "count": 0,
+    "unchanged": true
+  },
+  "map_points": {
+    "count": 8259,
+    "unchanged": true
+  },
+  "municipalities": {
+    "count": 0,
+    "unchanged": true
+  },
+  "municipality_profiles": {
+    "count": 0,
+    "unchanged": true
+  },
+  "municipality_sources": {
+    "count": 2,
+    "unchanged": true
+  },
+  "operation_logs": {
+    "count": 53,
+    "unchanged": true
+  },
+  "radar_history": {
+    "count": 224,
+    "unchanged": true
+  },
+  "radar_validations": {
+    "count": 0,
+    "unchanged": true
+  },
+  "radars": {
+    "count": 196,
+    "unchanged": true
+  },
+  "road_network_meta": {
+    "count": 0,
+    "unchanged": true
+  },
+  "road_object_history": {
+    "count": 0,
+    "unchanged": true
+  },
+  "road_objects": {
+    "count": 6426,
+    "unchanged": true
+  },
+  "signal_networks": {
+    "count": 3,
+    "unchanged": true
+  },
+  "source_attempts": {
+    "count": 6,
+    "unchanged": true
+  },
+  "source_gaps": {
+    "count": 0,
+    "unchanged": true
+  },
+  "source_registry": {
+    "count": 19,
+    "unchanged": true
+  },
+  "source_syncs": {
+    "count": 5,
+    "unchanged": true
+  },
+  "update_queue": {
+    "count": 4,
+    "unchanged": true
+  }
+}

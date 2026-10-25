@@ -1,0 +1,202 @@
+{
+  "started_at": "2026-10-24T23:43:37.844569+00:00",
+  "mode": "apply",
+  "tables": {
+    "admin_events": {
+      "source": 79,
+      "destination": 79,
+      "inserted": 79,
+      "matched": 79,
+      "source_sha256": "5a4a2a8e30bb7ef775633d330f8d19bc10b86050963bb55bfca7408b778d7d73",
+      "destination_sha256": "5a4a2a8e30bb7ef775633d330f8d19bc10b86050963bb55bfca7408b778d7d73"
+    },
+    "assistant_update_runs": {
+      "source": 1,
+      "destination": 1,
+      "inserted": 1,
+      "matched": 1,
+      "source_sha256": "920575941274f3d8142dc88ab7904393b06b04152a1fd092ebc697181bbb9469",
+      "destination_sha256": "920575941274f3d8142dc88ab7904393b06b04152a1fd092ebc697181bbb9469"
+    },
+    "city_scan_jobs": {
+      "source": 4,
+      "destination": 4,
+      "inserted": 4,
+      "matched": 4,
+      "source_sha256": "55b74971193786da9f4ec8a8cee5bc45b07357b2142a93b54b76cecf8063ec56",
+      "destination_sha256": "55b74971193786da9f4ec8a8cee5bc45b07357b2142a93b54b76cecf8063ec56"
+    },
+    "community_batches": {
+      "source": 1,
+      "destination": 1,
+      "inserted": 1,
+      "matched": 1,
+      "source_sha256": "31365ad64e643899b81c2914e5ae166698b99d0bee91c39e3d3e8d3b92d12599",
+      "destination_sha256": "31365ad64e643899b81c2914e5ae166698b99d0bee91c39e3d3e8d3b92d12599"
+    },
+    "manual_entries": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "map_audit": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "map_feedback": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "map_points": {
+      "source": 8259,
+      "destination": 8259,
+      "inserted": 8259,
+      "matched": 8259,
+      "source_sha256": "b6ec6b147c86e7b369e0f155f5cd333ae105f63304e6b3cc32614eab0093ff04",
+      "destination_sha256": "b6ec6b147c86e7b369e0f155f5cd333ae105f63304e6b3cc32614eab0093ff04"
+    },
+    "municipalities": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "municipality_profiles": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "municipality_sources": {
+      "source": 2,
+      "destination": 2,
+      "inserted": 2,
+      "matched": 2,
+      "source_sha256": "f7ef8a1c2725cad790e04d00162135a246087411c49dbeaeb0766becea34cff8",
+      "destination_sha256": "f7ef8a1c2725cad790e04d00162135a246087411c49dbeaeb0766becea34cff8"
+    },
+    "operation_logs": {
+      "source": 53,
+      "destination": 53,
+      "inserted": 53,
+      "matched": 53,
+      "source_sha256": "af5dc66bdaefb6e768b6d5e7c6d7fbd2cbc4643b41d0c62e43d608f1e97ded02",
+      "destination_sha256": "af5dc66bdaefb6e768b6d5e7c6d7fbd2cbc4643b41d0c62e43d608f1e97ded02"
+    },
+    "radar_history": {
+      "source": 224,
+      "destination": 224,
+      "inserted": 224,
+      "matched": 224,
+      "source_sha256": "d108dd50ac4a14232396e9493d66d1a702d52758fafc8d3ac7b24862f047cc6e",
+      "destination_sha256": "d108dd50ac4a14232396e9493d66d1a702d52758fafc8d3ac7b24862f047cc6e"
+    },
+    "radar_validations": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "radars": {
+      "source": 196,
+      "destination": 196,
+      "inserted": 196,
+      "matched": 196,
+      "source_sha256": "39813192d06d0c94cf88e3d4343217eb850bed1d76eb94633765c70eea7d78e9",
+      "destination_sha256": "39813192d06d0c94cf88e3d4343217eb850bed1d76eb94633765c70eea7d78e9"
+    },
+    "road_network_meta": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "road_object_history": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "road_objects": {
+      "source": 6426,
+      "destination": 6426,
+      "inserted": 6426,
+      "matched": 6426,
+      "source_sha256": "1ad44f5b69d24aabf80283f3dcdd2f3e9e949d4d646541686e06c45b49826d25",
+      "destination_sha256": "1ad44f5b69d24aabf80283f3dcdd2f3e9e949d4d646541686e06c45b49826d25"
+    },
+    "signal_networks": {
+      "source": 3,
+      "destination": 3,
+      "inserted": 3,
+      "matched": 3,
+      "source_sha256": "7f5b8d2ba475fbb4149f4cecac20daabccd069c2787bfa9fa8e9228ca42301cf",
+      "destination_sha256": "7f5b8d2ba475fbb4149f4cecac20daabccd069c2787bfa9fa8e9228ca42301cf"
+    },
+    "source_attempts": {
+      "source": 6,
+      "destination": 6,
+      "inserted": 6,
+      "matched": 6,
+      "source_sha256": "88fdce894ae9e7a3ec936a570d31fb806a4af2b2e9c9a4778c3b8bde97a9cbf4",
+      "destination_sha256": "88fdce894ae9e7a3ec936a570d31fb806a4af2b2e9c9a4778c3b8bde97a9cbf4"
+    },
+    "source_gaps": {
+      "source": 0,
+      "destination": 0,
+      "inserted": 0,
+      "matched": 0,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "destination_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source_registry": {
+      "source": 19,
+      "destination": 19,
+      "inserted": 19,
+      "matched": 19,
+      "source_sha256": "ca68e4445d4c02cf16c996525f89e2b9354638765e6ee2fe99f7997376264d91",
+      "destination_sha256": "ca68e4445d4c02cf16c996525f89e2b9354638765e6ee2fe99f7997376264d91"
+    },
+    "source_syncs": {
+      "source": 5,
+      "destination": 5,
+      "inserted": 5,
+      "matched": 5,
+      "source_sha256": "f597888dedca31a19a45cb8fe0ab458559048ea1acbcc0e56eba9f599235fc2c",
+      "destination_sha256": "f597888dedca31a19a45cb8fe0ab458559048ea1acbcc0e56eba9f599235fc2c"
+    },
+    "update_queue": {
+      "source": 4,
+      "destination": 4,
+      "inserted": 4,
+      "matched": 4,
+      "source_sha256": "b35708011b0c6613b4f84c8fca7bd0105b68908846e0a1d1ffcf6b646b41343b",
+      "destination_sha256": "b35708011b0c6613b4f84c8fca7bd0105b68908846e0a1d1ffcf6b646b41343b"
+    }
+  },
+  "verified": true,
+  "destination_tables_before": [],
+  "backup_created": true,
+  "finished_at": "2026-10-24T23:44:53.736458+00:00"
+}

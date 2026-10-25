@@ -1,0 +1,106 @@
+{
+  "/": {
+    "status": 200,
+    "seconds": 0.02
+  },
+  "/admin": {
+    "status": 200,
+    "seconds": 0.02
+  },
+  "/api/health": {
+    "status": 200,
+    "seconds": 2.39,
+    "error": null,
+    "count": 0
+  },
+  "/api/radars": {
+    "status": 200,
+    "seconds": 1.77,
+    "error": null,
+    "count": 196
+  },
+  "/api/road-objects": {
+    "status": 200,
+    "seconds": 3.47,
+    "error": null,
+    "count": 6419
+  },
+  "/api/stats": {
+    "status": 200,
+    "seconds": 2.27,
+    "error": null,
+    "count": 0
+  },
+  "/api/map/features?bbox=-46.67,-23.58,-46.64,-23.55": {
+    "status": 200,
+    "seconds": 5.38,
+    "error": null,
+    "count": 375
+  },
+  "/api/admin/me": {
+    "status": 200,
+    "seconds": 0.0,
+    "error": null,
+    "count": 0
+  },
+  "/api/not-found": {
+    "status": 404,
+    "seconds": 0.02,
+    "error": "Endpoint not found",
+    "count": 0
+  },
+  "login": {
+    "status": 200,
+    "secure": true
+  },
+  "/api/admin/database-status": {
+    "status": 200,
+    "seconds": 2.25,
+    "error": null
+  },
+  "/api/admin/dashboard": {
+    "status": 200,
+    "seconds": 8.67,
+    "error": null
+  },
+  "/api/admin/ops": {
+    "status": 200,
+    "seconds": 1.77,
+    "error": null
+  },
+  "/api/admin/inventory": {
+    "status": 200,
+    "seconds": 2.27,
+    "error": null
+  },
+  "/api/admin/coverage": {
+    "status": 200,
+    "seconds": 1.47,
+    "error": null
+  },
+  "/api/admin/sources": {
+    "status": 200,
+    "seconds": 1.66,
+    "error": null
+  },
+  "/api/admin/logs": {
+    "status": 200,
+    "seconds": 1.45,
+    "error": null
+  },
+  "/api/admin/update-queue": {
+    "status": 200,
+    "seconds": 1.36,
+    "error": null
+  },
+  "/api/admin/assistant-pack": {
+    "status": 200,
+    "seconds": 3.11,
+    "error": null
+  },
+  "/api/admin/community": {
+    "status": 200,
+    "seconds": 4.31,
+    "error": null
+  }
+}

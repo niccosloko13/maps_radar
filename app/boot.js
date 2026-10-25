@@ -27,13 +27,13 @@
     }).catch(()=>loadScript(i+1));
   }
   function loadApp(){
-    const s=document.createElement('script'); s.src='/app.js?v=215'; document.body.appendChild(s);
+    const s=document.createElement('script'); s.src='/app.js?v=220'; document.body.appendChild(s);
   }
   function fatal(err){
     document.body.innerHTML=`<main style="min-height:100vh;background:#07110d;color:#fff;display:grid;place-items:center;font-family:system-ui;padding:28px"><div style="max-width:680px;text-align:center"><h2>Mapa indisponÃ­vel</h2><p>${String(err&&err.message||err)}</p><p style="opacity:.7">Abra <b>/api/vendor/status</b> para diagnÃ³stico. A base local de radares continua preservada.</p></div></main>`;
   }
   loadCss();
-  loadScript().then(()=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='/navigation-core.js?v=215';script.onload=resolve;script.onerror=()=>reject(Error('Não foi possível carregar a navegação'));document.head.append(script)})).then(loadApp).catch(fatal);
+  loadScript().then(()=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='/navigation-core.js?v=220';script.onload=resolve;script.onerror=()=>reject(Error('Não foi possível carregar a navegação'));document.head.append(script)})).then(loadApp).catch(fatal);
   if('serviceWorker' in navigator&&window.isSecureContext){
     let controlled=Boolean(navigator.serviceWorker.controller),refreshing=false;
     navigator.serviceWorker.addEventListener('controllerchange',()=>{if(controlled&&!refreshing){if(window.relas?.state.driving){window.relas.state.pendingUpdate=true;return}refreshing=true;location.reload()}controlled=true});

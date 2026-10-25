@@ -31,3 +31,9 @@ artifacts/neon-migration/backups/
 artifacts/neon-agent-setup/*.tmp
 artifacts/neon-agent-setup/*.log
 artifacts/neon-agent-setup/backups/
+.vercel/
+artifacts/vercel-neon/*.tmp
+artifacts/vercel-neon/*.log
+artifacts/vercel-neon/backups/
+artifacts/vercel-neon/**/backups/
+session_secret.txt

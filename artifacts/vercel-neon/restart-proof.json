@@ -1,0 +1,15 @@
+{
+  "old_process_pid": 59972,
+  "new_process_pid": 95956,
+  "same_database": "Neon validation branch",
+  "connection_after_restart": "pooled",
+  "health_ok": true,
+  "database": "postgres",
+  "schema_version": "001-vercel-neon",
+  "radars": 196,
+  "road_objects": 6426,
+  "sources": 19,
+  "previous_signed_session_accepted": true,
+  "persisted_runtime_jobs_seen": 2,
+  "admin_horizontal_overflow_after_fix": false
+}

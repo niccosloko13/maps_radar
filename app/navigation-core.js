@@ -1,4 +1,4 @@
-﻿/* Pure navigation rules shared by GPS, camera and smoke tests. */
+/* Pure navigation rules shared by GPS, camera and smoke tests. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.RelasNavigation=api})(typeof globalThis!=='undefined'?globalThis:this,function(){
   const angularDelta=(from,to)=>((to-from+540)%360)-180;
   function smoothHeading(previous,next,weight=.3){if(!Number.isFinite(next))return previous;if(!Number.isFinite(previous))return(next+360)%360;return(previous+angularDelta(previous,next)*weight+360)%360}

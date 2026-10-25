@@ -1,6 +1,6 @@
 @echo off
 cd /d "%~dp0"
-echo [Relas 2.1.5 Operational + Map Layers] Rodando testes locais obrigatorios...
+echo [Relas 2.2.0 Operational + Map Layers] Rodando testes locais obrigatorios...
 echo Porta exclusiva: 8815
 python selftest.py
 if errorlevel 1 (

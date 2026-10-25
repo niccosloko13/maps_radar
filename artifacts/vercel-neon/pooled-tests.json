@@ -1,0 +1,7 @@
+{
+  "timeout_ms": "25s",
+  "persisted": true,
+  "rollback": true,
+  "active_handles_isolated": true,
+  "idle_socket_reused": true
+}

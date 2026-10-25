@@ -1,5 +1,5 @@
-const CACHE='relas-v215-road-test';
-const SHELL=['/','/styles.css?v=215','/boot.js?v=215','/navigation-core.js?v=215','/app.js?v=215','/icon.svg','/manifest.json','/vendor/maplibre-gl.js?v=5240','/vendor/maplibre-gl.css?v=5240',...['fixed','signal_radar','red_light','mobile','police','bump','toll','signal','other','user-chevron'].map(kind=>'/icons/'+kind+'.svg?v=215')];
+const CACHE='relas-v220-road-test';
+const SHELL=['/','/styles.css?v=220','/boot.js?v=220','/navigation-core.js?v=220','/app.js?v=220','/icon.svg','/manifest.json','/vendor/maplibre-gl.js?v=5240','/vendor/maplibre-gl.css?v=5240',...['fixed','signal_radar','red_light','mobile','police','bump','toll','signal','other','user-chevron'].map(kind=>'/icons/'+kind+'.svg?v=220')];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('relas-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener('message',event=>{if(event.data?.type==='CLEAR_CACHE')event.waitUntil(caches.delete(CACHE))});

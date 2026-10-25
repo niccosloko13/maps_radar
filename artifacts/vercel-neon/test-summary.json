@@ -1,0 +1,24 @@
+{
+  "python": "3.12",
+  "unittest": {
+    "passed": 15,
+    "failed": 0
+  },
+  "selftest": "passed",
+  "node_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "postgres_smoke": {
+    "passed": 31,
+    "failed": 0
+  },
+  "pooler": "passed",
+  "migration_conflict_and_expired_job": "passed",
+  "original_sqlite_unchanged": true,
+  "vercel_build": {
+    "status": "blocked",
+    "reason": "CLI not authenticated; invalid token"
+  },
+  "production_deployment": "not executed"
+}

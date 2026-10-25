@@ -2,6 +2,11 @@ from __future__ import annotations
 
 import hashlib, html, io, json, math, os, re, shutil, sqlite3, sys, threading, time, urllib.parse, urllib.request, urllib.error, webbrowser, zipfile, socket, ssl, subprocess, csv, secrets
 from datetime import datetime, timezone
+from runtime_config import load_environment, hosted, environment
+load_environment()
+import db as database
+import runtime_jobs
+from admin_auth import AdminAuth
 from html.parser import HTMLParser
 import xml.etree.ElementTree as ET
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -53,22 +58,11 @@ SOURCES=[
  {'id':'inmetro','name':'INMETRO / PSIE','scope':'Validação metrológica','kind':'aferição e situação do equipamento','url':INMETRO_URL,'sync':False},
 ]
 
-ADMIN_USER='admin'
-def _local_admin_password():
- value=os.environ.get('RELAS_ADMIN_PASSWORD')
- if value:return value
- path=USER_DATA_DIR/'admin_password.txt';path.parent.mkdir(parents=True,exist_ok=True)
- try:return path.read_text(encoding='utf8').strip()
- except FileNotFoundError:
-  value=secrets.token_urlsafe(24)
-  try:
-   with path.open('x',encoding='utf8') as stream:stream.write(value)
-  except FileExistsError:return path.read_text(encoding='utf8').strip()
-  return value
-ADMIN_PASSWORD=_local_admin_password()
-ADMIN_SESSIONS=set()
-CITY_SCAN_LOCK=threading.Lock()
-CITY_BATCH_LOCK=threading.Lock()
+AUTH=AdminAuth(USER_DATA_DIR)
+ADMIN_USER=AUTH.username
+
+CITY_SCAN_LOCK=database.WriteLock()
+CITY_BATCH_LOCK=database.WriteLock()
 OVERPASS_ENDPOINTS=['https://overpass-api.de/api/interpreter','https://overpass.kumi.systems/api/interpreter','https://overpass.private.coffee/api/interpreter']
 GEOSAMPA_WFS='https://wfs.geosampa.prefeitura.sp.gov.br/geoserver/geoportal/wfs'
 SANTOS_WFS='https://egov.santos.sp.gov.br/geoserver/ows'
@@ -115,7 +109,7 @@ SOURCE_REGISTRY=[
 # a busca principal continua sendo a consulta de radares, que pode trazer coordenadas exatas.
 DER_BULLETIN_IDS=[1913,1909,1903,1927,1944,1886,1878,1895,1876,1865]
 LOCK=threading.Lock()
-DB_WRITE_LOCK=threading.RLock()
+DB_WRITE_LOCK=database.WriteLock()
 DEPENDENCY_STATE={'valhalla':{'status':'unknown','last_ok':None,'last_error':None},'osrm':{'status':'unknown','last_ok':None,'last_error':None},'geocode':{'status':'unknown','last_ok':None,'last_error':None},'overpass':{'status':'unknown','last_ok':None,'last_error':None}}
 CA_BUNDLE=ROOT/'certs'/'cacert.pem'
 CURL_BIN=shutil.which('curl.exe') or shutil.which('curl')
@@ -159,10 +153,14 @@ def _curl_request(url,data=None,headers=None,timeout=35,method=None):
     return body,status,final,'utf-8'
 
 def http_request(url,data=None,headers=None,timeout=35,method=None,attempts=2):
+    runtime_jobs.check()
+    if hosted():timeout=min(timeout,8);attempts=1
     h=dict(headers or {})
     last=None
     for attempt in range(max(1,attempts)):
         try:
+            runtime_jobs.check()
+            if runtime_jobs.deadline.get():timeout=max(.1,min(timeout,runtime_jobs.deadline.get()-time.time()))
             req=urllib.request.Request(url,data=data,headers=h,method=method)
             with urllib.request.urlopen(req,timeout=timeout,context=_ssl_context()) as r:
                 return r.read(),int(r.status),r.geturl(),r.headers.get_content_charset() or 'utf-8'
@@ -203,48 +201,21 @@ def ensure_user_data():
  # they can legitimately disappear between exists() and stat() under concurrent requests.
 
 def db():
- ensure_user_data(); c=sqlite3.connect(DB_PATH,timeout=30); c.row_factory=sqlite3.Row
- c.execute('PRAGMA busy_timeout=30000')
- c.execute('PRAGMA journal_mode=WAL')
- c.execute('PRAGMA synchronous=NORMAL')
- c.execute('PRAGMA foreign_keys=ON')
- return c
+ runtime_jobs.check()
+ if database.backend()=='sqlite':ensure_user_data()
+ return database.connect(DB_PATH)
+
 
 def checkpoint_db():
+ if database.backend()=='postgres':return True
  try:
-  c=db(); c.execute('PRAGMA wal_checkpoint(TRUNCATE)'); c.commit(); c.close(); return True
+  c=db(); database.checkpoint(c); c.commit(); c.close(); return True
  except Exception:return False
 
 def init_db():
- ensure_user_data(); c=db(); c.executescript('''
- CREATE TABLE IF NOT EXISTS radars(id TEXT PRIMARY KEY,physical_radar_id TEXT,source TEXT NOT NULL,external_id TEXT,name TEXT NOT NULL,latitude REAL,longitude REAL,speed_limit INTEGER,speed_text TEXT,direction TEXT,status TEXT NOT NULL DEFAULT 'active',confidence INTEGER NOT NULL DEFAULT 90,municipality TEXT,state TEXT DEFAULT 'SP',road TEXT,km TEXT,radar_type TEXT,der_number TEXT,serial_number TEXT,schedule TEXT,study_url TEXT,source_url TEXT,source_date TEXT,position_quality TEXT,inmetro_registration TEXT,lanes INTEGER,local_code TEXT,quality_grade TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,current_hash TEXT NOT NULL,raw_json TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS radar_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,source TEXT NOT NULL,version_hash TEXT NOT NULL,captured_at TEXT NOT NULL,valid_to TEXT,raw_json TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS source_syncs(source_id TEXT PRIMARY KEY,status TEXT NOT NULL,started_at TEXT,finished_at TEXT,http_status INTEGER,imported INTEGER DEFAULT 0,updated INTEGER DEFAULT 0,unchanged INTEGER DEFAULT 0,skipped INTEGER DEFAULT 0,mapped INTEGER DEFAULT 0,roads INTEGER DEFAULT 0,source_url TEXT,error TEXT,diagnostic TEXT);
- CREATE TABLE IF NOT EXISTS road_network_meta(id INTEGER PRIMARY KEY CHECK(id=1), source_url TEXT, fetched_at TEXT, segments INTEGER DEFAULT 0, usable_segments INTEGER DEFAULT 0, sha256 TEXT, error TEXT);
- CREATE TABLE IF NOT EXISTS municipalities(ibge_id TEXT PRIMARY KEY,name TEXT NOT NULL,state TEXT NOT NULL DEFAULT 'SP',last_refresh TEXT);
- CREATE TABLE IF NOT EXISTS source_registry(source_id TEXT PRIMARY KEY,name TEXT NOT NULL,scope TEXT,coverage TEXT,mode TEXT,priority INTEGER DEFAULT 50,url TEXT,official INTEGER DEFAULT 1,enabled INTEGER DEFAULT 1,last_seen TEXT,notes TEXT);
- CREATE TABLE IF NOT EXISTS admin_events(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,kind TEXT NOT NULL,message TEXT NOT NULL,details TEXT);
- CREATE TABLE IF NOT EXISTS road_objects(id TEXT PRIMARY KEY,source TEXT NOT NULL,external_id TEXT,object_type TEXT NOT NULL,name TEXT,latitude REAL,longitude REAL,municipality TEXT,state TEXT DEFAULT 'SP',status TEXT DEFAULT 'active',confidence INTEGER DEFAULT 70,official INTEGER DEFAULT 0,speed_limit INTEGER,direction TEXT,timing_mode TEXT DEFAULT 'unknown',cycle_seconds REAL,green_seconds REAL,red_seconds REAL,adaptive INTEGER DEFAULT 0,timing_source TEXT,source_url TEXT,source_date TEXT,first_seen TEXT NOT NULL,last_seen TEXT NOT NULL,raw_json TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS road_object_history(history_id INTEGER PRIMARY KEY AUTOINCREMENT,object_id TEXT NOT NULL,source TEXT NOT NULL,captured_at TEXT NOT NULL,raw_json TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS signal_networks(id TEXT PRIMARY KEY,municipality TEXT NOT NULL,name TEXT NOT NULL,mode TEXT NOT NULL,count_known INTEGER,live_timing INTEGER DEFAULT 0,description TEXT,source_url TEXT,source_date TEXT,last_seen TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS municipality_sources(municipality TEXT NOT NULL,source_id TEXT NOT NULL,source_name TEXT,source_url TEXT,source_type TEXT,status TEXT NOT NULL DEFAULT 'candidate',official INTEGER DEFAULT 0,first_seen TEXT NOT NULL,last_attempt TEXT,last_success TEXT,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,PRIMARY KEY(municipality,source_id));
- CREATE TABLE IF NOT EXISTS source_gaps(municipality TEXT PRIMARY KEY,status TEXT NOT NULL DEFAULT 'needs_source',reason TEXT,attempts INTEGER DEFAULT 0,last_checked TEXT,next_retry TEXT,notes TEXT);
- CREATE TABLE IF NOT EXISTS city_scan_jobs(id INTEGER PRIMARY KEY AUTOINCREMENT,created_at TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,municipalities_json TEXT NOT NULL,summary_json TEXT,error TEXT);
- CREATE TABLE IF NOT EXISTS source_attempts(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT NOT NULL,source_id TEXT,attempted_at TEXT NOT NULL,status TEXT NOT NULL,item_count INTEGER DEFAULT 0,mapped_count INTEGER DEFAULT 0,diagnostic TEXT,url TEXT);
- CREATE TABLE IF NOT EXISTS municipality_profiles(municipality TEXT PRIMARY KEY,radar_enabled INTEGER DEFAULT 1,signals_enabled INTEGER DEFAULT 1,objects_enabled INTEGER DEFAULT 1,last_radar_scan TEXT,last_signal_scan TEXT,last_full_scan TEXT,notes TEXT);
- CREATE TABLE IF NOT EXISTS radar_validations(id INTEGER PRIMARY KEY AUTOINCREMENT,radar_id TEXT NOT NULL,checked_at TEXT NOT NULL,status TEXT NOT NULL,valid_from TEXT,valid_until TEXT,source TEXT,certificate TEXT,notes TEXT);
- CREATE TABLE IF NOT EXISTS manual_entries(id INTEGER PRIMARY KEY AUTOINCREMENT,entry_type TEXT NOT NULL,entity_id TEXT NOT NULL,created_at TEXT NOT NULL,created_by TEXT NOT NULL DEFAULT 'admin',notes TEXT);
- ''')
- # lightweight migrations for older local databases
- existing={r[1] for r in c.execute('PRAGMA table_info(radars)').fetchall()}
- for col,typ in [('inmetro_registration','TEXT'),('lanes','INTEGER'),('local_code','TEXT'),('quality_grade','TEXT'),('physical_radar_id','TEXT')]:
-  if col not in existing:c.execute(f'ALTER TABLE radars ADD COLUMN {col} {typ}')
- c.execute('PRAGMA journal_mode=WAL'); c.execute('PRAGMA busy_timeout=30000')
- # Jobs are process-local workers. If the app was closed mid-scan, never leave them stuck forever.
- c.execute("UPDATE city_scan_jobs SET status='interrupted',finished_at=?,error=COALESCE(error,'Aplicativo encerrado antes da conclusão') WHERE status IN ('queued','running')",(now(),))
- for src in SOURCE_REGISTRY:
-  c.execute('INSERT INTO source_registry(source_id,name,scope,coverage,mode,priority,url,official,enabled,last_seen) VALUES(?,?,?,?,?,?,?,?,1,?) ON CONFLICT(source_id) DO UPDATE SET name=excluded.name,scope=excluded.scope,coverage=excluded.coverage,mode=excluded.mode,priority=excluded.priority,url=excluded.url,official=excluded.official', (src['id'],src['name'],src.get('scope'),src.get('coverage'),src.get('mode'),src.get('priority',50),src.get('url'),1 if src.get('official') else 0,now()))
- c.commit(); c.close()
+ if database.backend()=='sqlite':
+  from db.sqlite_schema import initialize
+  return initialize(sys.modules[__name__])
 
 def fetch(url,data=None,timeout=35,attempts=3):
  h={'User-Agent':UA,'Accept':'text/html,application/xhtml+xml,*/*;q=0.8','Accept-Language':'pt-BR,pt;q=0.9','Cache-Control':'no-cache'}
@@ -254,6 +225,7 @@ def fetch(url,data=None,timeout=35,attempts=3):
 
 
 def ensure_vendor_asset(path, urls):
+ if hosted():return {'ok':path.exists(),'bundled':True,'bytes':path.stat().st_size if path.exists() else 0}
  VENDOR_DIR.mkdir(parents=True,exist_ok=True)
  if path.exists() and path.stat().st_size>5000:return {'ok':True,'cached':True,'path':str(path),'bytes':path.stat().st_size}
  errs=[]
@@ -537,11 +509,11 @@ def parse_road_kmz(raw):
  return segs
 
 def save_road_cache(segs,source_url=DER_ROAD_KMZ_URL):
- payload={'source_url':source_url,'fetched_at':now(),'segments':segs};ROAD_CACHE.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':')),encoding='utf-8');return payload
+ payload={'source_url':source_url,'fetched_at':now(),'segments':segs};_save_json(ROAD_CACHE,payload);return payload
 
 def load_road_cache():
  try:
-  p=json.loads(ROAD_CACHE.read_text(encoding='utf-8'));return p if isinstance(p,dict) else None
+  p=_load_json(ROAD_CACHE,None);return p if isinstance(p,dict) else None
  except:return None
 
 def ensure_road_network(force=False):
@@ -549,7 +521,7 @@ def ensure_road_network(force=False):
  if cache and cache.get('segments') and not force:return cache
  raw,st,final,enc=fetch(DER_ROAD_KMZ_URL,timeout=90);segs=parse_road_kmz(raw);usable=sum(1 for x in segs if x.get('coords') and x.get('km_start') is not None)
  if not usable:raise RuntimeError('Malha oficial DER baixada, mas nenhum trecho quilometrado pôde ser interpretado')
- payload=save_road_cache(segs,final);c=db();c.execute('INSERT OR REPLACE INTO road_network_meta(id,source_url,fetched_at,segments,usable_segments,sha256,error) VALUES(1,?,?,?,?,?,NULL)',(final,payload['fetched_at'],len(segs),usable,hashlib.sha256(raw).hexdigest()));c.commit();c.close();return payload
+ payload=save_road_cache(segs,final);c=db();c.execute(database.upsert_statement('INSERT INTO road_network_meta(id,source_url,fetched_at,segments,usable_segments,sha256,error) VALUES(1,?,?,?,?,?,NULL)'),(final,payload['fetched_at'],len(segs),usable,hashlib.sha256(raw).hexdigest()));c.commit();c.close();return payload
 
 def georef_one(r,segs):
  rc=road_code(r.get('road') or r.get('name'));k=kmnum(r.get('km'))
@@ -593,13 +565,13 @@ def seed_santo_andre(force=False):
     if r=='imported':imp+=1
     elif r=='updated':upd+=1
     else:unch+=1
-   c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('santo_andre','ok',?,?,?,?,?,?,?,?,?,?,?,?)",(seen,seen,200,imp,upd,unch,0,len(items),0,SANTO_ANDRE_URL,None,f'snapshot oficial 2026-09; {len(items)}/{payload.get("declared_total_speed_locations",79)} linhas completas com coordenada direta; grade A'))
+   c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('santo_andre','ok',?,?,?,?,?,?,?,?,?,?,?,?)"),(seen,seen,200,imp,upd,unch,0,len(items),0,SANTO_ANDRE_URL,None,f'snapshot oficial 2026-09; {len(items)}/{payload.get("declared_total_speed_locations",79)} linhas completas com coordenada direta; grade A'))
    c.commit()
   finally:c.close()
  refresh_physical_ids();checkpoint_db();return {'ok':True,'count':len(items),'imported':imp,'updated':upd,'unchanged':unch,'declared_total':payload.get('declared_total_speed_locations',79)}
 
 def do_sync(mode='sample',road=''):
- if not LOCK.acquire(False):return
+ if not hosted() and not LOCK.acquire(False):return
  c=None; imported=updated=unchanged=skipped=mapped=0;started=now();diag=[];items=[];search_ok=False
  try:
   SYNC.update({'running':True,'started_at':started,'finished_at':None,'message':'Abrindo consulta DER-SP…','roads_done':0,'roads_total':0,'records':0,'mapped':0,'derived':0,'error':None,'mode':mode})
@@ -648,7 +620,7 @@ def do_sync(mode='sample',road=''):
   with DB_WRITE_LOCK:
    c=db()
    try:
-    c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('der_sp',?,?,?,?,?,?,?,?,?,?,?,?,?)",(status,started,fin,200 if search_ok else None,imported,updated,unchanged,skipped,mapped,SYNC['roads_total'],DER_SEARCH_URL,None,' | '.join(diag)));c.commit()
+    c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('der_sp',?,?,?,?,?,?,?,?,?,?,?,?,?)"),(status,started,fin,200 if search_ok else None,imported,updated,unchanged,skipped,mapped,SYNC['roads_total'],DER_SEARCH_URL,None,' | '.join(diag)));c.commit()
    finally:c.close();c=None
   refresh_physical_ids();checkpoint_db()
   SYNC.update({'running':False,'finished_at':fin,'message':msg,'records':total,'mapped':mapped,'error':None})
@@ -657,18 +629,21 @@ def do_sync(mode='sample',road=''):
   with DB_WRITE_LOCK:
    ec=db()
    try:
-    ec.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,error,source_url,diagnostic) VALUES('der_sp','error',?,?,?,?,?)",(started,fin,err,DER_SEARCH_URL,' | '.join(diag)));ec.commit()
+    ec.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,error,source_url,diagnostic) VALUES('der_sp','error',?,?,?,?,?)"),(started,fin,err,DER_SEARCH_URL,' | '.join(diag)));ec.commit()
    finally:ec.close()
   SYNC.update({'running':False,'finished_at':fin,'message':'Falha DER-SP','error':err})
  finally:
   try:
    if c:c.close()
   except:pass
-  LOCK.release()
+  if not hosted():LOCK.release()
 
 def start(mode='sample',road=''):
- if SYNC['running']:return {'status':'busy','state':SYNC}
- threading.Thread(target=do_sync,args=(mode,road),daemon=True).start();return {'status':'started','state':SYNC}
+ if hosted():
+  launch(do_sync,(mode,road))
+  return {'ok':not bool(SYNC.get('error')),'status':'error' if SYNC.get('error') else 'done','state':dict(SYNC)}
+ if not hosted() and SYNC['running']:return {'status':'busy','state':SYNC}
+ launch(do_sync,(mode,road));return {'status':'started','state':SYNC}
 def _dir_norm(v):
  x=nk(v or '')
  toks=[]
@@ -794,10 +769,17 @@ SANTOS_POINTS=[
 
 
 def _load_json(path, default):
+ if hosted():
+  with db() as c:
+   row=c.execute('SELECT value_json FROM runtime_state WHERE key=?',(path.name,)).fetchone()
+   return json.loads(row[0]) if row else default
  try:return json.loads(path.read_text(encoding='utf-8'))
  except:return default
 
 def _save_json(path, obj):
+ if hosted():
+  with db() as c:c.execute('INSERT INTO runtime_state(key,value_json,updated_at) VALUES(?,?,?) ON CONFLICT(key) DO UPDATE SET value_json=excluded.value_json,updated_at=excluded.updated_at',(path.name,json.dumps(obj,ensure_ascii=False),now()))
+  return
  path.write_text(json.dumps(obj,ensure_ascii=False,indent=2),encoding='utf-8')
 
 def _geocode_candidates(q):
@@ -970,7 +952,7 @@ def _seed_praia_grande_impl(try_geocode=True):
    }
   res=upsert(c,item,seen); mapped+=int(lat is not None and lon is not None)
   imported+=res=='imported';updated+=res=='updated';unchanged+=res=='unchanged'
- c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,source_url,error,diagnostic) VALUES('praia_grande',?,?,?,?,?,?,?,?,?,?,?,?)",('ok' if mapped==len(PRAIA_GRANDE_POINTS) else ('partial' if mapped else 'error'),seen,now(),200,imported,updated,unchanged,0,mapped,PRAIA_GRANDE_URL,None,f'{len(PRAIA_GRANDE_POINTS)} pontos oficiais; {mapped} geocodificados; erros={errors}'))
+ c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,source_url,error,diagnostic) VALUES('praia_grande',?,?,?,?,?,?,?,?,?,?,?,?)"),('ok' if mapped==len(PRAIA_GRANDE_POINTS) else ('partial' if mapped else 'error'),seen,now(),200,imported,updated,unchanged,0,mapped,PRAIA_GRANDE_URL,None,f'{len(PRAIA_GRANDE_POINTS)} pontos oficiais; {mapped} geocodificados; erros={errors}'))
  c.commit();c.close(); return {'count':len(PRAIA_GRANDE_POINTS),'mapped':mapped,'errors':errors}
 
 
@@ -1000,7 +982,7 @@ def _seed_santos_impl(try_geocode=True):
    'schedule':None,'study_url':None,'source_url':SANTOS_URL,'source_date':'relação CET Santos vigente','position_quality':('geocoded_official_address_'+provider if provider else (old['position_quality'] if old and lat is not None else 'official_address_only')),
    'inmetro_registration':None,'lanes':None,'local_code':p.get('local_code'),'quality_grade':'B' if lat is not None else 'C','physical_status':'official_active_listing'}
   res=upsert(c,item,seen);mapped+=int(lat is not None and lon is not None);imported+=res=='imported';updated+=res=='updated';unchanged+=res=='unchanged'
- c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,source_url,error,diagnostic) VALUES('santos',?,?,?,?,?,?,?,?,?,?,?,?)",('ok' if mapped==len(SANTOS_POINTS) else ('partial' if mapped else 'error'),seen,now(),200,imported,updated,unchanged,0,mapped,SANTOS_URL,None,f'{len(SANTOS_POINTS)} locais oficiais ativos; {mapped} geocodificados; erros={errors}'))
+ c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,source_url,error,diagnostic) VALUES('santos',?,?,?,?,?,?,?,?,?,?,?,?)"),('ok' if mapped==len(SANTOS_POINTS) else ('partial' if mapped else 'error'),seen,now(),200,imported,updated,unchanged,0,mapped,SANTOS_URL,None,f'{len(SANTOS_POINTS)} locais oficiais ativos; {mapped} geocodificados; erros={errors}'))
  c.commit();c.close();return {'count':len(SANTOS_POINTS),'mapped':mapped,'errors':errors}
 
 def seed_praia_grande(try_geocode=True):
@@ -1115,7 +1097,7 @@ def _route_osrm(flat,flon,tlat,tlon):
  return r,coords,steps
 
 def _finish_route(r,coords,steps,provider):
- with db() as c:modern=c.execute("SELECT 1 FROM sqlite_master WHERE name='map_points'").fetchone() is not None
+ with db() as c:modern=database.table_exists(c,'map_points')
  alerts=community.route_points(sys.modules[__name__],coords) if modern else route_alerts(coords)
  bstatus='local_index';alerts.sort(key=lambda x:x.get('along_m',10**12))
  # Providers disagree on distance units. Use route geometry as the reference and
@@ -1162,7 +1144,7 @@ def _cookie_dict(header):
 
 def _admin_authed(handler):
  token=_cookie_dict(handler.headers.get('Cookie','')).get('radar_admin')
- return bool(token and token in ADMIN_SESSIONS)
+ return AUTH.valid(token)
 
 def _admin_event(kind,message,details=None):
  try:
@@ -1254,7 +1236,7 @@ def sync_antt_sp():
   for item in items:
    r=upsert(c,item,seen);imp+=r=='imported';upd+=r=='updated';unch+=r=='unchanged'
   mapped=sum(1 for x in items if x.get('latitude') is not None and x.get('longitude') is not None)
-  c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('antt_sp',?,?,?,?,?,?,?,?,?,?,?,?,?)",('ok' if items else 'error',started,now(),st,imp,upd,unch,0,mapped,0,final,None,f'{len(items)} registros SP lidos do recurso ANTT mais recente; resource={resource.get("name")}; delimiter={delim}'))
+  c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,skipped,mapped,roads,source_url,error,diagnostic) VALUES('antt_sp',?,?,?,?,?,?,?,?,?,?,?,?,?)"),('ok' if items else 'error',started,now(),st,imp,upd,unch,0,mapped,0,final,None,f'{len(items)} registros SP lidos do recurso ANTT mais recente; resource={resource.get("name")}; delimiter={delim}'))
   c.commit();c.close()
  refresh_physical_ids();checkpoint_db();res={'ok':True,'count':len(items),'mapped':mapped,'imported':imp,'updated':upd,'unchanged':unch};_admin_event('sync','ANTT SP concluída',res);return res
 
@@ -1263,10 +1245,12 @@ def admin_dashboard():
  cov=municipality_coverage();return {'ok':True,'kpis':{'inventory':tot['n'] or 0,'mapped':tot['mapped'] or 0,'municipalities':tot['municipalities'] or 0,'sources':tot['sources'] or 0,'unmapped':pending,'target_municipalities':645,'municipalities_loaded':len(cov)},'sources':source_registry_state(),'coverage':cov,'events':events,'credentials_warning':'Senha temporária local. Troque antes de publicar o app.'}
 
 def stability_diagnostics():
+ if hosted():
+  with db() as c:return dict(database.status(c),environment=environment(),dependencies='request-scoped external providers')
  c=db(); syncs=[dict(r) for r in c.execute('SELECT * FROM source_syncs ORDER BY source_id')]; total=c.execute("SELECT COUNT(*) FROM radars WHERE state='SP'").fetchone()[0];mapped=c.execute("SELECT COUNT(*) FROM radars WHERE state='SP' AND latitude IS NOT NULL AND longitude IS NOT NULL").fetchone()[0];phys=c.execute("SELECT COUNT(DISTINCT physical_radar_id) FROM radars WHERE state='SP' AND physical_radar_id IS NOT NULL").fetchone()[0];c.close()
  def cache_info(path):
   obj=_load_json(path,{}) if path.exists() else {};return {'exists':path.exists(),'entries':len(obj) if isinstance(obj,dict) else 0,'path':str(path)}
- return {'ok':True,'version':'2.1.5-road-test','db':{'path':str(DB_PATH),'persistent':DB_PATH.parent!=BUNDLED_DATA_DIR,'exists':DB_PATH.exists(),'inventory':total,'mapped':mapped,'physical_ids':phys},'maplibre':{'js':MAPLIBRE_JS.exists(),'css':MAPLIBRE_CSS.exists()},'caches':{'geocode':cache_info(GEOCODE_CACHE),'bumps':cache_info(BUMPS_CACHE),'road':cache_info(ROAD_CACHE)},'dependencies':DEPENDENCY_STATE,'sources':syncs,'baixada':BAIXADA_SYNC}
+ return {'ok':True,'version':'2.2.0','db':{'path':str(DB_PATH),'persistent':DB_PATH.parent!=BUNDLED_DATA_DIR,'exists':DB_PATH.exists(),'inventory':total,'mapped':mapped,'physical_ids':phys},'maplibre':{'js':MAPLIBRE_JS.exists(),'css':MAPLIBRE_CSS.exists()},'caches':{'geocode':cache_info(GEOCODE_CACHE),'bumps':cache_info(BUMPS_CACHE),'road':cache_info(ROAD_CACHE)},'dependencies':DEPENDENCY_STATE,'sources':syncs,'baixada':BAIXADA_SYNC}
 
 # --- v1.4 State Intelligence: objetos viários + semáforos ---------------------
 def canonical_radar_type(v, source=None):
@@ -1292,7 +1276,7 @@ def seed_signal_networks():
     ]
     c=db();ts=now()
     with DB_WRITE_LOCK:
-        for r in rows:c.execute('INSERT OR REPLACE INTO signal_networks(id,municipality,name,mode,count_known,live_timing,description,source_url,source_date,last_seen) VALUES(?,?,?,?,?,?,?,?,?,?)',(*r,ts))
+        for r in rows:c.execute(database.upsert_statement('INSERT INTO signal_networks(id,municipality,name,mode,count_known,live_timing,description,source_url,source_date,last_seen) VALUES(?,?,?,?,?,?,?,?,?,?)'),(*r,ts))
         c.commit();c.close()
     return len(rows)
 
@@ -1311,7 +1295,7 @@ def _upsert_road_object(c,item,seen):
         c.execute('UPDATE road_objects SET last_seen=?,ingested_by=COALESCE(?,ingested_by),ingestion_batch=COALESCE(?,ingestion_batch),provenance_note=COALESCE(?,provenance_note) WHERE id=?',(seen,item.get('ingested_by'),item.get('ingestion_batch'),item.get('provenance_note'),rid));return 'unchanged'
     if old:c.execute('INSERT INTO road_object_history(object_id,source,captured_at,raw_json) VALUES(?,?,?,?)',(rid,item['source'],seen,old['raw_json']))
     cols=','.join(keys);qs=','.join(['?']*(1+len(keys)+3))
-    c.execute(f'INSERT OR REPLACE INTO road_objects(id,{cols},first_seen,last_seen,raw_json) VALUES({qs})',[rid]+vals+[old['first_seen'] if old else seen,seen,raw])
+    c.execute(database.upsert_statement(f'INSERT INTO road_objects(id,{cols},first_seen,last_seen,raw_json) VALUES({qs})'),[rid]+vals+[old['first_seen'] if old else seen,seen,raw])
     return 'updated' if old else 'imported'
 
 def _municipality_osm_area_id(name):
@@ -1442,7 +1426,7 @@ def _sync_official_signal_wfs(municipality,source_id,source_name,base_url,keywor
             timing='adaptive' if any('scats' in str(v).lower() or 'adapt' in str(v).lower() for v in props.values()) else 'unknown'
             item={'id':existing['id'] if existing else f'{source_id}:{ext}','source':source_id,'external_id':ext,'object_type':'traffic_signal','name':name,'latitude':lat,'longitude':lon,'municipality':municipality,'state':'SP','status':'active','confidence':96,'official':1,'speed_limit':None,'direction':clean(props.get('sentido') or props.get('direction')),'timing_mode':timing,'cycle_seconds':None,'green_seconds':None,'red_seconds':None,'adaptive':1 if timing=='adaptive' else 0,'timing_source':source_name,'source_url':base_url,'source_date':'consulta WFS oficial'}
             r=_upsert_road_object(c,item,seen);imp+=r=='imported';upd+=r=='updated';unch+=r=='unchanged'
-        c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,mapped,source_url,diagnostic) VALUES(?,?,?,?,?,?,?,?,?,?,?)",(source_id,'ok',seen,now(),st,imp,upd,unch,imp+upd+unch,base_url,f'{municipality}: camada {chosen["name"]}; {len(features)} features; {skipped} sem ponto'))
+        c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,mapped,source_url,diagnostic) VALUES(?,?,?,?,?,?,?,?,?,?,?)"),(source_id,'ok',seen,now(),st,imp,upd,unch,imp+upd+unch,base_url,f'{municipality}: camada {chosen["name"]}; {len(features)} features; {skipped} sem ponto'))
         c.commit()
     c.close();_admin_event('signals',f'Semáforos oficiais sincronizados · {municipality}',{'source':source_name,'layer':chosen,'features':len(features),'imported':imp,'updated':upd,'unchanged':unch,'skipped':skipped})
     return {'ok':True,'municipality':municipality,'source_id':source_id,'source_name':source_name,'layer':chosen,'features':len(features),'imported':imp,'updated':upd,'unchanged':unch,'skipped':skipped}
@@ -1495,7 +1479,7 @@ def sync_osm_objects_city(municipality,ingested_by=None,ingestion_batch=None,pro
             name=clean(tags.get('name') or tags.get('ref') or tags.get('traffic_calming') or ('Semáforo' if typ=='traffic_signal' else 'Objeto viário'));maxspeed=speed(tags.get('maxspeed'))
             item={'id':rid,'source':'osm_road_objects','external_id':ext,'object_type':typ,'name':name,'latitude':fnum(e.get('lat')),'longitude':fnum(e.get('lon')),'municipality':municipality,'state':'SP','status':'mapped','confidence':64 if strict_area else 60,'official':0,'speed_limit':maxspeed,'direction':tags.get('direction'),'timing_mode':'unknown','cycle_seconds':None,'green_seconds':None,'red_seconds':None,'adaptive':0,'timing_source':None,'source_url':'https://www.openstreetmap.org/','source_date':'consulta OSM atual','ingested_by':ingested_by,'ingestion_batch':ingestion_batch,'provenance_note':provenance_note}
             r=_upsert_road_object(c,item,seen);imp+=r=='imported';upd+=r=='updated';unch+=r=='unchanged'
-        c.execute("INSERT OR REPLACE INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,mapped,source_url,diagnostic) VALUES('osm_road_objects',?,?,?,?,?,?,?,?,?,?)",('ok',seen,now(),st,imp,upd,unch,imp+upd+unch,'https://www.openstreetmap.org/',f'{municipality}: {len(els)} objetos consultados via {endpoint}; area_id={area_id}'));c.commit();c.close()
+        c.execute(database.upsert_statement("INSERT INTO source_syncs(source_id,status,started_at,finished_at,http_status,imported,updated,unchanged,mapped,source_url,diagnostic) VALUES('osm_road_objects',?,?,?,?,?,?,?,?,?,?)"),('ok',seen,now(),st,imp,upd,unch,imp+upd+unch,'https://www.openstreetmap.org/',f'{municipality}: {len(els)} objetos consultados via {endpoint}; area_id={area_id}'));c.commit();c.close()
     _admin_event('osm',f'Objetos viários OSM sincronizados · {municipality}',{'elements':len(els),'imported':imp,'updated':upd,'unchanged':unch,'counts':counts,'ingested_by':ingested_by,'batch':ingestion_batch})
     return {'ok':True,'municipality':municipality,'elements':len(els),'imported':imp,'updated':upd,'unchanged':unch,'counts':counts,'bbox':bbox,'area_id':area_id,'endpoint':endpoint}
 
@@ -1525,7 +1509,7 @@ def _admin_token(req):
 
 def _admin_authed_v15(req):
     tok=_admin_token(req)
-    return bool(tok and tok in ADMIN_SESSIONS)
+    return AUTH.valid(tok)
 
 def _record_source_attempt(city,source_id,status,item_count=0,mapped_count=0,diagnostic='',url=''):
     c=db();ts=now()
@@ -1536,13 +1520,13 @@ def _record_source_attempt(city,source_id,status,item_count=0,mapped_count=0,dia
 def _save_municipality_source(city,source_id,name,url,stype,status,official,item_count=0,mapped_count=0,diagnostic=''):
     c=db();ts=now();old=c.execute('SELECT first_seen,last_success FROM municipality_sources WHERE municipality=? AND source_id=?',(city,source_id)).fetchone();first=old['first_seen'] if old else ts;success=ts if status in ('confirmed','available','ok') else (old['last_success'] if old else None)
     with DB_WRITE_LOCK:
-        c.execute('INSERT OR REPLACE INTO municipality_sources(municipality,source_id,source_name,source_url,source_type,status,official,first_seen,last_attempt,last_success,item_count,mapped_count,diagnostic) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',(city,source_id,name,url,stype,status,1 if official else 0,first,ts,success,int(item_count or 0),int(mapped_count or 0),clean(diagnostic)))
+        c.execute(database.upsert_statement('INSERT INTO municipality_sources(municipality,source_id,source_name,source_url,source_type,status,official,first_seen,last_attempt,last_success,item_count,mapped_count,diagnostic) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)'),(city,source_id,name,url,stype,status,1 if official else 0,first,ts,success,int(item_count or 0),int(mapped_count or 0),clean(diagnostic)))
         c.commit();c.close()
 
 def _set_gap(city,reason,status='needs_source'):
     c=db();ts=now();old=c.execute('SELECT attempts FROM source_gaps WHERE municipality=?',(city,)).fetchone();attempts=(old['attempts'] if old else 0)+1
     with DB_WRITE_LOCK:
-        c.execute('INSERT OR REPLACE INTO source_gaps(municipality,status,reason,attempts,last_checked,next_retry,notes) VALUES(?,?,?,?,?,?,COALESCE((SELECT notes FROM source_gaps WHERE municipality=?),NULL))',(city,status,clean(reason),attempts,ts,None,city))
+        c.execute(database.upsert_statement('INSERT INTO source_gaps(municipality,status,reason,attempts,last_checked,next_retry,notes) VALUES(?,?,?,?,?,?,COALESCE((SELECT notes FROM source_gaps WHERE municipality=?),NULL))'),(city,status,clean(reason),attempts,ts,None,city))
         c.commit();c.close()
 
 def _clear_gap(city):
@@ -1659,10 +1643,10 @@ def start_city_batch(cities,include_osm=True):
     # Persist the job before spawning the worker. The client can poll immediately and IDs cannot collide.
     c=db()
     with DB_WRITE_LOCK:
-        cur=c.execute('INSERT INTO city_scan_jobs(created_at,status,municipalities_json,summary_json) VALUES(?,?,?,?)',(ts,'queued',json.dumps(cities,ensure_ascii=False),'[]'))
-        job_id=int(cur.lastrowid);c.commit()
+        cur=database.insert_id(c,'INSERT INTO city_scan_jobs(created_at,status,municipalities_json,summary_json) VALUES(?,?,?,?)',(ts,'queued',json.dumps(cities,ensure_ascii=False),'[]'))
+        job_id=int(cur);c.commit()
     c.close()
-    threading.Thread(target=_run_city_batch_worker,args=(job_id,cities,include_osm),daemon=True,name=f'city-scan-{job_id}').start()
+    launch(_run_city_batch_worker,(job_id,cities,include_osm))
     return {'ok':True,'job_id':job_id,'status':'queued','municipalities':cities}
 
 def admin_ops_state():
@@ -1745,27 +1729,9 @@ def admin_inventory(city=''):
 
 # --- v1.7 Operations / observability / discovery-first -----------------------
 def ensure_v18_tables():
-    c=db()
-    sql=(
-      "CREATE TABLE IF NOT EXISTS operation_logs(id INTEGER PRIMARY KEY AUTOINCREMENT,operation_id TEXT NOT NULL,created_at TEXT NOT NULL,level TEXT NOT NULL DEFAULT 'info',stage TEXT,municipality TEXT,source_id TEXT,message TEXT NOT NULL,details TEXT);"
-      "CREATE INDEX IF NOT EXISTS idx_operation_logs_op ON operation_logs(operation_id,id);"
-      "CREATE TABLE IF NOT EXISTS update_queue(id INTEGER PRIMARY KEY AUTOINCREMENT,municipality TEXT,category TEXT NOT NULL,source_id TEXT NOT NULL,label TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pending',discovered_at TEXT NOT NULL,applied_at TEXT,details TEXT);"
-      "CREATE INDEX IF NOT EXISTS idx_update_queue_status ON update_queue(status,id);"
-      "CREATE TABLE IF NOT EXISTS assistant_update_runs(batch_id TEXT PRIMARY KEY,actor TEXT NOT NULL,started_at TEXT,finished_at TEXT,status TEXT NOT NULL,targets_json TEXT,summary_json TEXT,error TEXT);"
-    )
-    with DB_WRITE_LOCK:
-        c.executescript(sql)
-        cols={r[1] for r in c.execute('PRAGMA table_info(city_scan_jobs)').fetchall()}
-        for col,typ in [('include_osm','INTEGER DEFAULT 1'),('result_json','TEXT'),('mode','TEXT DEFAULT \'all\'')]:
-            if col not in cols:c.execute(f'ALTER TABLE city_scan_jobs ADD COLUMN {col} {typ}')
-        rocols={r[1] for r in c.execute('PRAGMA table_info(road_objects)').fetchall()}
-        for col,typ in [('ingested_by','TEXT'),('ingestion_batch','TEXT'),('provenance_note','TEXT')]:
-            if col not in rocols:c.execute(f'ALTER TABLE road_objects ADD COLUMN {col} {typ}')
-        rcols={r[1] for r in c.execute('PRAGMA table_info(radars)').fetchall()}
-        for col,typ in [('ingested_by','TEXT'),('ingestion_batch','TEXT'),('provenance_note','TEXT')]:
-            if col not in rcols:c.execute(f'ALTER TABLE radars ADD COLUMN {col} {typ}')
-        c.commit()
-    c.close()
+ if database.backend()=='sqlite':
+  from db.sqlite_schema import upgrade
+  return upgrade(sys.modules[__name__])
 
 # backwards alias used by older self-tests/extensions
 def ensure_v17_tables():
@@ -1783,8 +1749,8 @@ def _oplog(op_id,message,level='info',stage='',municipality='',source_id='',deta
 def _queue_update(municipality,category,source_id,label,details=None):
     c=db();ts=now()
     with DB_WRITE_LOCK:
-        exists=c.execute('SELECT id FROM update_queue WHERE municipality=? AND category=? AND source_id=? AND label=? AND status="pending"',(clean(municipality),clean(category),clean(source_id),clean(label))).fetchone()
-        if not exists:c.execute('INSERT INTO update_queue(municipality,category,source_id,label,status,discovered_at,details) VALUES(?,?,?,?,"pending",?,?)',(clean(municipality),clean(category),clean(source_id),clean(label),ts,json.dumps(details,ensure_ascii=False) if details is not None else None))
+        exists=c.execute("SELECT id FROM update_queue WHERE municipality=? AND category=? AND source_id=? AND label=? AND status='pending'",(clean(municipality),clean(category),clean(source_id),clean(label))).fetchone()
+        if not exists:c.execute("INSERT INTO update_queue(municipality,category,source_id,label,status,discovered_at,details) VALUES(?,?,?,?,'pending',?,?)",(clean(municipality),clean(category),clean(source_id),clean(label),ts,json.dumps(details,ensure_ascii=False) if details is not None else None))
         c.commit()
     c.close()
 
@@ -1874,8 +1840,14 @@ def _run_city_batch_worker_v17(job_id,cities,include_osm):
 
 def start_city_batch_v17(cities,include_osm=True):
     cities=_prepare_city_batch(cities);c=db();ts=now()
-    with DB_WRITE_LOCK:cur=c.execute('INSERT INTO city_scan_jobs(created_at,status,municipalities_json,include_osm,result_json) VALUES(?,?,?,?,?)',(ts,'queued',json.dumps(cities,ensure_ascii=False),1 if include_osm else 0,None));jid=cur.lastrowid;c.commit()
-    c.close();threading.Thread(target=_run_city_batch_worker_v17,args=(jid,cities,include_osm),daemon=True).start();return {'ok':True,'job_id':jid,'status':'queued','municipalities':cities,'operation_id':f'batch-{jid}'}
+    with DB_WRITE_LOCK:
+        jid=database.insert_id(c,'INSERT INTO city_scan_jobs(created_at,status,municipalities_json,include_osm,result_json) VALUES(?,?,?,?,?)',(ts,'queued',json.dumps(cities,ensure_ascii=False),1 if include_osm else 0,None));c.commit()
+    c.close();launch(_run_city_batch_worker_v17,(jid,cities,include_osm))
+    status='queued'
+    if hosted():
+        with db() as c:status=c.execute('SELECT status FROM city_scan_jobs WHERE id=?',(jid,)).fetchone()[0]
+    return {'ok':status in ('queued','done'),'job_id':jid,'status':status,'municipalities':cities,'operation_id':f'batch-{jid}'}
+
 
 def queue_state_updates(selected):
     selected=[clean(x) for x in (selected or []) if clean(x)]
@@ -1924,9 +1896,10 @@ def start_target_city_discovery(city,mode='all',include_osm=True):
     if not city:raise RuntimeError('Município obrigatório')
     op_id=_opid('city-check')
     def work():
-        try:discover_city_targeted(city,mode,include_osm,op_id)
-        except Exception as e:_oplog(op_id,f'Falha na inspeção: {type(e).__name__}: {e}',level='error',stage='fim',municipality=city)
-    threading.Thread(target=work,daemon=True,name='target-'+_norm_city(city)).start()
+        try:return discover_city_targeted(city,mode,include_osm,op_id)
+        except Exception as e:_oplog(op_id,f'Falha na inspeção: {type(e).__name__}: {e}',level='error',stage='fim',municipality=city);return {'ok':False,'operation_id':op_id,'error':'City discovery failed; inspect operation logs'}
+    if hosted():return launch(work)
+    launch(work)
     return {'ok':True,'operation_id':op_id,'municipality':city,'mode':mode,'status':'running'}
 
 def _apply_one_update(row,op_id):
@@ -1960,7 +1933,7 @@ def apply_update_decisions(data):
 def _mark_assistant_provenance(municipality,batch_id,sources=None,note=''):
     c=db();args=[ASSISTANT_ACTOR,batch_id,note,municipality];q='UPDATE road_objects SET ingested_by=?,ingestion_batch=?,provenance_note=? WHERE lower(municipality)=lower(?)'
     if sources:q+=' AND source IN ('+','.join('?' for _ in sources)+')';args+=list(sources)
-    with DB_WRITE_LOCK:c.execute(q,args);n=c.total_changes;c.commit()
+    with DB_WRITE_LOCK:n=c.execute(q,args).rowcount;c.commit()
     c.close();return n
 
 def _assistant_seed_official_crossings(batch_id,municipality=None,op_id=''):
@@ -1985,7 +1958,7 @@ def run_assistant_signal_pack(force=False):
     ensure_v18_tables();c=db();old=c.execute('SELECT status FROM assistant_update_runs WHERE batch_id=?',(ASSISTANT_SIGNAL_BATCH,)).fetchone();c.close()
     if old and old['status']=='done' and not force:return {'ok':True,'skipped':True,**assistant_pack_state()}
     op_id='assistant-'+ASSISTANT_SIGNAL_BATCH;started=now();summary=[];errors=[];c=db()
-    with DB_WRITE_LOCK:c.execute('INSERT OR REPLACE INTO assistant_update_runs(batch_id,actor,started_at,finished_at,status,targets_json,summary_json,error) VALUES(?,?,?,?,?,?,?,?)',(ASSISTANT_SIGNAL_BATCH,ASSISTANT_ACTOR,started,None,'running',json.dumps(ASSISTANT_SIGNAL_CITIES,ensure_ascii=False),None,None));c.commit()
+    with DB_WRITE_LOCK:c.execute(database.upsert_statement('INSERT INTO assistant_update_runs(batch_id,actor,started_at,finished_at,status,targets_json,summary_json,error) VALUES(?,?,?,?,?,?,?,?)'),(ASSISTANT_SIGNAL_BATCH,ASSISTANT_ACTOR,started,None,'running',json.dumps(ASSISTANT_SIGNAL_CITIES,ensure_ascii=False),None,None));c.commit()
     c.close();_oplog(op_id,'Lote ChatGPT/OpenAI iniciado: semáforos da Baixada Santista + São Bernardo',stage='assistant',details={'targets':ASSISTANT_SIGNAL_CITIES})
     try:_assistant_seed_official_crossings(ASSISTANT_SIGNAL_BATCH,op_id=op_id)
     except Exception as e:errors.append('official-seeds:'+str(e));_oplog(op_id,f'Falha nas sementes oficiais: {e}',level='error',stage='assistant')
@@ -2007,9 +1980,32 @@ def run_assistant_signal_pack(force=False):
     c.close();_oplog(op_id,f'Lote ChatGPT/OpenAI concluído · {status}',level='success' if status=='done' else 'warning',stage='assistant',details={'errors':errors,'summary':summary});return {'ok':status!='error','status':status,'batch_id':ASSISTANT_SIGNAL_BATCH,'summary':summary,'errors':errors}
 
 def start_assistant_signal_pack(force=False):
+    if hosted():return launch(lambda:run_assistant_signal_pack(force))
     state=assistant_pack_state();run=state.get('run') or {}
-    if run.get('status')=='running':return {'ok':True,'status':'running','batch_id':ASSISTANT_SIGNAL_BATCH}
-    threading.Thread(target=lambda:run_assistant_signal_pack(force),daemon=True).start();return {'ok':True,'status':'started','batch_id':ASSISTANT_SIGNAL_BATCH,'actor':ASSISTANT_ACTOR}
+    if not hosted() and run.get('status')=='running':return {'ok':True,'status':'running','batch_id':ASSISTANT_SIGNAL_BATCH}
+    launch(lambda:run_assistant_signal_pack(force));return {'ok':True,'status':'started','batch_id':ASSISTANT_SIGNAL_BATCH,'actor':ASSISTANT_ACTOR}
+
+
+LEGACY_MUTATIONS={'/api/sync/praia-grande','/api/sync/santos','/api/sync/santo-andre','/api/sync/der/start','/api/georef/der/start'}
+
+def health_status():
+ result={'ok':False,'app':'ok','database':'unavailable','engine':database.backend(),'environment':environment(),'version':'2.2.0','time':now()}
+ try:
+  with db() as c:result.update(database.status(c))
+  result['ok']=not bool(AUTH.configuration_errors())
+  if not result['ok']:result['configuration']='Admin environment incomplete'
+ except Exception:pass
+ return result
+
+def runtime_sync_state(kind,local):
+ return runtime_jobs.state(sys.modules[__name__],kind) if hosted() else local
+
+def launch(callback,args=()):
+ if hosted():
+  runtime_jobs.check()
+  if runtime_jobs.deadline.get() is None:raise RuntimeError('Hosted jobs require a request-bound executor')
+  return callback(*args)
+ threading.Thread(target=callback,args=args,daemon=True).start()
 
 class H(SimpleHTTPRequestHandler):
  def __init__(self,*a,**kw):super().__init__(*a,directory=str(APP_DIR),**kw)
@@ -2040,11 +2036,12 @@ class H(SimpleHTTPRequestHandler):
    except (ValueError,KeyError,TypeError) as e:return self.js({"error":str(e)},400)
   if p.path=='/api/admin/login':
    data=self._body_json()
-   if secrets.compare_digest(str(data.get('username','')),ADMIN_USER) and secrets.compare_digest(str(data.get('password','')),ADMIN_PASSWORD):
-    tok=secrets.token_urlsafe(32);ADMIN_SESSIONS.add(tok);_admin_event('auth','Login admin efetuado');return self.js({'ok':True,'token':tok,'user':ADMIN_USER},extra_headers={'Set-Cookie':f'radar_admin={tok}; Path=/; Max-Age=2592000; HttpOnly; SameSite=Lax'})
+   if AUTH.configuration_errors():return self.js({'ok':False,'error':'Admin environment is incomplete'},503)
+   if AUTH.password_valid(data.get('username',''),data.get('password','')):
+    tok=AUTH.issue();_admin_event('auth','Login admin efetuado');return self.js({'ok':True,'token':tok,'user':ADMIN_USER},extra_headers={'Set-Cookie':AUTH.cookie(tok)})
    return self.js({'ok':False,'error':'Usuário ou senha inválidos'},401)
   if p.path=='/api/admin/logout':
-   tok=_cookie_dict(self.headers.get('Cookie','')).get('radar_admin');ADMIN_SESSIONS.discard(tok);return self.js({'ok':True},extra_headers={'Set-Cookie':'radar_admin=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax'})
+   return self.js({'ok':True},extra_headers={'Set-Cookie':AUTH.cookie(logout=True)})
   if p.path.startswith('/api/admin/') and not _admin_authed_v15(self):return self.js({'ok':False,'error':'não autorizado'},401)
   if p.path=='/api/admin/sync/municipalities':
    try:
@@ -2057,6 +2054,7 @@ class H(SimpleHTTPRequestHandler):
   if p.path=='/api/admin/sync/praia-grande':return self.js(seed_praia_grande(True))
   if p.path=='/api/admin/sync/santos':return self.js(seed_santos(True))
   if p.path=='/api/admin/sync/der':return self.js(start('full',''))
+  if p.path=='/api/admin/georef/der':return self.js(georef_inventory(bool(self._body_json().get('force',False))))
   if p.path=='/api/admin/sync/osm-city':
    try:
     data=self._body_json();return self.js(sync_osm_objects_city(data.get('municipality','')))
@@ -2087,6 +2085,8 @@ class H(SimpleHTTPRequestHandler):
   return self.js({'ok':False,'error':'endpoint não encontrado'},404)
  def do_GET(self):
   p=urlparse(self.path);q=parse_qs(p.query)
+  if p.path in LEGACY_MUTATIONS and not _admin_authed_v15(self):return self.js({'error':'Admin authentication required'},401)
+  if hosted() and p.path in LEGACY_MUTATIONS:return self.js({'error':'Use Admin POST operations'},405)
   if p.path in ['/api/map/features','/api/admin/community','/api/admin/community/export']:
    if p.path.startswith('/api/admin/') and not _admin_authed_v15(self):return self.js({'error':'não autorizado'},401)
    try:return self.js(community.features(sys.modules[__name__],q,True) if p.path.endswith('/export') else community.summary(sys.modules[__name__],q) if p.path.startswith('/api/admin/') else community.features(sys.modules[__name__],q))
@@ -2098,6 +2098,10 @@ class H(SimpleHTTPRequestHandler):
   if p.path=='/api/admin/me':return self.js({'ok':_admin_authed_v15(self),'user':ADMIN_USER if _admin_authed_v15(self) else None})
   if p.path.startswith('/api/admin/'):
    if not _admin_authed_v15(self):return self.js({'ok':False,'error':'não autorizado'},401)
+   if p.path=='/api/admin/database-status':
+    with db() as c:return self.js(dict(database.status(c),environment=environment()))
+   if p.path=='/api/admin/jobs' and hosted():
+    with db() as c:return self.js({'items':[dict(r) for r in c.execute('SELECT * FROM runtime_jobs ORDER BY started_at DESC LIMIT 100')]})
    if p.path=='/api/admin/dashboard':return self.js(state_intelligence_dashboard())
    if p.path=='/api/admin/coverage':return self.js({'items':municipality_coverage()})
    if p.path=='/api/admin/sources':return self.js({'items':source_registry_state()})
@@ -2108,8 +2112,10 @@ class H(SimpleHTTPRequestHandler):
    if p.path=='/api/admin/assistant-pack':return self.js(assistant_pack_state())
   if p.path=='/api/road-objects':return self.js({'items':get_road_objects((q.get('mapped') or ['1'])[0]!='0')})
   if p.path=='/api/signal-networks':return self.js({'items':signal_network_state()})
-  if p.path=='/api/health':return self.js({'ok':True,'version':'2.1.5-road-test','time':now(),'maplibre_local':MAPLIBRE_JS.exists() and MAPLIBRE_CSS.exists()})
-  if p.path=='/api/access':return self.js({'local':f'{"https" if os.environ.get("RELAS_TLS_CERT") else "http"}://127.0.0.1:{PORT}/?v=215','lan':f'{"https" if os.environ.get("RELAS_TLS_CERT") else "http"}://{lan_ip()}:{PORT}/?v=215','note':'GPS no telefone requer HTTPS confiável e permissão de localização.'})
+  if p.path=='/api/health':
+   status=health_status();return self.js(status,200 if status['ok'] else 503)
+  if p.path=='/api/access' and hosted():return self.js({'local':'/','lan':None,'note':'HTTPS e permissao de localizacao necessarios.'})
+  if p.path=='/api/access':return self.js({'local':f'{"https" if os.environ.get("RELAS_TLS_CERT") else "http"}://127.0.0.1:{PORT}/?v=220','lan':f'{"https" if os.environ.get("RELAS_TLS_CERT") else "http"}://{lan_ip()}:{PORT}/?v=220','note':'GPS no telefone requer HTTPS confiável e permissão de localização.'})
   if p.path=='/api/vendor/status':return self.js(ensure_maplibre_assets())
   if p.path=='/api/diagnostics':return self.js(stability_diagnostics())
   if p.path=='/api/autocomplete':
@@ -2131,8 +2137,8 @@ class H(SimpleHTTPRequestHandler):
   if p.path=='/api/radars/mapped':return self.js({'items':get_radars(True),'demo':False})
   if p.path=='/api/stats':return self.js(get_stats())
   if p.path=='/api/sources':return self.js({'items':get_sources()})
-  if p.path=='/api/sync/state':return self.js(SYNC)
-  if p.path=='/api/sync/baixada/state':return self.js(BAIXADA_SYNC)
+  if p.path=='/api/sync/state':return self.js(runtime_sync_state('der',SYNC))
+  if p.path=='/api/sync/baixada/state':return self.js(runtime_sync_state('baixada',BAIXADA_SYNC))
   if p.path=='/api/sync/santo-andre':return self.js(seed_santo_andre(True))
   if p.path=='/api/sync/der/start':return self.js(start((q.get('mode') or ['sample'])[0],(q.get('road') or [''])[0]))
   if p.path=='/api/der/diagnostic':return self.js(diagnostic())
@@ -2142,7 +2148,8 @@ class H(SimpleHTTPRequestHandler):
     try:
      SYNC.update({'running':True,'message':'Baixando/validando malha oficial DER…','error':None});r=georef_inventory((q.get('force') or ['0'])[0]=='1');SYNC.update({'running':False,'message':f'Georreferenciamento: {r["mapped_total"]} radares no mapa; {r["unmatched"]} sem correspondência.','mapped':r['mapped_total'],'derived':r['mapped_now']})
     except Exception as e:SYNC.update({'running':False,'message':'Falha no georreferenciamento','error':f'{type(e).__name__}: {e}'})
-   threading.Thread(target=_run_geo,daemon=True).start();return self.js({'status':'started'})
+   launch(_run_geo);return self.js({'status':'started'})
+  if p.path.startswith('/api/'):return self.js({'error':'Endpoint not found'},404)
   return super().do_GET()
 
 import community
@@ -2156,14 +2163,20 @@ def configure_server_tls(srv):
   print('HTTPS ativo; o certificado deve ser confiável no telefone.')
 
 def main(open_browser=True):
- init_db();ensure_v18_tables();community.init(sys.modules[__name__]);seed_signal_networks();seed_santo_andre(False);seed_praia_grande(False);seed_santos(False);community.bootstrap_public_data(sys.modules[__name__]);refresh_physical_ids();checkpoint_db();srv=ThreadingHTTPServer(('0.0.0.0',PORT),H);configure_server_tls(srv);lip=lan_ip();print('Relas road-test review v2.1.5');print('Senha Admin: RELAS_ADMIN_PASSWORD ou arquivo local',USER_DATA_DIR/'admin_password.txt');scheme='https' if os.environ.get('RELAS_TLS_CERT') else 'http';print(f'PC -> {scheme}://127.0.0.1:{PORT}/?v=215');print(f'Celular na mesma rede -> {scheme}://{lip}:{PORT}/?v=215');print('Sincronização pesada municipal: manual pelo Admin (evita travar o banco no startup)');print('MapLibre local:', 'OK' if MAPLIBRE_JS.exists() and MAPLIBRE_CSS.exists() else 'cache ainda não preenchido · fallback CDN ativo')
+ if hosted():raise RuntimeError('Hosted mode imports server:app; do not start an HTTPServer')
+ if database.backend()=='sqlite':
+  init_db();ensure_v18_tables();community.init(sys.modules[__name__]);seed_signal_networks();seed_santo_andre(False);seed_praia_grande(False);seed_santos(False);community.bootstrap_public_data(sys.modules[__name__]);refresh_physical_ids();checkpoint_db()
+ srv=ThreadingHTTPServer(('0.0.0.0',PORT),H);configure_server_tls(srv);lip=lan_ip();print('Relas v2.2.0 - local / Neon');print('Senha Admin: RELAS_ADMIN_PASSWORD ou arquivo local',USER_DATA_DIR/'admin_password.txt');scheme='https' if os.environ.get('RELAS_TLS_CERT') else 'http';print(f'PC -> {scheme}://127.0.0.1:{PORT}/?v=220');print(f'Celular na mesma rede -> {scheme}://{lip}:{PORT}/?v=220');print('Sincronização pesada municipal: manual pelo Admin (evita travar o banco no startup)');print('MapLibre local:', 'OK' if MAPLIBRE_JS.exists() and MAPLIBRE_CSS.exists() else 'cache ainda não preenchido · fallback CDN ativo')
  def _warm_vendor():
   vend=ensure_maplibre_assets()
   print('MapLibre cache:', 'OK' if vend['js'].get('ok') and vend['css'].get('ok') else 'indisponível; navegador usará fallback CDN')
   if not (vend['js'].get('ok') and vend['css'].get('ok')):print('Detalhes vendor:',json.dumps(vend,ensure_ascii=False))
  threading.Thread(target=_warm_vendor,daemon=True).start()
- threading.Timer(1.2,lambda:start_assistant_signal_pack(False)).start()
- if open_browser:threading.Timer(.6,lambda:webbrowser.open(f'{scheme}://127.0.0.1:{PORT}/?v=215')).start()
+ if database.backend()=='sqlite':threading.Timer(1.2,lambda:start_assistant_signal_pack(False)).start()
+ if open_browser:threading.Timer(.6,lambda:webbrowser.open(f'{scheme}://127.0.0.1:{PORT}/?v=220')).start()
  try:srv.serve_forever()
  except KeyboardInterrupt:pass
+from web_app import create_app
+app=create_app(sys.modules[__name__])
+
 if __name__=='__main__':main()

@@ -1,0 +1,50 @@
+{
+  "viewports": [
+    {
+      "width": 375,
+      "height": 812
+    },
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 430,
+      "height": 932
+    },
+    {
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "touch_targets_minimum": 44,
+  "overflow": false,
+  "javascript_errors": [],
+  "http_errors": [],
+  "semaphores": {
+    "api": 198,
+    "source": 198,
+    "rendered": 198,
+    "zoom": 14
+  },
+  "types_clicked": [
+    "signal",
+    "fixed",
+    "signal_radar",
+    "red_light",
+    "mobile",
+    "police",
+    "bump",
+    "toll"
+  ],
+  "filter_persistence": true,
+  "dom_markers": 0,
+  "local_browser_fps": 127,
+  "local_browser_p95_frame_ms": 13.5,
+  "admin": {
+    "visible": true,
+    "session_in_localstorage": false,
+    "javascript_errors": []
+  },
+  "note": "Windows browser against local ASGI and Neon validation branch. FPS is not a phone benchmark. Initial per-type captures can observe an older source while the next viewport response is still loading."
+}

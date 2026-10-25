@@ -43,7 +43,7 @@ def main():
         # Admin Operations v1.5 persistence tables and hardcoded credentials.
         c=server.db();tables={r[0] for r in c.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()};c.close()
         ck({'municipality_sources','source_gaps','city_scan_jobs','source_attempts','municipality_profiles','radar_validations','manual_entries'}.issubset(tables),'Admin Operations tables')
-        ck(server.ADMIN_USER=='admin' and bool(server.ADMIN_PASSWORD),'admin configured locally')
+        ck(server.ADMIN_USER=='admin' and not server.AUTH.configuration_errors(),'admin configured locally')
         ck(server._prepare_city_batch(['Santo André','Santo André'])==['Santo André'],'batch limita e deduplica cidades')
         server._queue_update('Santos','objects','osm_road_objects','Importar objetos viários descobertos · Santos',{'traffic_signal':12,'physical_bump':3});server._oplog('test-op','Teste de observabilidade',stage='teste',municipality='Santos')
         q=server.update_queue_state('pending');ck(any(x['source_id']=='osm_road_objects' and x['municipality']=='Santos' for x in q),'fila de atualização persistente')
@@ -80,7 +80,7 @@ def main():
     ck('id="destination"' in app and '/api/autocomplete' in app,'busca de destino conectada')
     ck('turnDistance' in idx and 'instruction' in idx,'pr?xima manobra')
     ck('/api/diagnostics' in srv and 'physical_radar_id' in srv,'backend legado preservado')
-    ck('CLEAR_CACHE' in sw and 'v215' in sw and 'v=215' in idx and 'v=215' in boot,'cache versionado')
+    ck('CLEAR_CACHE' in sw and 'v220' in sw and 'v=220' in idx and 'v=220' in boot,'cache versionado')
     ck('5.24.0' in boot and server.CA_BUNDLE.exists(),'runtime local e TLS')
     ck('CERT_NONE' not in srv and '_create_unverified_context' not in srv and '--insecure' not in srv,'TLS verificado')
     ck('SOURCE_REGISTRY' in srv and 'sync_antt_sp' in srv and '/api/admin/login' in srv and '/api/admin/dashboard' in srv,'Admin Engine + fontes estaduais'); admin=(server.ROOT/'app/admin.html').read_text(encoding='utf-8'); ck('Relas Command' in admin and 'Alimentar base' in admin and 'Varredura' in admin and 'Semáforos' in admin and 'Atualizar cidade' in admin,'painel Relas operacional'); ck('ensure_v18_tables' in srv and 'operation_logs' in srv and 'update_queue' in srv and 'apply_update_decisions' in srv and 'queue_state_updates' in srv,'observabilidade + fila de atualização'); ck('discover_city_intelligence' in srv and 'start_city_batch_v17' in srv and 'start_target_city_discovery' in srv,'varredura discovery-only + atualização por cidade'); ck('sync_osm_objects_city' in srv and 'road_objects' in srv and 'signal_networks' in srv,'State Intelligence backend'); ck('_manual_radar' in srv and '_manual_signal' in srv and 'start_target_city_discovery' in srv,'alimentação manual + atualização por cidade'); ck('relas-icons' in app and 'data-layer' in app and 'clusterProperties' in app,'SVG layers and clusters'); ck(hasattr(server,'CITY_BATCH_LOCK'),'CITY_BATCH_LOCK definido');ck(hasattr(server,'_overpass_request') and len(server.OVERPASS_ENDPOINTS)>=2,'Overpass POST com fallback');ck(hasattr(server,'discover_official_signals_city') and hasattr(server,'_sync_official_signal_wfs'),'conectores WFS oficiais de semáforos');ck('geosampa_signals' in Path('server.py').read_text(encoding='utf-8') and 'santos_signals_wfs' in Path('server.py').read_text(encoding='utf-8'),'GeoSampa e SIGSantos registrados');

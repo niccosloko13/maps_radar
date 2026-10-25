@@ -1,0 +1,53 @@
+{
+  "restart_0": {
+    "status": 200,
+    "engine": "postgres",
+    "counts": {
+      "radars": 196,
+      "road_objects": 6426,
+      "source_registry": 19
+    }
+  },
+  "/": {
+    "status": 200
+  },
+  "/admin": {
+    "status": 200
+  },
+  "/api/radars": {
+    "status": 200
+  },
+  "/api/road-objects": {
+    "status": 200
+  },
+  "/api/map/features?bbox=-46.67,-23.58,-46.64,-23.55": {
+    "status": 200
+  },
+  "/api/stats": {
+    "status": 200
+  },
+  "restart_1": {
+    "status": 200,
+    "engine": "postgres",
+    "counts": {
+      "radars": 196,
+      "road_objects": 6426,
+      "source_registry": 19
+    }
+  },
+  "schema": {
+    "database": "ok",
+    "engine": "postgres",
+    "counts": {
+      "radars": 196,
+      "road_objects": 6426,
+      "source_registry": 19
+    },
+    "schema_version": "001-vercel-neon",
+    "last_migration": {
+      "version": "001-vercel-neon",
+      "applied_at": "2026-10-24T23:51:38.870396+00:00",
+      "description": "SQLite inventory, distributed runtime state and jobs"
+    }
+  }
+}

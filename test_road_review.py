@@ -28,9 +28,9 @@ class RoadReviewTests(unittest.TestCase):
   community.init(server);community.init(server)
   http=server.ThreadingHTTPServer(('127.0.0.1',0),server.H);thread=threading.Thread(target=http.serve_forever,daemon=True);thread.start();base='http://127.0.0.1:'+str(http.server_address[1])
   try:
-   for path in ['/?v=215','/boot.js?v=215','/sw.js','/navigation-core.js?v=215']:
+   for path in ['/?v=220','/boot.js?v=220','/sw.js','/navigation-core.js?v=220']:
     response=urllib.request.urlopen(base+path);self.assertEqual(response.status,200);self.assertIn('no-cache',response.headers['Cache-Control'])
-   for path in ['/api/radars','/api/road-objects','/api/map/features?bbox=-46.7,-23.7,-46.6,-23.5','/icons/signal.svg?v=215','/icons/user-chevron.svg?v=215']:
+   for path in ['/api/radars','/api/road-objects','/api/map/features?bbox=-46.7,-23.7,-46.6,-23.5','/icons/signal.svg?v=220','/icons/user-chevron.svg?v=220']:
     self.assertEqual(urllib.request.urlopen(base+path).status,200)
   finally:http.shutdown();http.server_close();thread.join()
 
