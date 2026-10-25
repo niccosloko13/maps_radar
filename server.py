@@ -1989,12 +1989,16 @@ def start_assistant_signal_pack(force=False):
 LEGACY_MUTATIONS={'/api/sync/praia-grande','/api/sync/santos','/api/sync/santo-andre','/api/sync/der/start','/api/georef/der/start'}
 
 def health_status():
- result={'ok':False,'app':'ok','database':'unavailable','engine':database.backend(),'environment':environment(),'version':'2.2.0','time':now()}
+ result={'ok':False,'app':'ok','database':'unavailable','engine':'unconfigured','environment':environment(),'version':'2.2.0','time':now()}
  try:
+  result['engine']=database.backend()
   with db() as c:result.update(database.status(c))
   result['ok']=not bool(AUTH.configuration_errors())
-  if not result['ok']:result['configuration']='Admin environment incomplete'
- except Exception:pass
+  if not result['ok']:
+   result['configuration']='Admin environment incomplete';result['configuration_errors']=AUTH.configuration_errors()
+ except database.DatabaseConfigurationError as error:result['configuration_errors']=[str(error)]
+ except Exception as error:
+  __import__('logging').getLogger('relas.api').error('health_database_unavailable error_type=%s',type(error).__name__)
  return result
 
 def runtime_sync_state(kind,local):

@@ -1,0 +1,20 @@
+{
+  "old_deployment": "mapsradar-e8d797jaq-nexus-a534.vercel.app",
+  "project_id": "prj_3eXFTKDsAxx8GMMyGVU3Wgg1EJ36",
+  "project_recreated": true,
+  "environment_before": [
+    "DATABASE_BACKEND"
+  ],
+  "environment_configured": [
+    "DATABASE_BACKEND",
+    "DATABASE_URL",
+    "ADMIN_USERNAME",
+    "ADMIN_PASSWORD_HASH",
+    "SESSION_SECRET"
+  ],
+  "secret_values_in_report": false,
+  "python_tests_passed": 17,
+  "navigation_tests_passed": 4,
+  "local_build": "Windows build-cache permissions prevent rebuilding; cloud validation pending",
+  "live_validation": "pending new deployment"
+}

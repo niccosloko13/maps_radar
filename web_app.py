@@ -5,6 +5,7 @@ Only API dispatch is shared; static responses are handled by Starlette.
 """
 import io
 import json
+import logging
 from email.message import Message
 from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, Response
@@ -13,6 +14,8 @@ from starlette.concurrency import run_in_threadpool
 from runtime_config import hosted
 import runtime_jobs
 import db
+
+logger=logging.getLogger('relas.api')
 
 JOB_PATHS = {
     '/api/admin/sync/der':'der', '/api/admin/sync/municipalities':'municipalities',
@@ -77,8 +80,13 @@ def create_app(server):
         try:
             await run_in_threadpool(dispatch)
             return handler.response or JSONResponse({'error':'Endpoint not found'},404)
-        except Exception:
+        except db.DatabaseConfigurationError as error:
+            logger.error('database_configuration_error method=%s path=%s',request.method,request.url.path)
+            return JSONResponse({'error':'Banco não configurado: confira DATABASE_BACKEND=postgres e DATABASE_URL na Vercel.',
+                                 'code':'database_configuration_error'},503,headers={'Cache-Control':'no-store'})
+        except Exception as error:
             # No raw database exceptions or connection strings in responses.
+            logger.error('request_failed method=%s path=%s error_type=%s',request.method,request.url.path,type(error).__name__)
             return JSONResponse({'error':'Request failed; check application/database configuration'},503,headers={'Cache-Control':'no-store'})
 
     @app.middleware('http')

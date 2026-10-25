@@ -11,6 +11,10 @@ from runtime_config import hosted
 _request_connections = contextvars.ContextVar('db_request_connections', default=None)
 
 
+class DatabaseConfigurationError(RuntimeError):
+    """Safe configuration messages: never include connection-string values."""
+
+
 @contextmanager
 def request_scope():
     """Reuse idle sockets inside one request, never transactions or global pools.
@@ -29,9 +33,9 @@ def request_scope():
 def backend():
     value = os.environ.get('DATABASE_BACKEND', 'postgres' if hosted() else 'sqlite')
     if value not in ('sqlite', 'postgres'):
-        raise RuntimeError('DATABASE_BACKEND must be sqlite or postgres')
+        raise DatabaseConfigurationError('DATABASE_BACKEND must be sqlite or postgres')
     if hosted() and value != 'postgres':
-        raise RuntimeError('Vercel requires PostgreSQL; SQLite fallback is disabled')
+        raise DatabaseConfigurationError('Vercel requires DATABASE_BACKEND=postgres')
     return value
 
 
@@ -83,7 +87,7 @@ class Postgres:
     def __init__(self, url=None):
         import psycopg
         url = url or os.environ.get('DATABASE_URL')
-        if not url: raise RuntimeError('DATABASE_URL is required')
+        if not url: raise DatabaseConfigurationError('DATABASE_URL is required')
         self.pool=_request_connections.get();self.closed=False;self.url=url
         idle=self.pool['idle'] if self.pool is not None else []
         candidate=next(((key,raw) for key,raw in idle if key==url and not raw.closed),None)

@@ -162,3 +162,10 @@ A CLI ja estava autenticada nesta etapa. Foi vinculado localmente o projeto exis
 `vercel build` passou com CLI 65.2.0, Python 3.12, dependencias instaladas de uv.lock. O manifest contem server.py e app/app.js no filePathMap, sem .env.local, radar.db ou arquivos de senha/sessao. Cinco testes de runtime passaram. O builder local Windows exigiu uv no PATH sem espacos; foi usada copia auxiliar em LOCALAPPDATA/RelasBuildTools, sem alterar PATH global. Isso nao exige mudanca no Linux da Vercel.
 
 [Prova da correcao](build-fix.json). O push da correcao permite novo build pela integracao GitHub. Nenhum deploy manual de producao foi executado. Confirmar o novo build cloud e as variaveis de runtime antes de marcar o deployment pronto.
+
+
+## Correcao de runtime no projeto Vercel recriado
+
+O deployment e8d797jaq pertence ao projeto recriado prj_3eXFTKDsAxx8GMMyGVU3Wgg1EJ36. O vinculo local ainda apontava ao projeto anterior. Foi corrigido o vinculo local, preservando URLs Neon e configuracao existente. A unica variavel encontrada no novo projeto era DATABASE_BACKEND. Foram configurados backend postgres, DATABASE_URL pooled e credenciais Admin/SESSION_SECRET fortes, sem colocar valores em logs ou Git. Credenciais iniciais foram guardadas apenas em arquivo privado no diretorio local RadarSP/secrets; nao foi redefinida nenhuma credencial Admin existente na Vercel (nao havia).
+
+Health agora diagnostica backend invalido/URL ausente sem mostrar o valor recebido. Erros internos registram apenas classe e rota, sem URL de conexao, corpo ou senha. Dois testes de regressao foram adicionados; 17 testes Python, selftest e 4 testes Node passaram. O cache do builder local Windows apresentou falha de permissao; isso nao foi tratado como build aprovado. A validacao final sera feita no novo deployment cloud, com as variaveis completas. [Registro](production-incident.json).
