@@ -81,3 +81,5 @@
 Privados ignorados: .env.local, .venv, logs, scripts temporarios e backups SQLite. Configuracao Codex/OAuth/trust e neon.ts preservados.
 
 - `artifacts/vercel-neon/build-fix.json` (correcao posterior de framework)
+
+Evidencias posteriores: production-incident.json, production-live-api.json, production-live-browser.json, production-live-mobile.png, production-live-admin.png.

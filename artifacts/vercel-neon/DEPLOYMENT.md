@@ -77,3 +77,8 @@ Na Vercel, SQLite **nao** e rollback aceitavel. Reverta o deployment para uma ve
 ## Atualizacao: correcao de framework
 
 A CLI foi autenticada posteriormente e o build local passou com framework explicitamente definido como fastapi em vercel.json. O erro unused_function do primeiro build cloud foi corrigido dessa forma. O projeto existente foi vinculado localmente; o proximo rebuild cloud ainda precisa ser confirmado. Ver build-fix.json e a secao final do REPORT.md.
+
+
+## Estado atual apos incidente
+
+Projeto Vercel recriado foi vinculado e recebeu variaveis Production completas. Build cloud e testes HTTPS/navegador passaram em https://mapsradar-three.vercel.app. Use o alias publico estavel para abrir o sistema. URLs individuais de deployments anteriores conservam as variaveis daquela versao; criar novo deploy nao corrige a URL imutavel antiga. Consulte a secao de encerramento do REPORT.md.

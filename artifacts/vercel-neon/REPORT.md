@@ -2,7 +2,7 @@
 
 ## Status
 
-**Backend ASGI e dados Neon validados. Build local Vercel aprovado apos a correcao de framework descrita ao final. O proximo build cloud e a configuracao de ambiente do deployment ainda precisam ser confirmados.**
+**Producao validada no projeto Vercel atual: build cloud READY, PostgreSQL conectado, APIs publicas, busca/rota e Admin testados no endereco https://mapsradar-three.vercel.app. As secoes anteriores registram a auditoria e os bloqueios encontrados durante a preparacao; o encerramento abaixo registra sua resolucao.**
 
 A CLI Vercel 65.2.0 respondeu `Logged out`; `vercel build --yes` falhou com `The specified token is not valid`. O login foi solicitado ao operador, sem abrir autenticacao automaticamente. Nao houve deployment, alteracao de dominio ou push que disparasse deploy automatico nesta etapa.
 
@@ -169,3 +169,16 @@ A CLI ja estava autenticada nesta etapa. Foi vinculado localmente o projeto exis
 O deployment e8d797jaq pertence ao projeto recriado prj_3eXFTKDsAxx8GMMyGVU3Wgg1EJ36. O vinculo local ainda apontava ao projeto anterior. Foi corrigido o vinculo local, preservando URLs Neon e configuracao existente. A unica variavel encontrada no novo projeto era DATABASE_BACKEND. Foram configurados backend postgres, DATABASE_URL pooled e credenciais Admin/SESSION_SECRET fortes, sem colocar valores em logs ou Git. Credenciais iniciais foram guardadas apenas em arquivo privado no diretorio local RadarSP/secrets; nao foi redefinida nenhuma credencial Admin existente na Vercel (nao havia).
 
 Health agora diagnostica backend invalido/URL ausente sem mostrar o valor recebido. Erros internos registram apenas classe e rota, sem URL de conexao, corpo ou senha. Dois testes de regressao foram adicionados; 17 testes Python, selftest e 4 testes Node passaram. O cache do builder local Windows apresentou falha de permissao; isso nao foi tratado como build aprovado. A validacao final sera feita no novo deployment cloud, com as variaveis completas. [Registro](production-incident.json).
+
+
+## Encerramento — validacao real do deployment
+
+Deployment verificado: mapsradar-a00ksksn1-nexus-a534.vercel.app, commit de codigo d7a4b15, build cloud READY. Endereco estavel publico: https://mapsradar-three.vercel.app. O endereco e8d797jaq enviado durante o incidente e um deployment anterior, com variaveis antigas imutaveis; nao e o endereco a usar para acompanhar atualizacoes.
+
+Health publico retorna HTTP 200, ok=true, database=ok, engine=postgres, environment=production, schema 001-vercel-neon. APIs publicas e Admin retornaram 200: 196 radares, 6.419 objetos georreferenciados, 8.259 pontos comunitarios, 19 fontes; viewport 375 features; filtro de semaforos 198. Frontend real mobile exibiu 198 semaforos, sem erros JS ou HTTP, com dados vindos do Postgres. Admin real abriu autenticado, sem sessao em localStorage ou overflow. Login com credencial criada e logout foram testados por HTTPS com cookie Secure/HttpOnly. Nenhum ponto sintetico foi inserido no inventario de producao.
+
+Busca real retornou resultado e Valhalla calculou rota de 2.153m com 2 alertas. Medicoes do deployment: features de viewport 0,78s, semaforos 0,52s, health 0,44s, dashboard 0,64s nessa execucao. Esses tempos nao sao garantia de SLA. [Resultados HTTP](production-live-api.json), [navegador](production-live-browser.json), [mapa mobile](production-live-mobile.png), [Admin](production-live-admin.png).
+
+Credencial inicial do Admin guardada em arquivo privado local RadarSP/secrets/Relas-Admin-Vercel.txt; senha/hash/session secret nunca foram publicados. O vinculo local Vercel foi atualizado para o projeto recriado. As variaveis Production foram configuradas; a configuracao Preview completa continua separada e nao foi apontada ao banco de producao. O token de acesso de protecao gerado pela CLI foi usado somente para verificar o deployment protegido; o dominio publico foi testado diretamente.
+
+O ultimo build local foi prejudicado por permissoes do cache Windows/OneDrive; o build Linux na Vercel e o runtime real passaram. Nao houve reset nem nova importacao destrutiva do Neon. Os registros originais foram mantidos e a unica escrita funcional de teste foi a auditoria normal dos logins Admin.

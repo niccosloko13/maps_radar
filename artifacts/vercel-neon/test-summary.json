@@ -1,7 +1,7 @@
 {
   "python": "3.12",
   "unittest": {
-    "passed": 15,
+    "passed": 17,
     "failed": 0
   },
   "selftest": "passed",
@@ -18,10 +18,8 @@
   "original_sqlite_unchanged": true,
   "vercel_build": {
     "status": "passed",
-    "target": "preview",
-    "scope": "local Vercel CLI build",
-    "fix": "explicit FastAPI framework",
-    "cloud_rebuild": "pending"
+    "scope": "cloud Linux Vercel build",
+    "deployment": "mapsradar-a00ksksn1-nexus-a534.vercel.app"
   },
-  "production_deployment": "not executed"
+  "production_deployment": "GitHub automatic deployment verified via public HTTP and browser"
 }

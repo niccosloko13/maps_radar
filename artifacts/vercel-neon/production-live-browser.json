@@ -1,0 +1,10 @@
+{
+  "title": "Relas · seu caminho, mais claro",
+  "engine": "postgres",
+  "healthy": true,
+  "features": 223,
+  "signalsRendered": 198,
+  "coverage": "223 pontos nesta região · SP",
+  "errors": [],
+  "failed": []
+}

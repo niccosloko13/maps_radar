@@ -16,5 +16,11 @@
   "python_tests_passed": 17,
   "navigation_tests_passed": 4,
   "local_build": "Windows build-cache permissions prevent rebuilding; cloud validation pending",
-  "live_validation": "pending new deployment"
+  "live_validation": "passed: public APIs, real route/search, Admin login/logout and browser",
+  "cloud_build": "READY",
+  "verified_deployment": "mapsradar-a00ksksn1-nexus-a534.vercel.app",
+  "production_alias": "https://mapsradar-three.vercel.app",
+  "database": "postgres",
+  "healthy": true,
+  "rendered_signals": 198
 }

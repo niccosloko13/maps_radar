@@ -1,0 +1,83 @@
+{
+  "/api/health": {
+    "status": 200,
+    "count": 0,
+    "seconds": 0.44
+  },
+  "/api/radars": {
+    "status": 200,
+    "count": 196,
+    "seconds": 0.42
+  },
+  "/api/road-objects": {
+    "status": 200,
+    "count": 6419,
+    "seconds": 1.36
+  },
+  "/api/stats": {
+    "status": 200,
+    "count": 0,
+    "seconds": 0.48
+  },
+  "/api/signal-networks": {
+    "status": 200,
+    "count": 3,
+    "seconds": 0.36
+  },
+  "/api/map/features?bbox=-46.67,-23.58,-46.64,-23.55": {
+    "status": 200,
+    "count": 375,
+    "seconds": 0.78
+  },
+  "/api/map/features?bbox=-46.66336849,-23.57959921,-46.64663151,-23.54639869&types=signal": {
+    "status": 200,
+    "count": 198,
+    "seconds": 0.52
+  },
+  "admin_login": {
+    "status": 200,
+    "secure_cookie": true,
+    "http_only": true
+  },
+  "/api/admin/database-status": {
+    "status": 200,
+    "seconds": 0.39
+  },
+  "/api/admin/dashboard": {
+    "status": 200,
+    "seconds": 0.64
+  },
+  "/api/admin/inventory": {
+    "status": 200,
+    "seconds": 0.5
+  },
+  "/api/admin/sources": {
+    "status": 200,
+    "seconds": 0.36
+  },
+  "/api/admin/update-queue": {
+    "status": 200,
+    "seconds": 1.66
+  },
+  "/api/admin/logs": {
+    "status": 200,
+    "seconds": 0.36
+  },
+  "/api/admin/community": {
+    "status": 200,
+    "seconds": 0.78,
+    "total": 8259
+  },
+  "search": {
+    "status": 200,
+    "results": 1
+  },
+  "route": {
+    "status": 200,
+    "provider": "Valhalla demo 1",
+    "error": null,
+    "distance_m": 2153,
+    "alerts": 2
+  },
+  "logout": true
+}
