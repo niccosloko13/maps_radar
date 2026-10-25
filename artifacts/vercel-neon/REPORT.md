@@ -2,7 +2,7 @@
 
 ## Status
 
-**Backend ASGI e dados Neon validados. Build/Preview Vercel pendentes de autenticacao e variaveis da plataforma. Nao marcar producao como pronta ainda.**
+**Backend ASGI e dados Neon validados. Build local Vercel aprovado apos a correcao de framework descrita ao final. O proximo build cloud e a configuracao de ambiente do deployment ainda precisam ser confirmados.**
 
 A CLI Vercel 65.2.0 respondeu `Logged out`; `vercel build --yes` falhou com `The specified token is not valid`. O login foi solicitado ao operador, sem abrir autenticacao automaticamente. Nao houve deployment, alteracao de dominio ou push que disparasse deploy automatico nesta etapa.
 
@@ -151,3 +151,14 @@ A proxima validacao e: concluir `npx vercel login`, conectar **o projeto Vercel 
 ## Publicacao Git posterior
 
 Apos a revisao, o usuario autorizou explicitamente commit e push das alteracoes para main. Essa publicacao nao valida o build da Vercel nem resolve as variaveis/autenticacao pendentes descritas acima. O push pode acionar a integracao automatica GitHub/Vercel.
+
+
+## Correcao do build unused_function
+
+O primeiro build cloud do commit c8cb51b falhou antes de instalar dependencias: `server.py` era interpretado como pattern de funcao legada em api/. Inspecao posterior confirmou que o framework do projeto Vercel estava indefinido. A configuracao agora fixa `framework: fastapi` em vercel.json, preservando server:app e os limites/exclusoes existentes.
+
+A CLI ja estava autenticada nesta etapa. Foi vinculado localmente o projeto existente maps_radar e feito pull de configuracoes Preview, sem alterar dominio ou definir variaveis secretas no remoto. As URLs privadas Neon foram preservadas; arquivos .vercel e env continuam ignorados. Uma variavel sensivel de Preview nao pode ser baixada e veio como placeholder; o build nao comprova valores de runtime.
+
+`vercel build` passou com CLI 65.2.0, Python 3.12, dependencias instaladas de uv.lock. O manifest contem server.py e app/app.js no filePathMap, sem .env.local, radar.db ou arquivos de senha/sessao. Cinco testes de runtime passaram. O builder local Windows exigiu uv no PATH sem espacos; foi usada copia auxiliar em LOCALAPPDATA/RelasBuildTools, sem alterar PATH global. Isso nao exige mudanca no Linux da Vercel.
+
+[Prova da correcao](build-fix.json). O push da correcao permite novo build pela integracao GitHub. Nenhum deploy manual de producao foi executado. Confirmar o novo build cloud e as variaveis de runtime antes de marcar o deployment pronto.

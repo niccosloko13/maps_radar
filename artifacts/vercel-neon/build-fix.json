@@ -1,0 +1,16 @@
+{
+  "reported_commit": "c8cb51b",
+  "reported_error": "unused_function: server.py did not match functions inside api",
+  "project_framework_before": null,
+  "fix": "Explicit framework=fastapi in vercel.json",
+  "vercel_cli": "65.2.0",
+  "local_build": "passed",
+  "target": "preview",
+  "python": "3.12",
+  "lockfile": "uv.lock",
+  "entrypoint_mapped": true,
+  "frontend_mapped": true,
+  "private_files_mapped": [],
+  "existing_runtime_tests_passed": 5,
+  "cloud_rebuild": "pending after push"
+}

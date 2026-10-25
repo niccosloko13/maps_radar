@@ -17,8 +17,11 @@
   "migration_conflict_and_expired_job": "passed",
   "original_sqlite_unchanged": true,
   "vercel_build": {
-    "status": "blocked",
-    "reason": "CLI not authenticated; invalid token"
+    "status": "passed",
+    "target": "preview",
+    "scope": "local Vercel CLI build",
+    "fix": "explicit FastAPI framework",
+    "cloud_rebuild": "pending"
   },
   "production_deployment": "not executed"
 }

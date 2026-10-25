@@ -72,3 +72,8 @@ Na Vercel, SQLite **nao** e rollback aceitavel. Reverta o deployment para uma ve
 - [FastAPI na Vercel](https://vercel.com/docs/frameworks/backend/fastapi)
 - [Neon: erros de conexao e parametros do pooler](https://neon.com/docs/connect/connection-errors)
 - [Psycopg3: transacoes](https://www.psycopg.org/psycopg3/docs/basic/transactions.html)
+
+
+## Atualizacao: correcao de framework
+
+A CLI foi autenticada posteriormente e o build local passou com framework explicitamente definido como fastapi em vercel.json. O erro unused_function do primeiro build cloud foi corrigido dessa forma. O projeto existente foi vinculado localmente; o proximo rebuild cloud ainda precisa ser confirmado. Ver build-fix.json e a secao final do REPORT.md.

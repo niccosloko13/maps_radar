@@ -79,3 +79,5 @@
 - `web_app.py`
 
 Privados ignorados: .env.local, .venv, logs, scripts temporarios e backups SQLite. Configuracao Codex/OAuth/trust e neon.ts preservados.
+
+- `artifacts/vercel-neon/build-fix.json` (correcao posterior de framework)
