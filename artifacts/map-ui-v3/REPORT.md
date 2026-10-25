@@ -42,3 +42,5 @@ Evidências JSON no diretório. Nesta fase chuva é arquitetura preparada, não 
 ## Publicação e rollback
 
 Publicar somente após checks; Vercel staging de produção, health/Neon/assets/mapa e então promoção do mesmo build. O resultado da publicação será informado ao usuário. Reverter ao deployment anterior na Vercel restaura UI v221; nenhum dado precisa ser revertido. Baseline GPS permanece padrão.
+
+Publicação concluída: runtime `e1629a8`, deployment `dpl_CRJQs2g9KH1YTQRnBPr7qcFtVkrq`, status READY, promovido para https://mapsradar-three.vercel.app/. Health confirmou PostgreSQL/196 radares/6426 objetos/19 fontes. Assets e cache v222 aprovados. Teste no domínio público: semáforos API/source/render **73/73/73** no bbox registrado em `production-verification.json`, sem overflow a 390x844. [Screenshot de produção](production-mobile.png). O commit posterior de evidências altera apenas artifacts, excluídos do bundle Vercel.

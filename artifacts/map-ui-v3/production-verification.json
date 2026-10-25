@@ -1,0 +1,13 @@
+{
+  "deployment": "dpl_CRJQs2g9KH1YTQRnBPr7qcFtVkrq",
+  "runtimeCommit": "e1629a8",
+  "status": "READY",
+  "url": "https://mapsradar-three.vercel.app/?v=222",
+  "bbox": "-46.659785060882314,-23.572479901149464,-46.65021493911689,-23.553519414746134",
+  "api": 73,
+  "source": 73,
+  "rendered": 73,
+  "features": 80,
+  "overflow": false,
+  "style": "/ui/map-ui.css?v=222"
+}
