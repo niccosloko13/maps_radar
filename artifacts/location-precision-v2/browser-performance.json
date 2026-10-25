@@ -1,0 +1,29 @@
+{
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "cpuThrottle": 4,
+  "synthetic": true,
+  "segments": 20000,
+  "fixesPerCase": 600,
+  "routePreprocessingMs": 35.60000002384186,
+  "cases": [
+    {
+      "recording": false,
+      "medianMs": 0.2999999523162842,
+      "p95Ms": 1,
+      "coldMs": 4.200000047683716,
+      "lastExamined": 263,
+      "records": 0,
+      "routeContexts": 0
+    },
+    {
+      "recording": true,
+      "medianMs": 0.5,
+      "p95Ms": 1,
+      "coldMs": 10.200000047683716,
+      "lastExamined": 263,
+      "records": 600,
+      "routeContexts": 1
+    }
+  ],
+  "physicalAccuracyMeasured": false
+}

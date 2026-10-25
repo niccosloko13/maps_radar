@@ -1,0 +1,1714 @@
+{
+  "version": 2,
+  "synthetic": true,
+  "description": "Deterministic synthetic trace; not a real trip or measured ground truth",
+  "context": {
+    "route": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -46.630097992763154,
+            -23.55
+          ],
+          [
+            -46.61726094079002,
+            -23.55
+          ]
+        ]
+      }
+    }
+  },
+  "records": [
+    {
+      "timestamp": 1000000,
+      "raw": {
+        "longitude": -46.63,
+        "latitude": -23.55,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1000000
+      }
+    },
+    {
+      "timestamp": 1001000,
+      "raw": {
+        "longitude": -46.629863663850536,
+        "latitude": -23.54998468029585,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1001000
+      }
+    },
+    {
+      "timestamp": 1002000,
+      "raw": {
+        "longitude": -46.62975584646217,
+        "latitude": -23.550030332784317,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1002000
+      }
+    },
+    {
+      "timestamp": 1003000,
+      "raw": {
+        "longitude": -46.629691029790386,
+        "latitude": -23.5499552612464,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1003000
+      }
+    },
+    {
+      "timestamp": 1004000,
+      "raw": {
+        "longitude": -46.62966253103183,
+        "latitude": -23.550058249276425,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1004000
+      }
+    },
+    {
+      "timestamp": 1005000,
+      "raw": {
+        "longitude": -46.62964579187001,
+        "latitude": -23.549929406060414,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1005000
+      }
+    },
+    {
+      "timestamp": 1006000,
+      "raw": {
+        "longitude": -46.629610465967936,
+        "latitude": -23.550081525664567,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1006000
+      }
+    },
+    {
+      "timestamp": 1007000,
+      "raw": {
+        "longitude": -46.62953535529837,
+        "latitude": -23.54990917434718,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1007000
+      }
+    },
+    {
+      "timestamp": 1008000,
+      "raw": {
+        "longitude": -46.629418843717254,
+        "latitude": -23.55009830776501,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1008000
+      }
+    },
+    {
+      "timestamp": 1009000,
+      "raw": {
+        "longitude": -46.62927969242254,
+        "latitude": -23.549896177753386,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1009000
+      }
+    },
+    {
+      "timestamp": 1010000,
+      "raw": {
+        "longitude": -46.62914780577714,
+        "latitude": -23.55010725872525,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1010000
+      }
+    },
+    {
+      "timestamp": 1011000,
+      "raw": {
+        "longitude": -46.629049512516296,
+        "latitude": -23.54989145158023,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1011000
+      }
+    },
+    {
+      "timestamp": 1012000,
+      "raw": {
+        "longitude": -46.62899460686288,
+        "latitude": -23.55010766551693,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1012000
+      }
+    },
+    {
+      "timestamp": 1013000,
+      "raw": {
+        "longitude": -46.62897152785498,
+        "latitude": -23.549895372311966,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1013000
+      }
+    },
+    {
+      "timestamp": 1014000,
+      "raw": {
+        "longitude": -46.62895304959926,
+        "latitude": -23.550099495735253,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1014000
+      }
+    },
+    {
+      "timestamp": 1015000,
+      "raw": {
+        "longitude": -46.628909681732914,
+        "latitude": -23.549907627625345,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1015000
+      }
+    },
+    {
+      "timestamp": 1016000,
+      "raw": {
+        "longitude": -46.628824184447254,
+        "latitude": -23.550083400180352,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1016000
+      }
+    },
+    {
+      "timestamp": 1017000,
+      "raw": {
+        "longitude": -46.62870005384384,
+        "latitude": -23.549927241269135,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1017000
+      }
+    },
+    {
+      "timestamp": 1018000,
+      "raw": {
+        "longitude": -46.62855980116905,
+        "latitude": -23.550060661014893,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1018000
+      }
+    },
+    {
+      "timestamp": 1019000,
+      "raw": {
+        "longitude": -46.62843387288008,
+        "latitude": -23.54995265083171,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1019000
+      }
+    },
+    {
+      "timestamp": 1020000,
+      "raw": {
+        "longitude": -46.628345665036036,
+        "latitude": -23.550033089627767,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1020000
+      }
+    },
+    {
+      "timestamp": 1021000,
+      "raw": {
+        "longitude": -46.62830000786309,
+        "latitude": -23.549981832201887,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1021000
+      }
+    },
+    {
+      "timestamp": 1022000,
+      "raw": {
+        "longitude": -46.62828078833895,
+        "latitude": -23.55000288233986,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1022000
+      }
+    },
+    {
+      "timestamp": 1023000,
+      "raw": {
+        "longitude": -46.628258880949765,
+        "latitude": -23.550012460808446,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1023000
+      }
+    },
+    {
+      "timestamp": 1024000,
+      "raw": {
+        "longitude": -46.62820648313677,
+        "latitude": -23.549972445446418,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1024000
+      }
+    },
+    {
+      "timestamp": 1025000,
+      "raw": {
+        "longitude": -46.6281107995903,
+        "latitude": -23.550042096794147,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1025000
+      }
+    },
+    {
+      "timestamp": 1026000,
+      "raw": {
+        "longitude": -46.627980340043564,
+        "latitude": -23.549944203532913,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1026000
+      }
+    },
+    {
+      "timestamp": 1027000,
+      "raw": {
+        "longitude": -46.627840730820296,
+        "latitude": -23.55006837937336,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1027000
+      }
+    },
+    {
+      "timestamp": 1028000,
+      "raw": {
+        "longitude": -46.62772210167377,
+        "latitude": -23.54992040633399,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1028000
+      }
+    },
+    {
+      "timestamp": 1029000,
+      "raw": {
+        "longitude": -46.627644256058076,
+        "latitude": -23.550089214890896,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1029000
+      }
+    },
+    {
+      "timestamp": 1030000,
+      "raw": {
+        "longitude": -46.62760692395732,
+        "latitude": -23.54990294952087,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1030000
+      }
+    },
+    {
+      "timestamp": 1031000,
+      "raw": {
+        "longitude": -46.627589894786205,
+        "latitude": -23.55010294360137,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1031000
+      }
+    },
+    {
+      "timestamp": 1032000,
+      "raw": {
+        "longitude": -46.627562964949014,
+        "latitude": -23.549893223693278,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1032000
+      }
+    },
+    {
+      "timestamp": 1033000,
+      "raw": {
+        "longitude": -46.62750080391323,
+        "latitude": -23.550108471883576,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1033000
+      }
+    },
+    {
+      "timestamp": 1034000,
+      "raw": {
+        "longitude": -46.62739542178343,
+        "latitude": -23.549892003605063,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1034000
+      }
+    },
+    {
+      "timestamp": 1035000,
+      "raw": {
+        "longitude": -46.627260101891814,
+        "latitude": -23.550105359357723,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1035000
+      }
+    },
+    {
+      "timestamp": 1036000,
+      "raw": {
+        "longitude": -46.62712286280194,
+        "latitude": -23.549899386447755,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1036000
+      }
+    },
+    {
+      "timestamp": 1037000,
+      "raw": {
+        "longitude": -46.62701266769813,
+        "latitude": -23.550093853965834,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1037000
+      }
+    },
+    {
+      "timestamp": 1038000,
+      "raw": {
+        "longitude": -46.62694516883666,
+        "latitude": -23.54991478410834,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1038000
+      }
+    },
+    {
+      "timestamp": 1039000,
+      "raw": {
+        "longitude": -46.62691500357587,
+        "latitude": -23.550074872220836,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1039000
+      }
+    },
+    {
+      "timestamp": 1040000,
+      "raw": {
+        "longitude": -46.62689843384413,
+        "latitude": -23.549936970018,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1040000
+      }
+    },
+    {
+      "timestamp": 1041000,
+      "raw": {
+        "longitude": -46.62686502991175,
+        "latitude": -23.55004992619765,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1041000
+      }
+    },
+    {
+      "timestamp": 1042000,
+      "raw": {
+        "longitude": -46.626792647766656,
+        "latitude": -23.549964176859888,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1042000
+      }
+    },
+    {
+      "timestamp": 1043000,
+      "raw": {
+        "longitude": -46.626678328297366,
+        "latitude": -23.550021003082183,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1043000
+      }
+    },
+    {
+      "timestamp": 1044000,
+      "raw": {
+        "longitude": -46.626539753754265,
+        "latitude": -23.549994237352582,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1044000
+      }
+    },
+    {
+      "timestamp": 1045000,
+      "raw": {
+        "longitude": -46.62640654462571,
+        "latitude": -23.54999040687323,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1045000
+      }
+    },
+    {
+      "timestamp": 1046000,
+      "raw": {
+        "longitude": -46.626305680567214,
+        "latitude": -23.550024756894466,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1046000
+      }
+    },
+    {
+      "timestamp": 1047000,
+      "raw": {
+        "longitude": -46.62624822113664,
+        "latitude": -23.549960574847255,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1047000
+      }
+    },
+    {
+      "timestamp": 1048000,
+      "raw": {
+        "longitude": -46.626223862329695,
+        "latitude": -23.55005330431633,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1048000
+      }
+    },
+    {
+      "timestamp": 1049000,
+      "raw": {
+        "longitude": -46.62620600816435,
+        "latitude": -23.549933883406347,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1049000
+      }
+    },
+    {
+      "timestamp": 1050000,
+      "raw": {
+        "longitude": -46.626164861103334,
+        "latitude": -23.55007760554691,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1050000
+      }
+    },
+    {
+      "timestamp": 1051000,
+      "raw": {
+        "longitude": -46.626082088267594,
+        "latitude": -23.54991245877538,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1051000
+      }
+    },
+    {
+      "timestamp": 1052000,
+      "raw": {
+        "longitude": -46.625959844796725,
+        "latitude": -23.55009572476412,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1052000
+      }
+    },
+    {
+      "timestamp": 1053000,
+      "raw": {
+        "longitude": -46.625819713098956,
+        "latitude": -23.549898007628183,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1053000
+      }
+    },
+    {
+      "timestamp": 1054000,
+      "raw": {
+        "longitude": -46.62569208008716,
+        "latitude": -23.5501062186015,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1054000
+      }
+    },
+    {
+      "timestamp": 1055000,
+      "raw": {
+        "longitude": -46.625601180877325,
+        "latitude": -23.549891681134852,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1055000
+      }
+    },
+    {
+      "timestamp": 1056000,
+      "raw": {
+        "longitude": -46.62555317037373,
+        "latitude": -23.550108251125977,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1056000
+      }
+    },
+    {
+      "timestamp": 1057000,
+      "raw": {
+        "longitude": -46.62553309385281,
+        "latitude": -23.54989398326022,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1057000
+      }
+    },
+    {
+      "timestamp": 1058000,
+      "raw": {
+        "longitude": -46.625512247610686,
+        "latitude": -23.550101660427817,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1058000
+      }
+    },
+    {
+      "timestamp": 1059000,
+      "raw": {
+        "longitude": -46.62546230679677,
+        "latitude": -23.549904730618298,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1059000
+      }
+    },
+    {
+      "timestamp": 1060000,
+      "raw": {
+        "longitude": -46.62536926677755,
+        "latitude": -23.550086971518265,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1060000
+      }
+    },
+    {
+      "timestamp": 1061000,
+      "raw": {
+        "longitude": -46.62524033615402,
+        "latitude": -23.549923067080705,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1061000
+      }
+    },
+    {
+      "timestamp": 1062000,
+      "raw": {
+        "longitude": -46.625100388720824,
+        "latitude": -23.550065354507424,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1062000
+      }
+    },
+    {
+      "timestamp": 1063000,
+      "raw": {
+        "longitude": -46.62497972069662,
+        "latitude": -23.54994753197536,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1063000
+      }
+    },
+    {
+      "timestamp": 1064000,
+      "raw": {
+        "longitude": -46.62489913906192,
+        "latitude": -23.55003853139399,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1064000
+      }
+    },
+    {
+      "timestamp": 1065000,
+      "raw": {
+        "longitude": -46.62485972045703,
+        "latitude": -23.549976176442772,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1065000
+      }
+    },
+    {
+      "timestamp": 1066000,
+      "raw": {
+        "longitude": -46.62484228126459,
+        "latitude": -23.550008638891804,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1066000
+      }
+    },
+    {
+      "timestamp": 1067000,
+      "raw": {
+        "longitude": -46.624816819699525,
+        "latitude": -23.5500067186811,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1067000
+      }
+    },
+    {
+      "timestamp": 1068000,
+      "raw": {
+        "longitude": -46.6247572825524,
+        "latitude": -23.549978058220447,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1068000
+      }
+    },
+    {
+      "timestamp": 1069000,
+      "raw": {
+        "longitude": -46.62465438846163,
+        "latitude": -23.55003672571314,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1069000
+      }
+    },
+    {
+      "timestamp": 1070000,
+      "raw": {
+        "longitude": -46.62452019615781,
+        "latitude": -23.549949225418672,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1070000
+      }
+    },
+    {
+      "timestamp": 1071000,
+      "raw": {
+        "longitude": -46.62438216921088,
+        "latitude": -23.55006380719593,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1071000
+      }
+    },
+    {
+      "timestamp": 1072000,
+      "raw": {
+        "longitude": -46.62426965858484,
+        "latitude": -23.549924437290933,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1072000
+      }
+    },
+    {
+      "timestamp": 1073000,
+      "raw": {
+        "longitude": -46.62419945622559,
+        "latitude": -23.55008580583407,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1073000
+      }
+    },
+    {
+      "timestamp": 1074000,
+      "raw": {
+        "longitude": -46.62416753014086,
+        "latitude": -23.54990566844528,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1074000
+      }
+    },
+    {
+      "timestamp": 1075000,
+      "raw": {
+        "longitude": -46.62415100892865,
+        "latitude": -23.550100969228662,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1075000
+      }
+    },
+    {
+      "timestamp": 1076000,
+      "raw": {
+        "longitude": -46.62411943897815,
+        "latitude": -23.549894413997198,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1076000
+      }
+    },
+    {
+      "timestamp": 1077000,
+      "raw": {
+        "longitude": -46.6240497735997,
+        "latitude": -23.55010808947238,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1077000
+      }
+    },
+    {
+      "timestamp": 1078000,
+      "raw": {
+        "longitude": -46.62393771650151,
+        "latitude": -23.549891570469565,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1078000
+      }
+    },
+    {
+      "timestamp": 1079000,
+      "raw": {
+        "longitude": -46.623799836405105,
+        "latitude": -23.550106599370704,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1079000
+      }
+    },
+    {
+      "timestamp": 1080000,
+      "raw": {
+        "longitude": -46.623665411995326,
+        "latitude": -23.549897364376164,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1080000
+      }
+    },
+    {
+      "timestamp": 1081000,
+      "raw": {
+        "longitude": -46.62356202108361,
+        "latitude": -23.550096617624266,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1081000
+      }
+    },
+    {
+      "timestamp": 1082000,
+      "raw": {
+        "longitude": -46.623501966933595,
+        "latitude": -23.549911334177715,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1082000
+      }
+    },
+    {
+      "timestamp": 1083000,
+      "raw": {
+        "longitude": -46.623476222650176,
+        "latitude": -23.55007893937327,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1083000
+      }
+    },
+    {
+      "timestamp": 1084000,
+      "raw": {
+        "longitude": -46.62345887417663,
+        "latitude": -23.549932367047838,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1084000
+      }
+    },
+    {
+      "timestamp": 1085000,
+      "raw": {
+        "longitude": -46.623419875076436,
+        "latitude": -23.55005497285706,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1085000
+      }
+    },
+    {
+      "timestamp": 1086000,
+      "raw": {
+        "longitude": -46.62333983525392,
+        "latitude": -23.549958787520158,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1086000
+      }
+    },
+    {
+      "timestamp": 1087000,
+      "raw": {
+        "longitude": -46.623219564671885,
+        "latitude": -23.550026627234566,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1087000
+      }
+    },
+    {
+      "timestamp": 1088000,
+      "raw": {
+        "longitude": -46.62307967469158,
+        "latitude": -23.54998849095499,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1088000
+      }
+    },
+    {
+      "timestamp": 1089000,
+      "raw": {
+        "longitude": -46.62295043325363,
+        "latitude": -23.549996160501838,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1089000
+      }
+    },
+    {
+      "timestamp": 1090000,
+      "raw": {
+        "longitude": -46.62285686713411,
+        "latitude": -23.550019111193755,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1090000
+      }
+    },
+    {
+      "timestamp": 1091000,
+      "raw": {
+        "longitude": -46.62280644387823,
+        "latitude": -23.549965999621328,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1091000
+      }
+    },
+    {
+      "timestamp": 1092000,
+      "raw": {
+        "longitude": -46.62278539630823,
+        "latitude": -23.55004820904578,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1092000
+      }
+    },
+    {
+      "timestamp": 1093000,
+      "raw": {
+        "longitude": -46.622765498666205,
+        "latitude": -23.54993854719149,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1093000
+      }
+    },
+    {
+      "timestamp": 1094000,
+      "raw": {
+        "longitude": -46.62271795920487,
+        "latitude": -23.550073466592856,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1094000
+      }
+    },
+    {
+      "timestamp": 1095000,
+      "raw": {
+        "longitude": -46.6226275913558,
+        "latitude": -23.54991599005715,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1095000
+      }
+    },
+    {
+      "timestamp": 1096000,
+      "raw": {
+        "longitude": -46.622500288489896,
+        "latitude": -23.550092871833264,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1096000
+      }
+    },
+    {
+      "timestamp": 1097000,
+      "raw": {
+        "longitude": -46.622360123226834,
+        "latitude": -23.549900125106696,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1097000
+      }
+    },
+    {
+      "timestamp": 1098000,
+      "raw": {
+        "longitude": -46.62223749900015,
+        "latitude": -23.550104878956677,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1098000
+      }
+    },
+    {
+      "timestamp": 1099000,
+      "raw": {
+        "longitude": -46.622154185624396,
+        "latitude": -23.54989221613298,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1099000
+      }
+    },
+    {
+      "timestamp": 1100000,
+      "raw": {
+        "longitude": -46.62211260429051,
+        "latitude": -23.55010853148253,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1100000
+      }
+    },
+    {
+      "timestamp": 1101000,
+      "raw": {
+        "longitude": -46.62209463586659,
+        "latitude": -23.549892893160322,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1101000
+      }
+    },
+    {
+      "timestamp": 1102000,
+      "raw": {
+        "longitude": -46.62207053905291,
+        "latitude": -23.550103538452706,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1102000
+      }
+    },
+    {
+      "timestamp": 1103000,
+      "raw": {
+        "longitude": -46.622013588915564,
+        "latitude": -23.549902102257107,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1103000
+      }
+    },
+    {
+      "timestamp": 1104000,
+      "raw": {
+        "longitude": -46.621913230778404,
+        "latitude": -23.550090297609096,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1104000
+      }
+    },
+    {
+      "timestamp": 1105000,
+      "raw": {
+        "longitude": -46.6217802751871,
+        "latitude": -23.549919109831965,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1105000
+      }
+    },
+    {
+      "timestamp": 1106000,
+      "raw": {
+        "longitude": -46.621641577007274,
+        "latitude": -23.550069863709712,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1106000
+      }
+    },
+    {
+      "timestamp": 1107000,
+      "raw": {
+        "longitude": -46.62152681758072,
+        "latitude": -23.549942561071234,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1107000
+      }
+    },
+    {
+      "timestamp": 1108000,
+      "raw": {
+        "longitude": -46.621453895702814,
+        "latitude": -23.55004386450727,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1108000
+      }
+    },
+    {
+      "timestamp": 1109000,
+      "raw": {
+        "longitude": -46.62142011791611,
+        "latitude": -23.549970587862642,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1109000
+      }
+    },
+    {
+      "timestamp": 1110000,
+      "raw": {
+        "longitude": -46.621403524217975,
+        "latitude": -23.55001437108332,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1110000
+      }
+    },
+    {
+      "timestamp": 1111000,
+      "raw": {
+        "longitude": -46.62137369667484,
+        "latitude": -23.550000957608045,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1111000
+      }
+    },
+    {
+      "timestamp": 1112000,
+      "raw": {
+        "longitude": -46.62130673099199,
+        "latitude": -23.54998373286712,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1112000
+      }
+    },
+    {
+      "timestamp": 1113000,
+      "raw": {
+        "longitude": -46.62119700209964,
+        "latitude": -23.550031251070944,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1113000
+      }
+    },
+    {
+      "timestamp": 1114000,
+      "raw": {
+        "longitude": -46.6210599327869,
+        "latitude": -23.549954390481393,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1114000
+      }
+    },
+    {
+      "timestamp": 1115000,
+      "raw": {
+        "longitude": -46.62092440267454,
+        "latitude": -23.55005905509145,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1115000
+      }
+    },
+    {
+      "timestamp": 1116000,
+      "raw": {
+        "longitude": -46.62081853379583,
+        "latitude": -23.549928681323774,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1116000
+      }
+    },
+    {
+      "timestamp": 1117000,
+      "raw": {
+        "longitude": -46.620755849058575,
+        "latitude": -23.550082154817222,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1117000
+      }
+    },
+    {
+      "timestamp": 1118000,
+      "raw": {
+        "longitude": -46.62072861633087,
+        "latitude": -23.549908653371013,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1118000
+      }
+    },
+    {
+      "timestamp": 1119000,
+      "raw": {
+        "longitude": -46.62071165416154,
+        "latitude": -23.550098710137355,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1119000
+      }
+    },
+    {
+      "timestamp": 1120000,
+      "raw": {
+        "longitude": -46.62067472597688,
+        "latitude": -23.549895902038347,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1120000
+      }
+    },
+    {
+      "timestamp": 1121000,
+      "raw": {
+        "longitude": -46.62059742238593,
+        "latitude": -23.55010740226454,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1121000
+      }
+    },
+    {
+      "timestamp": 1122000,
+      "raw": {
+        "longitude": -46.620479206590645,
+        "latitude": -23.54989144308963,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1122000
+      }
+    },
+    {
+      "timestamp": 1123000,
+      "raw": {
+        "longitude": -46.6203396785955,
+        "latitude": -23.550107538788904,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1123000
+      }
+    },
+    {
+      "timestamp": 1124000,
+      "raw": {
+        "longitude": -46.62020892817366,
+        "latitude": -23.54989563172216,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1124000
+      }
+    },
+    {
+      "timestamp": 1125000,
+      "raw": {
+        "longitude": -46.62011272481627,
+        "latitude": -23.550099108834996,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1125000
+      }
+    },
+    {
+      "timestamp": 1126000,
+      "raw": {
+        "longitude": -46.62005983410513,
+        "latitude": -23.549908134271863,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1126000
+      }
+    },
+    {
+      "timestamp": 1127000,
+      "raw": {
+        "longitude": -46.62003770333283,
+        "latitude": -23.55008278392811,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1127000
+      }
+    },
+    {
+      "timestamp": 1128000,
+      "raw": {
+        "longitude": -46.62001863988874,
+        "latitude": -23.549927954792803,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1128000
+      }
+    },
+    {
+      "timestamp": 1129000,
+      "raw": {
+        "longitude": -46.61997344143714,
+        "latitude": -23.550059864500973,
+        "accuracy": 8,
+        "heading": 90,
+        "speed": 8,
+        "altitude": null,
+        "altitudeAccuracy": null,
+        "timestamp": 1129000
+      }
+    }
+  ]
+}

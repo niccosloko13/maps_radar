@@ -1,0 +1,174 @@
+{
+  "VERSION": "2.0.0",
+  "BASELINE": {
+    "maxJumpSpeed": 70,
+    "maxJumpGap": 15,
+    "derivedMinDt": 0.5,
+    "derivedMaxDt": 10,
+    "derivedMinTravel": 5,
+    "accuracyFactor": 0.3,
+    "headingTravel": 8,
+    "headingWeight": 0.4
+  },
+  "QUALITY": {
+    "accuracyScores": [
+      [
+        5,
+        1
+      ],
+      [
+        10,
+        0.95
+      ],
+      [
+        20,
+        0.85
+      ],
+      [
+        35,
+        0.7
+      ],
+      [
+        50,
+        0.55
+      ],
+      [
+        75,
+        0.35
+      ],
+      [
+        100,
+        0.2
+      ]
+    ],
+    "maxAccuracy": 100,
+    "maxAgeMs": 15000,
+    "futureMs": 5000,
+    "maxSpeed": 70,
+    "maxAcceleration": 12,
+    "innovationSigma": 4,
+    "uncertaintyFactor": 2,
+    "minDt": 0.2,
+    "gapResetSeconds": 15,
+    "outlierFloor": 18,
+    "innovationPenalty": 0.5,
+    "frequencyPenalty": 0.8,
+    "headingPenalty": 0.8
+  },
+  "FILTER": {
+    "metresLatitude": 110540,
+    "metresLongitude": 111320,
+    "minimumSigma": 3,
+    "accuracyToSigma": 0.5,
+    "initialVelocityVariance": 100,
+    "reinitializeGap": 12,
+    "stationarySpeed": 0.8,
+    "lowSpeed": 3,
+    "highSpeed": 22,
+    "turnDegrees": 25,
+    "stationaryDamping": 0.25,
+    "profiles": {
+      "STATIONARY": 0.2,
+      "LOW_SPEED": 1,
+      "URBAN": 3,
+      "HIGH_SPEED": 5,
+      "TURNING": 10,
+      "GPS_DEGRADED": 4
+    }
+  },
+  "HEADING": {
+    "movingSpeed": 1.2,
+    "minDisplacement": 4,
+    "gpsGoodAccuracy": 35,
+    "lowWeight": 0.2,
+    "highWeight": 0.65,
+    "turnWeight": 0.85,
+    "turnDegrees": 30,
+    "routeWeight": 0.12,
+    "velocityMin": 1.2,
+    "maxVelocityVariance": 100,
+    "contradictionDegrees": 100
+  },
+  "STATE_MACHINE": {
+    "acquireFixes": 3,
+    "badFixes": 2,
+    "recoverFixes": 3,
+    "goodScore": 0.65,
+    "regularGapSeconds": 3,
+    "predictAfterMs": 1000
+  },
+  "MATCHER": {
+    "cellMetres": 150,
+    "maxGridCells": 50000,
+    "maxSegmentCells": 400,
+    "searchCells": 2,
+    "behind": 150,
+    "ahead": 1000,
+    "stationaryAhead": 180,
+    "lookaheadSeconds": 20,
+    "degradedExpansion": 1.5,
+    "expandedFactor": 3,
+    "maxDistance": 110,
+    "minimumSigma": 8,
+    "topK": 5,
+    "headingWeight": 3,
+    "progressWeight": 0.4,
+    "backwardWeight": 2,
+    "jumpWeight": 0.7,
+    "predictionWeight": 0.25,
+    "continuityWeight": 0.15,
+    "plausibleProgressFloor": 30,
+    "headingMovingSpeed": 1.2,
+    "outputReuseMetres": 3,
+    "maxOppositeDegrees": 125,
+    "maxScore": 15,
+    "scoreDecay": 4,
+    "separationFloor": 0.5,
+    "separationWeight": 0.5
+  },
+  "HYSTERESIS": {
+    "MATCH_SWITCH_MARGIN": 0.6,
+    "MATCH_SWITCH_CONFIRMATIONS": 3,
+    "MATCH_HARD_RESET_DISTANCE": 120,
+    "strongMargin": 4,
+    "adjacentAlong": 40
+  },
+  "PREDICTION": {
+    "strongMs": 2000,
+    "maxMs": 5000,
+    "confidenceDecayMs": 3000,
+    "minimumConfidence": 0.35
+  },
+  "CONFIDENCE": {
+    "excellent": 0.9,
+    "good": 0.75,
+    "fair": 0.55,
+    "weak": 0.35,
+    "covarianceScale": 60,
+    "acquiringCap": 0.6,
+    "degradedCap": 0.54,
+    "ageDecayMs": 15000,
+    "blendStart": 0.55,
+    "blendEnd": 0.9,
+    "blendWeightStep": 0.2,
+    "unknownHeadingWeight": 0.5,
+    "noMatchWeight": 0.5,
+    "weights": {
+      "quality": 0.4,
+      "covariance": 0.2,
+      "history": 0.2,
+      "heading": 0.1,
+      "match": 0.1
+    }
+  },
+  "PERFORMANCE": {
+    "medianBudgetMs": 5,
+    "p95BudgetMs": 15,
+    "telemetryCapacity": 3000,
+    "maxRouteContexts": 16,
+    "sessionLimitMs": 3600000,
+    "debugCirclePoints": 32,
+    "heartbeatMs": 500,
+    "diagnosticCapacity": 20
+  }
+}

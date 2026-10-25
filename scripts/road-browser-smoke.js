@@ -8,7 +8,7 @@ async (page) => {
   await page.context().grantPermissions(['geolocation'],{origin:'http://127.0.0.1:8815'});
   await page.context().setGeolocation({longitude:-46.655,latitude:-23.563,accuracy:8});
   await page.setViewportSize({width:390,height:844});
-  await page.goto('http://127.0.0.1:8815/?v=220');
+  await page.goto('http://127.0.0.1:8815/?v=221');
  await page.waitForLoadState('networkidle');
   await page.waitForFunction(()=>window.relas?.map.getSource('relas-signals')&&relas.state.features.length>0);
   await page.waitForFunction(()=>relas.state.watch!==null&&relas.state.position!==null);

@@ -37,3 +37,6 @@ artifacts/vercel-neon/*.log
 artifacts/vercel-neon/backups/
 artifacts/vercel-neon/**/backups/
 session_secret.txt
+artifacts/location-precision-v2/*.tmp
+artifacts/location-precision-v2/*.log
+artifacts/location-precision-v2/private/

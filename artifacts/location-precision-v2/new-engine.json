@@ -1,0 +1,2149 @@
+{
+  "environment": {
+    "node": "v22.14.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "scenarios": [
+    {
+      "name": "straight-clean",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.027925384615384383,
+        "medianProcessingMs": 0.008099999999998886,
+        "p95ProcessingMs": 0.11139999999999617,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 0,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 0,
+        "medianDistanceToRoute": 0,
+        "p95DistanceToRoute": 0,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0
+      },
+      "routePreprocessingMs": 0.33030000000000115,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "straight-noisy",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.015357692307692508,
+        "medianProcessingMs": 0.008899999999997021,
+        "p95ProcessingMs": 0.01379999999999626,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 0,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 3.5279795503257687,
+        "medianDistanceToRoute": 3.9027185851178103,
+        "p95DistanceToRoute": 5.4346525646180055,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0
+      },
+      "routePreprocessingMs": 0.06210000000000093,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "parallel-road",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 20,
+        "medianAccuracy": 20,
+        "p95Accuracy": 20,
+        "averageProcessingMs": 0.01756538461538459,
+        "medianProcessingMs": 0.012000000000000455,
+        "p95ProcessingMs": 0.02049999999999841,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 0,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 9.99607612408945,
+        "medianDistanceToRoute": 9.981679759579336,
+        "p95DistanceToRoute": 12.845631296739839,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0
+      },
+      "routePreprocessingMs": 0.059000000000004604,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "intersection",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.016413846153845668,
+        "medianProcessingMs": 0.012099999999996669,
+        "p95ProcessingMs": 0.02120000000000033,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 0,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 1.404155647519422,
+        "medianDistanceToRoute": 1.5562368866856957,
+        "p95DistanceToRoute": 2.19981325099738,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0
+      },
+      "routePreprocessingMs": 0.07550000000000523,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "turn",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.015447692307692325,
+        "medianProcessingMs": 0.011299999999998533,
+        "p95ProcessingMs": 0.018599999999999284,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 1,
+        "segmentSwitchCount": 1,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 0,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 0.019922519815658155,
+        "medianDistanceToRoute": 0,
+        "p95DistanceToRoute": 0.022614201836896764,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0.6976743916977844
+      },
+      "routePreprocessingMs": 0.03999999999999915,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "gps-dropout",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.016077372262773802,
+        "medianProcessingMs": 0.00999999999999801,
+        "p95ProcessingMs": 0.029599999999994964,
+        "stateTransitions": 5,
+        "timeTracking": 125000,
+        "timeDegraded": 0,
+        "timePredicting": 4000,
+        "timeLost": 2000,
+        "matchSuccessRate": 0.9923076923076923,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 5,
+        "maxPredictionGap": 5000,
+        "averageDistanceToRoute": 0,
+        "medianDistanceToRoute": 0,
+        "p95DistanceToRoute": 0,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 2.3720929775141344
+      },
+      "routePreprocessingMs": 0.01279999999999859,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "outlier",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 129,
+        "rejectedFixes": 1,
+        "outlierCount": 1,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.010089230769230594,
+        "medianProcessingMs": 0.008099999999998886,
+        "p95ProcessingMs": 0.013399999999997192,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 1,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 0,
+        "medianDistanceToRoute": 0,
+        "p95DistanceToRoute": 0,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0
+      },
+      "routePreprocessingMs": 0.008600000000001273,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "accuracy-degradation",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 30.153846153846153,
+        "medianAccuracy": 8,
+        "p95Accuracy": 80,
+        "averageProcessingMs": 0.00988461538461514,
+        "medianProcessingMs": 0.007500000000000284,
+        "p95ProcessingMs": 0.011499999999998067,
+        "stateTransitions": 3,
+        "timeTracking": 86000,
+        "timeDegraded": 41000,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 42,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 1.0973139027909196,
+        "medianDistanceToRoute": 3.691539518513309e-8,
+        "p95DistanceToRoute": 5.822419820306948,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 16.22769834363414
+      },
+      "routePreprocessingMs": 0.008399999999994634,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "heading-wrap",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.009484615384615853,
+        "medianProcessingMs": 0.006599999999998829,
+        "p95ProcessingMs": 0.00929999999999609,
+        "stateTransitions": 1,
+        "timeTracking": 127000,
+        "timeDegraded": 0,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 1,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 0,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 2.7987825447766403,
+        "medianDistanceToRoute": 2.9862951895713756,
+        "p95DistanceToRoute": 4.713104687872724,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0.22298784572686414
+      },
+      "routePreprocessingMs": 0.015000000000000568,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    },
+    {
+      "name": "route-departure",
+      "synthetic": true,
+      "metrics": {
+        "fixCount": 130,
+        "acceptedFixes": 130,
+        "rejectedFixes": 0,
+        "outlierCount": 0,
+        "averageAccuracy": 8,
+        "medianAccuracy": 8,
+        "p95Accuracy": 8,
+        "averageProcessingMs": 0.013803846153846203,
+        "medianProcessingMs": 0.0146000000000015,
+        "p95ProcessingMs": 0.018099999999996896,
+        "stateTransitions": 2,
+        "timeTracking": 62000,
+        "timeDegraded": 65000,
+        "timePredicting": 0,
+        "timeLost": 0,
+        "matchSuccessRate": 0.5076923076923077,
+        "matchSwitchCount": 0,
+        "segmentSwitchCount": 0,
+        "backwardJumpCount": 0,
+        "implausibleSegmentSwitchCount": 0,
+        "lowConfidenceCount": 66,
+        "maxPredictionGap": 0,
+        "averageDistanceToRoute": 1.07843465450163,
+        "medianDistanceToRoute": 0,
+        "p95DistanceToRoute": 8.669724674967725,
+        "positionErrorMean": null,
+        "positionErrorMedian": null,
+        "positionErrorP95": null,
+        "headingError": null,
+        "groundTruth": "not provided",
+        "meanHeadingChangeDegrees": 0
+      },
+      "routePreprocessingMs": 0.007199999999997431,
+      "baselineStateMetricsAvailable": true,
+      "parameters": {
+        "VERSION": "2.0.0",
+        "BASELINE": {
+          "maxJumpSpeed": 70,
+          "maxJumpGap": 15,
+          "derivedMinDt": 0.5,
+          "derivedMaxDt": 10,
+          "derivedMinTravel": 5,
+          "accuracyFactor": 0.3,
+          "headingTravel": 8,
+          "headingWeight": 0.4
+        },
+        "QUALITY": {
+          "accuracyScores": [
+            [
+              5,
+              1
+            ],
+            [
+              10,
+              0.95
+            ],
+            [
+              20,
+              0.85
+            ],
+            [
+              35,
+              0.7
+            ],
+            [
+              50,
+              0.55
+            ],
+            [
+              75,
+              0.35
+            ],
+            [
+              100,
+              0.2
+            ]
+          ],
+          "maxAccuracy": 100,
+          "maxAgeMs": 15000,
+          "futureMs": 5000,
+          "maxSpeed": 70,
+          "maxAcceleration": 12,
+          "innovationSigma": 4,
+          "uncertaintyFactor": 2,
+          "minDt": 0.2,
+          "gapResetSeconds": 15,
+          "outlierFloor": 18,
+          "innovationPenalty": 0.5,
+          "frequencyPenalty": 0.8,
+          "headingPenalty": 0.8
+        },
+        "FILTER": {
+          "metresLatitude": 110540,
+          "metresLongitude": 111320,
+          "minimumSigma": 3,
+          "accuracyToSigma": 0.5,
+          "initialVelocityVariance": 100,
+          "reinitializeGap": 12,
+          "stationarySpeed": 0.8,
+          "lowSpeed": 3,
+          "highSpeed": 22,
+          "turnDegrees": 25,
+          "stationaryDamping": 0.25,
+          "profiles": {
+            "STATIONARY": 0.2,
+            "LOW_SPEED": 1,
+            "URBAN": 3,
+            "HIGH_SPEED": 5,
+            "TURNING": 10,
+            "GPS_DEGRADED": 4
+          }
+        },
+        "HEADING": {
+          "movingSpeed": 1.2,
+          "minDisplacement": 4,
+          "gpsGoodAccuracy": 35,
+          "lowWeight": 0.2,
+          "highWeight": 0.65,
+          "turnWeight": 0.85,
+          "turnDegrees": 30,
+          "routeWeight": 0.12,
+          "velocityMin": 1.2,
+          "maxVelocityVariance": 100,
+          "contradictionDegrees": 100
+        },
+        "STATE_MACHINE": {
+          "acquireFixes": 3,
+          "badFixes": 2,
+          "recoverFixes": 3,
+          "goodScore": 0.65,
+          "regularGapSeconds": 3,
+          "predictAfterMs": 1000
+        },
+        "MATCHER": {
+          "cellMetres": 150,
+          "maxGridCells": 50000,
+          "maxSegmentCells": 400,
+          "searchCells": 2,
+          "behind": 150,
+          "ahead": 1000,
+          "stationaryAhead": 180,
+          "lookaheadSeconds": 20,
+          "degradedExpansion": 1.5,
+          "expandedFactor": 3,
+          "maxDistance": 110,
+          "minimumSigma": 8,
+          "topK": 5,
+          "headingWeight": 3,
+          "progressWeight": 0.4,
+          "backwardWeight": 2,
+          "jumpWeight": 0.7,
+          "predictionWeight": 0.25,
+          "continuityWeight": 0.15,
+          "plausibleProgressFloor": 30,
+          "headingMovingSpeed": 1.2,
+          "outputReuseMetres": 3,
+          "maxOppositeDegrees": 125,
+          "maxScore": 15,
+          "scoreDecay": 4,
+          "separationFloor": 0.5,
+          "separationWeight": 0.5
+        },
+        "HYSTERESIS": {
+          "MATCH_SWITCH_MARGIN": 0.6,
+          "MATCH_SWITCH_CONFIRMATIONS": 3,
+          "MATCH_HARD_RESET_DISTANCE": 120,
+          "strongMargin": 4,
+          "adjacentAlong": 40
+        },
+        "PREDICTION": {
+          "strongMs": 2000,
+          "maxMs": 5000,
+          "confidenceDecayMs": 3000,
+          "minimumConfidence": 0.35
+        },
+        "CONFIDENCE": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "fair": 0.55,
+          "weak": 0.35,
+          "covarianceScale": 60,
+          "acquiringCap": 0.6,
+          "degradedCap": 0.54,
+          "ageDecayMs": 15000,
+          "blendStart": 0.55,
+          "blendEnd": 0.9,
+          "blendWeightStep": 0.2,
+          "unknownHeadingWeight": 0.5,
+          "noMatchWeight": 0.5,
+          "weights": {
+            "quality": 0.4,
+            "covariance": 0.2,
+            "history": 0.2,
+            "heading": 0.1,
+            "match": 0.1
+          }
+        },
+        "PERFORMANCE": {
+          "medianBudgetMs": 5,
+          "p95BudgetMs": 15,
+          "telemetryCapacity": 3000,
+          "maxRouteContexts": 16,
+          "sessionLimitMs": 3600000,
+          "debugCirclePoints": 32,
+          "heartbeatMs": 500,
+          "diagnosticCapacity": 20
+        }
+      },
+      "note": "Local route candidates only; not a road-network HMM; no physical GPS accuracy claim."
+    }
+  ]
+}

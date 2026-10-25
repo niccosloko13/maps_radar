@@ -1,0 +1,163 @@
+{
+  "viewports": [
+    {
+      "width": 375,
+      "height": 812,
+      "overflow": false,
+      "smallButtons": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "smallButtons": []
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "smallButtons": []
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "overflow": false,
+      "smallButtons": []
+    }
+  ],
+  "types": {
+    "signal": {
+      "bbox": "-46.664268492126354,-23.578599357361114,-46.64753150787374,-23.545398585150807",
+      "zoom": 14,
+      "status": 200,
+      "api": 202,
+      "source": 202,
+      "rendered": 202,
+      "icon": true,
+      "layer": "relas-signal-icons",
+      "sourceId": "relas-signals",
+      "minzoom": 14,
+      "queryMs": 583.2999999523163,
+      "detail": "Semáforo"
+    },
+    "fixed": {
+      "bbox": "-46.602914492127695,-23.77019302681066,-46.58617750787508,-23.73704086271904",
+      "zoom": 14,
+      "status": 200,
+      "api": 1,
+      "source": 1,
+      "rendered": 1,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 474.8000000715256,
+      "detail": "Radar fixo"
+    },
+    "signal_radar": {
+      "bbox": "-46.555476492126445,-23.701262794453925,-46.53873950787383,-23.66809309973469",
+      "zoom": 14,
+      "status": 200,
+      "api": 8,
+      "source": 8,
+      "rendered": 4,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 530.6999999284744,
+      "detail": "Radar semafórico"
+    },
+    "red_light": {
+      "bbox": "-46.56006449212592,-23.718235637803602,-46.5433275078733,-23.685070255233526",
+      "zoom": 14,
+      "status": 200,
+      "api": 12,
+      "source": 12,
+      "rendered": 7,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 469.5,
+      "detail": "Câmera de avanço"
+    },
+    "mobile": {
+      "bbox": "-46.58633049212648,-23.855547136868935,-46.56959350787386,-23.82241674691143",
+      "zoom": 14,
+      "status": 200,
+      "api": 4,
+      "source": 4,
+      "rendered": 4,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 502.5,
+      "detail": "Radar móvel"
+    },
+    "police": {
+      "bbox": "-46.609199492126265,-23.75498996264325,-46.59246250787365,-23.721833927917245",
+      "zoom": 14,
+      "status": 200,
+      "api": 2,
+      "source": 2,
+      "rendered": 1,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 488.8000000715256,
+      "detail": "Fiscalização"
+    },
+    "bump": {
+      "bbox": "-46.55764049212601,-23.71558497470984,-46.54090350787337,-23.68241891851602",
+      "zoom": 14,
+      "status": 200,
+      "api": 1,
+      "source": 1,
+      "rendered": 1,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 458.60000002384186,
+      "detail": "Lombada"
+    },
+    "toll": {
+      "bbox": "-46.59096349212584,-23.837310466693097,-46.57422650787322,-23.804175418316447",
+      "zoom": 14,
+      "status": 200,
+      "api": 1,
+      "source": 1,
+      "rendered": 1,
+      "icon": true,
+      "layer": "relas-icons",
+      "sourceId": "relas-points",
+      "minzoom": 0,
+      "queryMs": 487,
+      "detail": "Pedágio"
+    }
+  },
+  "consoleErrors": [],
+  "httpErrors": [],
+  "gpsStart": {
+    "watch": true,
+    "status": "GPS ativo · ±8 m",
+    "position": true
+  },
+  "semaphores": {
+    "bbox": "-46.66336849212681,-23.579599210974948,-46.64663150787413,-23.546398691468184",
+    "api": 198,
+    "source": 198,
+    "rendered": 198
+  },
+  "signalFilterOff": true,
+  "domMarkers": 0,
+  "frames": {
+    "frames": 130,
+    "durationMs": 2000.8999999284742,
+    "averageFps": 65,
+    "p95FrameMs": 21.100000000000364
+  }
+}

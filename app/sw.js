@@ -1,5 +1,6 @@
-const CACHE='relas-v220-road-test';
-const SHELL=['/','/styles.css?v=220','/boot.js?v=220','/navigation-core.js?v=220','/app.js?v=220','/icon.svg','/manifest.json','/vendor/maplibre-gl.js?v=5240','/vendor/maplibre-gl.css?v=5240',...['fixed','signal_radar','red_light','mobile','police','bump','toll','signal','other','user-chevron'].map(kind=>'/icons/'+kind+'.svg?v=220')];
+const CACHE='relas-v221-road-test';
+const LOCATION=['location-parameters','geometry','baseline-engine','fix-quality','location-state-machine','motion-filter','heading-engine','candidate-corridor','route-matcher','confidence-engine','telemetry','metrics-engine','location-engine','replay-engine','debug-view'].map(name=>'/location/'+name+'.js?v=221');
+const SHELL=[...LOCATION,'/','/styles.css?v=221','/boot.js?v=221','/navigation-core.js?v=221','/app.js?v=221','/icon.svg','/manifest.json','/vendor/maplibre-gl.js?v=5240','/vendor/maplibre-gl.css?v=5240',...['fixed','signal_radar','red_light','mobile','police','bump','toll','signal','other','user-chevron'].map(kind=>'/icons/'+kind+'.svg?v=221')];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('relas-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});
 self.addEventListener('message',event=>{if(event.data?.type==='CLEAR_CACHE')event.waitUntil(caches.delete(CACHE))});

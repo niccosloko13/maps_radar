@@ -1,0 +1,12 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const P=require('../app/location/location-parameters.js').defaults;
+const G=require('../app/location/geometry.js');
+const fix=(x=0,y=0,t=1000000,accuracy=8,extra={})=>({longitude:-46.63+x/(111320*Math.cos(-23.55*Math.PI/180)),latitude:-23.55+y/110540,timestamp:t,accuracy,speed:8,heading:90,...extra});
+
+const {StateMachine}=require('../app/location/location-state-machine.js');const good={accepted:true,score:1},bad={accepted:false,score:0};
+test('acquisition needs consecutive good fixes',()=>{const s=new StateMachine();assert.equal(s.state,'INITIALIZING');assert.equal(s.fix(good,1000),'ACQUIRING');assert.equal(s.fix(good,2000),'ACQUIRING');assert.equal(s.fix(good,3000),'TRACKING')});
+test('degradation/recovery hysteresis',()=>{const s=new StateMachine();for(let i=0;i<3;i++)s.fix(good,i*1000);assert.equal(s.fix(bad,3000),'TRACKING');assert.equal(s.fix(bad,4000),'DEGRADED');assert.equal(s.fix(good,5000),'DEGRADED');assert.equal(s.fix(good,6000),'DEGRADED');assert.equal(s.fix(good,7000),'TRACKING')});
+test('tracking predicting lost and reacquiring',()=>{const s=new StateMachine();for(let i=0;i<3;i++)s.fix(good,i*1000);assert.equal(s.tick(4500,true),'PREDICTING');assert.equal(s.tick(7100,true),'LOST');assert.equal(s.fix(good,8000),'ACQUIRING')});
+test('engine prediction never advances beyond five seconds and recovery has low confidence',()=>{const {LocationEngine}=require('../app/location/location-engine.js'),e=new LocationEngine();for(let i=0;i<4;i++)e.process(fix(i*8,0,1000000+i*1000));assert.equal(e.predict(1005500).state,'PREDICTING');const a=e.predict(1006000),b=e.predict(1007500);assert.ok(b.confidence<a.confidence);assert.equal(e.predict(1009000).output,null);const r=e.process(fix(80,0,1010000));assert.equal(r.state,'ACQUIRING');assert.ok(r.confidence<=.6)});
+test('a lone fix cannot authorize dead reckoning',()=>{const {LocationEngine}=require('../app/location/location-engine.js'),e=new LocationEngine();e.process(fix());assert.equal(e.predict(1002500).accepted,false)});
+test('recovery also reacquires when background timers never delivered LOST',()=>{const {LocationEngine}=require('../app/location/location-engine.js'),e=new LocationEngine();for(let i=0;i<4;i++)e.process(fix(i*8,0,1000000+i*1000));const r=e.process(fix(80,0,1010000));assert.equal(r.state,'ACQUIRING');assert.equal(e.predict(1012500).accepted,false)});

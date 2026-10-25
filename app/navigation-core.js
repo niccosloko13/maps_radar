@@ -13,5 +13,9 @@
   function directionMatches(point,heading,tolerance=55){const rule=Number(point.direction_type),direction=Number(point.direction);if(![1,2].includes(rule)||point.direction==null||point.direction===''||!Number.isFinite(direction)||!Number.isFinite(heading))return true;const delta=Math.abs(angularDelta(direction,heading));return delta<=tolerance||(rule===2&&Math.abs(delta-180)<=tolerance)}
   function smoothPosition(previous,next,weight=.6){if(!previous)return next.slice();return previous.map((v,i)=>v+(next[i]-v)*weight)}
   function cameraZoom(speed){return speed>22?15.9:speed>8?16.5:17}
-  return{angularDelta,smoothHeading,validFix,directionMatches,smoothPosition,cameraZoom};
+  function geoDistance(a,b){return Math.hypot((b[0]-a[0])*111320*Math.cos(a[1]*Math.PI/180),(b[1]-a[1])*110540)}
+  function geoBearing(a,b){const p=a[1]*Math.PI/180,q=b[1]*Math.PI/180,d=(b[0]-a[0])*Math.PI/180;return(Math.atan2(Math.sin(d)*Math.cos(q),Math.cos(p)*Math.sin(q)-Math.sin(p)*Math.cos(q)*Math.cos(d))*180/Math.PI+360)%360}
+  function projectSegment(p,s){const k=Math.cos(p[1]*Math.PI/180),dx=(s.b[0]-s.a[0])*k,dy=s.b[1]-s.a[1],t=Math.max(0,Math.min(1,((p[0]-s.a[0])*k*dx+(p[1]-s.a[1])*dy)/(dx*dx+dy*dy||1))),point=[s.a[0]+(s.b[0]-s.a[0])*t,s.a[1]+(s.b[1]-s.a[1])*t];return{longitude:point[0],latitude:point[1],along:s.start+t*s.len,segmentIndex:s.index,roadBearing:s.bearing??geoBearing(s.a,s.b),distanceToRoute:geoDistance(p,point)}}
+  function projectSegments(p,segments){let best=null;for(let i=0;i<segments.length;i++){const c=projectSegment(p,segments[i]);if(!best||c.distanceToRoute<best.distanceToRoute)best={...c,segmentIndex:i}}return best}
+  return{geoDistance,geoBearing,projectSegment,projectSegments,angularDelta,smoothHeading,validFix,directionMatches,smoothPosition,cameraZoom};
 });
