@@ -1,0 +1,259 @@
+{
+  "deployment": "https://mapsradar-ptp0sjuxh-nexus-a534.vercel.app",
+  "label": "staged",
+  "app_commit": "ee5506c",
+  "checks": [
+    {
+      "name": "health",
+      "path": "/api/health",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "health": {
+        "ok": true,
+        "app": "ok",
+        "database": "ok",
+        "engine": "postgres",
+        "environment": "production",
+        "version": "2.2.0",
+        "time": "2026-10-26T14:09:49.662364+00:00",
+        "counts": {
+          "radars": 196,
+          "road_objects": 6426,
+          "source_registry": 19
+        },
+        "schema_version": "001-vercel-neon",
+        "last_migration": {
+          "version": "001-vercel-neon",
+          "applied_at": "2026-10-24T23:51:38.870396+00:00",
+          "description": "SQLite inventory, distributed runtime state and jobs"
+        }
+      }
+    },
+    {
+      "name": "map",
+      "path": "/",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "asset233": true
+    },
+    {
+      "name": "admin",
+      "path": "/admin",
+      "http": "200",
+      "expected": 200,
+      "pass": true
+    },
+    {
+      "name": "boot",
+      "path": "/boot.js?v=233",
+      "http": "200",
+      "expected": 200,
+      "pass": true
+    },
+    {
+      "name": "phase-b",
+      "path": "/navigation/phase-b.js?v=233",
+      "http": "200",
+      "expected": 200,
+      "pass": true
+    },
+    {
+      "name": "radars",
+      "path": "/api/radars",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "count": 196
+    },
+    {
+      "name": "road-objects",
+      "path": "/api/road-objects",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "count": 6419,
+      "expected_mapped_objects": 6419
+    },
+    {
+      "name": "map-features",
+      "path": "/api/map/features?bbox=-46.5,-24,-46.3,-23.85&zoom=14",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "count": 132
+    },
+    {
+      "name": "source-health",
+      "path": "/api/source-health",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "sources": [
+        {
+          "source_id": "artesp-interventions",
+          "name": "ARTESP · Intervenções",
+          "status": "AUTH_REQUIRED",
+          "freshness_status": "UNKNOWN",
+          "freshness_kind": "EVENT_FRESHNESS",
+          "last_success_at": null,
+          "license": "CC BY-NC 4.0",
+          "attribution": "ARTESP",
+          "blocker": "MISSING_API_KEY; LAST_FETCH_ERROR; NO_VALID_SNAPSHOT",
+          "next_action": "Configure backend intervention API credential"
+        },
+        {
+          "source_id": "artesp-occurrences",
+          "name": "ARTESP · Ocorrências",
+          "status": "AUTH_REQUIRED",
+          "freshness_status": "UNKNOWN",
+          "freshness_kind": "EVENT_FRESHNESS",
+          "last_success_at": null,
+          "license": "CC BY-NC 4.0",
+          "attribution": "ARTESP",
+          "blocker": "MISSING_API_KEY; LAST_FETCH_ERROR; NO_VALID_SNAPSHOT",
+          "next_action": "Configure backend occurrence API credential"
+        },
+        {
+          "source_id": "antt-tolls",
+          "name": "ANTT · Praças de pedágio SP",
+          "status": "DEGRADED",
+          "freshness_status": "FRESH",
+          "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+          "last_success_at": "2026-10-26T01:37:36.476181+00:00",
+          "license": "CC BY (catalog does not specify version)",
+          "attribution": "ANTT",
+          "blocker": "PARTIAL_COORDINATE_REVIEW",
+          "next_action": "Review conflicting coordinates; collect within daily cache interval"
+        },
+        {
+          "source_id": "artesp-tolls",
+          "name": "ARTESP · Pedágios",
+          "status": "DEGRADED",
+          "freshness_status": "FRESH",
+          "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+          "last_success_at": "2026-10-26T05:19:16.444102+00:00",
+          "license": "CC BY (catalog version unspecified)",
+          "attribution": "ARTESP - Cadastro de Ativos",
+          "blocker": "PARTIAL_COORDINATE_REVIEW",
+          "next_action": "Daily backend cache; preserve snapshot and review coordinate conflicts"
+        },
+        {
+          "source_id": "official-support",
+          "name": "Bases e apoio oficiais",
+          "status": "DEGRADED",
+          "freshness_status": "FRESH",
+          "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+          "last_success_at": "2026-10-26T05:19:21.368101+00:00",
+          "license": "CC BY (catalog version unspecified)",
+          "attribution": "ARTESP - Cadastro de Ativos",
+          "blocker": "PARTIAL_COORDINATE_REVIEW",
+          "next_action": "Daily backend cache; preserve snapshot and review coordinate conflicts"
+        },
+        {
+          "source_id": "pmrv-sp",
+          "name": "PM Rodoviária SP",
+          "status": "BLOCKED_LICENSE",
+          "freshness_status": "UNKNOWN",
+          "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+          "last_success_at": null,
+          "license": "UNVERIFIED",
+          "attribution": "PMESP/CPRv",
+          "blocker": "LICENSE_NOT_VERIFIED; ENDPOINT_NOT_VALIDATED; NO_VALID_SNAPSHOT",
+          "next_action": "Obtain current official dataset/endpoint and redistribution terms"
+        },
+        {
+          "source_id": "prf-sp",
+          "name": "PRF · Unidades SP",
+          "status": "DEGRADED",
+          "freshness_status": "FRESH",
+          "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+          "last_success_at": "2026-10-26T01:30:16.571062+00:00",
+          "license": "CC BY (ANTT coordinates); CC BY-ND 3.0 (original PRF directory)",
+          "attribution": "PRF",
+          "blocker": "PARTIAL_COORDINATE_REVIEW",
+          "next_action": "Resolve coordinate conflicts; do not geocode-promote administrative units"
+        },
+        {
+          "source_id": "defesa-civil-sp",
+          "name": "Defesa Civil SP",
+          "status": "BLOCKED_LICENSE",
+          "freshness_status": "UNKNOWN",
+          "freshness_kind": "OBSERVATION_FRESHNESS",
+          "last_success_at": null,
+          "license": "UNVERIFIED",
+          "attribution": "Defesa Civil SP",
+          "blocker": "LICENSE_NOT_VERIFIED; ENDPOINT_NOT_VALIDATED; NO_VALID_SNAPSHOT",
+          "next_action": "Validate licensed machine-readable alert endpoint; HTML empty state is not a feed"
+        },
+        {
+          "source_id": "sp-aguas",
+          "name": "SP Águas · SIBH",
+          "status": "BLOCKED_LICENSE",
+          "freshness_status": "STALE",
+          "freshness_kind": "OBSERVATION_FRESHNESS",
+          "last_success_at": "2026-10-26T05:19:28.719306+00:00",
+          "license": "UNVERIFIED",
+          "attribution": "SP Águas",
+          "blocker": "LICENSE_NOT_VERIFIED; COLLECTOR_CACHE_STALE",
+          "next_action": "Obtain source-specific data license; configure scheduled backend collection"
+        }
+      ]
+    },
+    {
+      "name": "aux-infra",
+      "path": "/api/road-infrastructure?bbox=-53.2,-25.4,-44,-19.7&zoom=12",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "count": 516,
+      "by_source": {
+        "antt-tolls": 66,
+        "prf-sp": 14,
+        "artesp-tolls": 211,
+        "official-support": 225
+      }
+    },
+    {
+      "name": "weather",
+      "path": "/api/weather?bbox=-53.2,-25.4,-44,-19.7",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "count": 0
+    },
+    {
+      "name": "admin-guard",
+      "path": "/api/admin/layer-diagnostics",
+      "http": "401",
+      "expected": 401,
+      "pass": true
+    },
+    {
+      "name": "route-corridor",
+      "path": "/api/road-events/route",
+      "http": "200",
+      "expected": 200,
+      "pass": true,
+      "items": [
+        {
+          "event_id": "official-support:4169",
+          "source_id": "official-support",
+          "event_type": "SAU",
+          "road": "SP-160",
+          "direction": "Norte",
+          "navigation_eligible": true,
+          "distance_from_route_m": 20.8
+        }
+      ],
+      "counts": {
+        "event": 0,
+        "weather": 0,
+        "infrastructure": 1
+      }
+    }
+  ],
+  "passed": 13,
+  "total": 13
+}

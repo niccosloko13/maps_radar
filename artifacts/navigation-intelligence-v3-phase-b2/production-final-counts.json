@@ -1,0 +1,16 @@
+{
+  "legacy_counts": {
+    "radars": 196,
+    "radar_history": 224,
+    "road_objects": 6426,
+    "source_registry": 19,
+    "operation_logs": 53,
+    "update_queue": 4,
+    "manual_entries": 0,
+    "community_batches": 1
+  },
+  "legacy_unchanged": true,
+  "mapped_road_objects": 6419,
+  "unmapped_road_objects": 7,
+  "production_read_only_check": true
+}

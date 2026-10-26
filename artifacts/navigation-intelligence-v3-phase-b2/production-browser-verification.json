@@ -1,0 +1,140 @@
+{
+  "errors": [],
+  "http": [
+    {
+      "path": "/api/map/features",
+      "status": 200
+    },
+    {
+      "path": "/api/road-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/api/weather",
+      "status": 200
+    },
+    {
+      "path": "/api/road-events",
+      "status": 200
+    },
+    {
+      "path": "/api/road-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/api/map/features",
+      "status": 200
+    },
+    {
+      "path": "/api/road-events",
+      "status": 200
+    },
+    {
+      "path": "/api/road-infrastructure",
+      "status": 200
+    },
+    {
+      "path": "/api/weather",
+      "status": 200
+    },
+    {
+      "path": "/api/route",
+      "status": 200
+    },
+    {
+      "path": "/api/road-events/route",
+      "status": 200
+    },
+    {
+      "path": "/api/admin/me",
+      "status": 200
+    }
+  ],
+  "map": {
+    "source_count": 1,
+    "rendered": 1,
+    "pixel": {
+      "x": 111.5,
+      "y": 241
+    },
+    "diagnostics": {
+      "sources": {
+        "artesp-interventions": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "artesp-occurrences": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "antt-tolls": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "artesp-tolls": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "official-support": {
+          "received": 1,
+          "eligible_route": 0,
+          "rendered": 1,
+          "alerted": 0
+        },
+        "pmrv-sp": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "prf-sp": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "defesa-civil-sp": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        },
+        "sp-aguas": {
+          "received": 0,
+          "eligible_route": 0,
+          "rendered": 0,
+          "alerted": 0
+        }
+      },
+      "received": 1,
+      "rendered": 1,
+      "eligible_route": 0,
+      "alerted": 0,
+      "error": null,
+      "suggestion": null
+    }
+  },
+  "detail": "SERVIÇO DE ATENDIMENTO AO USUÁRIO\nServiço de atendimento ao usuário\n\nBase Operacional - SAU\n\nSP-160 · km 62.1\nNorte\nCubatão\n\nFonte: ARTESP - Cadastro de Ativos\nAtualização: 2025-05-30T16:48:23.146389+00:00\nEstado: FRESH\nVigência: cadastro estático\nCC BY (catalog version unspecified)",
+  "detail_correct": true,
+  "route": {
+    "distance_m": 56050,
+    "vertices": 1248,
+    "items": [
+      {
+        "event_id": "official-support:4169",
+        "source_id": "official-support",
+        "navigation_eligible": true,
+        "distance_from_route_m": 20.8
+      }
+    ]
+  },
+  "admin_login_visible": true
+}
