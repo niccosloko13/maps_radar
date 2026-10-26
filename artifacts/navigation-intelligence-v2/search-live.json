@@ -1,0 +1,232 @@
+[
+  {
+    "query": "Avenida Paulista, 1578, São Paulo",
+    "status": 200,
+    "results": 7,
+    "top": [
+      {
+        "lat": -23.5614961,
+        "lon": -46.6559677,
+        "label": "Museu de Arte de São Paulo, Av. Paulista, 1578, Bela Vista, São Paulo, 01310-200",
+        "display_name": "Museu de Arte de São Paulo, Av. Paulista, 1578, Bela Vista, São Paulo, 01310-200",
+        "address": {
+          "osm_type": "W",
+          "osm_id": 1370081491,
+          "osm_key": "tourism",
+          "osm_value": "museum",
+          "type": "house",
+          "housenumber": "1578",
+          "name": "Museu de Arte de São Paulo",
+          "street": "Av. Paulista",
+          "locality": "Morro dos Ingleses",
+          "district": "Bela Vista",
+          "city": "São Paulo",
+          "state": "São Paulo",
+          "country": "Brasil",
+          "postcode": "01310-200",
+          "countrycode": "BR",
+          "extent": [
+            -46.6563185,
+            -23.5611808,
+            -46.6556147,
+            -23.5618152
+          ]
+        },
+        "provider": "photon_structured",
+        "postal_source": null,
+        "type": "house",
+        "distance_m": 193,
+        "requested_housenumber": "1578",
+        "match_quality": "house_number",
+        "precision_note": null
+      },
+      {
+        "lat": -23.55138781626526,
+        "lon": -46.608217838561686,
+        "label": "Avenida Alcântara Machado, 1578, Mooca, São Paulo, 03102-004",
+        "display_name": "Avenida Alcântara Machado, 1578, Mooca, São Paulo, 03102-004",
+        "address": {
+          "osm_type": "W",
+          "osm_id": 530392101,
+          "osm_key": "place",
+          "osm_value": "house_number",
+          "type": "house",
+          "housenumber": "1578",
+          "street": "Avenida Alcântara Machado",
+          "district": "Mooca",
+          "city": "São Paulo",
+          "state": "São Paulo",
+          "country": "Brasil",
+          "postcode": "03102-004",
+          "countrycode": "BR",
+          "extent": [
+            -46.608684,
+            -23.549701,
+            -46.6051118,
+            -23.5516297
+          ]
+        },
+        "provider": "photon_structured",
+        "postal_source": null,
+        "type": "house",
+        "distance_m": 4943,
+        "requested_housenumber": "1578",
+        "match_quality": "house_number",
+        "precision_note": null
+      }
+    ],
+    "ms": 2007
+  },
+  {
+    "query": "01310-200",
+    "status": 200,
+    "results": 1,
+    "top": [
+      {
+        "lat": -23.5614961,
+        "lon": -46.6559677,
+        "label": "Museu de Arte de São Paulo, Av. Paulista, 1578, Bela Vista, São Paulo, 01310-200",
+        "display_name": "Museu de Arte de São Paulo, Av. Paulista, 1578, Bela Vista, São Paulo, 01310-200",
+        "address": {
+          "osm_type": "W",
+          "osm_id": 1370081491,
+          "osm_key": "tourism",
+          "osm_value": "museum",
+          "type": "house",
+          "housenumber": "1578",
+          "name": "Museu de Arte de São Paulo",
+          "street": "Av. Paulista",
+          "locality": "Morro dos Ingleses",
+          "district": "Bela Vista",
+          "city": "São Paulo",
+          "state": "São Paulo",
+          "country": "Brasil",
+          "postcode": "01310-200",
+          "countrycode": "BR",
+          "extent": [
+            -46.6563185,
+            -23.5611808,
+            -46.6556147,
+            -23.5618152
+          ]
+        },
+        "provider": "photon",
+        "postal_source": "viacep",
+        "type": "house",
+        "distance_m": 193,
+        "requested_housenumber": null,
+        "match_quality": "approximate",
+        "precision_note": "Área do CEP · confirme o trecho antes de iniciar"
+      }
+    ],
+    "ms": 2936
+  },
+  {
+    "query": "Centro, São Bernardo do Campo",
+    "status": 200,
+    "results": 1,
+    "top": [
+      {
+        "lat": -23.7096982,
+        "lon": -46.5504348,
+        "label": "Centro, São Bernardo do Campo, São Paulo",
+        "display_name": "Centro, São Bernardo do Campo, São Paulo",
+        "address": {
+          "osm_type": "R",
+          "osm_id": 4133969,
+          "osm_key": "place",
+          "osm_value": "suburb",
+          "type": "district",
+          "name": "Centro",
+          "city": "São Bernardo do Campo",
+          "state": "São Paulo",
+          "country": "Brasil",
+          "countrycode": "BR",
+          "extra": {
+            "admin_level": "10"
+          },
+          "extent": [
+            -46.5664944,
+            -23.6829464,
+            -46.5385433,
+            -23.7244176
+          ]
+        },
+        "provider": "photon_structured",
+        "postal_source": null,
+        "type": "district",
+        "distance_m": 19411,
+        "requested_housenumber": null,
+        "match_quality": "place",
+        "precision_note": null
+      }
+    ],
+    "ms": 1315
+  },
+  {
+    "query": "Rua Frei Caneca, 569, São Paulo",
+    "status": 200,
+    "results": 7,
+    "top": [
+      {
+        "lat": -23.5543773,
+        "lon": -46.6525642,
+        "label": "Caixa Econômica Federal, Rua Frei Caneca, 569, Consolação, São Paulo, 01307-001",
+        "display_name": "Caixa Econômica Federal, Rua Frei Caneca, 569, Consolação, São Paulo, 01307-001",
+        "address": {
+          "osm_type": "N",
+          "osm_id": 9711875788,
+          "osm_key": "amenity",
+          "osm_value": "bank",
+          "type": "house",
+          "housenumber": "569",
+          "name": "Caixa Econômica Federal",
+          "street": "Rua Frei Caneca",
+          "district": "Consolação",
+          "city": "São Paulo",
+          "state": "São Paulo",
+          "country": "Brasil",
+          "postcode": "01307-001",
+          "countrycode": "BR"
+        },
+        "provider": "photon_structured",
+        "postal_source": null,
+        "type": "house",
+        "distance_m": 985,
+        "requested_housenumber": "569",
+        "match_quality": "house_number",
+        "precision_note": null
+      },
+      {
+        "lat": -23.5543479,
+        "lon": -46.6523301,
+        "label": "Chilli Beans, Rua Frei Caneca, 569, Consolação, São Paulo, 01307-001",
+        "display_name": "Chilli Beans, Rua Frei Caneca, 569, Consolação, São Paulo, 01307-001",
+        "address": {
+          "osm_type": "N",
+          "osm_id": 9711875790,
+          "osm_key": "shop",
+          "osm_value": "fashion_accessories",
+          "type": "house",
+          "housenumber": "569",
+          "name": "Chilli Beans",
+          "street": "Rua Frei Caneca",
+          "district": "Consolação",
+          "city": "São Paulo",
+          "state": "São Paulo",
+          "country": "Brasil",
+          "postcode": "01307-001",
+          "countrycode": "BR"
+        },
+        "provider": "photon_structured",
+        "postal_source": null,
+        "type": "house",
+        "distance_m": 994,
+        "requested_housenumber": "569",
+        "match_quality": "house_number",
+        "precision_note": null
+      }
+    ],
+    "ms": 1320
+  }
+]

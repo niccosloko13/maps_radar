@@ -1,0 +1,20 @@
+[
+  {
+    "object_type": "traffic_signal",
+    "source": "itanhaem_pref_2023",
+    "official": 1,
+    "total": 3
+  },
+  {
+    "object_type": "traffic_signal",
+    "source": "geosampa_signals",
+    "official": 1,
+    "total": 6419
+  },
+  {
+    "object_type": "traffic_signal",
+    "source": "saovicente_pref_2026",
+    "official": 1,
+    "total": 4
+  }
+]

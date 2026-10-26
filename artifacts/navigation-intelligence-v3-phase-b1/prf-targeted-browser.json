@@ -1,0 +1,89 @@
+{
+  "trials": [
+    {
+      "id": "prf-sp:e6f41b291020d48e2a75",
+      "rendered": 0
+    },
+    {
+      "id": "prf-sp:33fa3726e2f3e572a7d8",
+      "rendered": 1
+    }
+  ],
+  "event_id": "prf-sp:33fa3726e2f3e572a7d8",
+  "coordinates": [
+    -46.585265,
+    -23.19135
+  ],
+  "viewport": 1,
+  "rendered": 1,
+  "pixel": {
+    "x": 195,
+    "y": 422
+  },
+  "diagnostics": {
+    "sources": {
+      "artesp-interventions": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "artesp-occurrences": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "antt-tolls": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "artesp-tolls": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "official-support": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "pmrv-sp": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "prf-sp": {
+        "received": 1,
+        "eligible_route": 0,
+        "rendered": 1,
+        "alerted": 0
+      },
+      "defesa-civil-sp": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      },
+      "sp-aguas": {
+        "received": 0,
+        "eligible_route": 0,
+        "rendered": 0,
+        "alerted": 0
+      }
+    },
+    "received": 1,
+    "rendered": 0,
+    "eligible_route": 0,
+    "alerted": 0,
+    "error": null,
+    "suggestion": null
+  },
+  "detail": "POSTO PRF\nPosto PRF\n\nPRF ATIBAIA F6-32\n\nBR-381 · km 47.4\nSentido não informado\nAtibaia\n\nFonte: ANTT (coordinates); PRF (directory evidence)\nAtualização: 2026-09-15T00:00:00-03:00\nEstado: FRESH\nVigência: cadastro estático\nCC BY (ANTT coordinate record)",
+  "detail_opened": true
+}

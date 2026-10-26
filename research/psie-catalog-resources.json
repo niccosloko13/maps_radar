@@ -1,0 +1,27 @@
+{
+  "catalog": "https://dados.gov.br/dados/conjuntos-dados/portal-de-servicos-do-inmetro-nos-estados-psie",
+  "license": "cc-zero",
+  "resources": [
+    {
+      "id": "7c8853ba-8425-4073-bd24-248fe6b9669c",
+      "url": "https://servicos.rbmlq.gov.br/dados-abertos/metadados_medidores_velocidade.pdf",
+      "format": "PDF",
+      "description": "Metadados para o conjunto de dados dos Medidores de Velocidade",
+      "last_modified": "2019-11-21T18:53:16"
+    },
+    {
+      "id": "e140adf5-30c5-40fd-9229-be32ec94d017",
+      "url": "https://servicos.rbmlq.gov.br/dados-abertos/AC/medidores.xml",
+      "format": "XML",
+      "description": "Lista dos Medidores de Velocidade que sofreram verificação no estado.\r\n\r\nAlterar a sigla UF do estado na URL pelo sigla do estado desejado.",
+      "last_modified": "2026-10-01T00:30:14"
+    },
+    {
+      "id": "6b7a9e15-940d-44c6-be60-03978faccf0b",
+      "url": "https://servicos.rbmlq.gov.br/dados-abertos/AC/medidores.json",
+      "format": "JSON",
+      "description": "Lista dos Medidores de Velocidade que sofreram verificação no estado.\r\n\r\nAlterar a sigla UF do estado na URL pelo sigla do estado desejado.",
+      "last_modified": "2026-10-01T00:30:14"
+    }
+  ]
+}

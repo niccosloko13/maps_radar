@@ -1,0 +1,83 @@
+{
+  "provider": "Valhalla demo 1",
+  "distance_m": 56036,
+  "steps": 26,
+  "geometry_points": 1256,
+  "roads": [
+    "",
+    "Avenida Lucas Nogueira Garcez",
+    "Avenida Presidente Costa e Silva",
+    "Rodovia Anchieta Marginal Direita",
+    "Rua Doutor Fausto Cardoso Figueira de Mello",
+    "Rua Espírito Santo",
+    "Rua Fuad Mussa Cheid",
+    "Rua Rio de Janeiro",
+    "SP-150; BR-050",
+    "SP-160",
+    "SPA-291/055",
+    "SPI 059/150"
+  ],
+  "production_writes": 0,
+  "route_event_counts": {
+    "event": 0,
+    "weather": 1,
+    "infrastructure": 0
+  },
+  "corridor_items": [
+    {
+      "event_id": "sp-aguas:1371",
+      "source_id": "sp-aguas",
+      "external_id": "1371",
+      "event_type": "RAIN_STATION",
+      "subtype": null,
+      "severity": "unknown",
+      "road": null,
+      "direction": null,
+      "municipality_ibge": "3513504",
+      "municipality": "Cubatão",
+      "km_start": null,
+      "km_end": null,
+      "lat": -23.893,
+      "lon": -46.473,
+      "geometry": {
+        "coordinates": [
+          -46.473,
+          -23.893
+        ],
+        "type": "Point"
+      },
+      "min_lon": -46.473,
+      "min_lat": -23.893,
+      "max_lon": -46.473,
+      "max_lat": -23.893,
+      "start_at": null,
+      "updated_at": "2026-10-26T01:00:00+00:00",
+      "end_at": null,
+      "status": "active",
+      "lane_impacts": [],
+      "total_closure": 0,
+      "description": "Cubatão (Cota 200)",
+      "source_updated_at": "2026-10-26T01:00:00+00:00",
+      "retrieved_at": "2026-10-26T01:17:05.424714+00:00",
+      "expires_at": "2026-10-26T03:00:00+00:00",
+      "confidence": 0.8,
+      "record_class": "weather",
+      "source_type": "official",
+      "source": "SP Águas",
+      "freshness": "AGING",
+      "source_status": "HEALTHY",
+      "license": "Not yet verified",
+      "attribution": "SP Águas",
+      "tariff": null,
+      "concessionaire": null,
+      "rainfall_mm": 0,
+      "measurement_window_hours": 1,
+      "observation_type": "station_accumulation",
+      "review_status": null,
+      "along_m": 23581.3,
+      "distance_from_route_m": 30.0,
+      "distance_ahead_m": 23581.3,
+      "road_bearing": 254.8234722139115
+    }
+  ]
+}

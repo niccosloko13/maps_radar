@@ -1,0 +1,51 @@
+[
+  {
+    "source": "antt-tolls",
+    "event_id": "antt-tolls:97e25777c812270455770fdf",
+    "icon_loaded": true,
+    "rendered": [],
+    "nearby": [
+      {
+        "layer": "relas-icons",
+        "id": "community-ea42e5ba4dd42f5f25298ca1",
+        "kind": "toll"
+      },
+      {
+        "layer": "relas-icons",
+        "id": "community-580bc4c83bfc78371640fbb2",
+        "kind": "toll"
+      }
+    ]
+  },
+  {
+    "source": "artesp-tolls",
+    "event_id": "artesp-tolls:17176",
+    "icon_loaded": true,
+    "rendered": [],
+    "nearby": [
+      {
+        "layer": "relas-icons",
+        "id": "community-fe4b9a8a406384fc72c9d80f",
+        "kind": "toll"
+      },
+      {
+        "layer": "relas-icons",
+        "id": "community-7387e855b072b31d3613223f",
+        "kind": "toll"
+      }
+    ]
+  },
+  {
+    "source": "artesp-tolls",
+    "event_id": "artesp-tolls:17177",
+    "icon_loaded": true,
+    "rendered": [],
+    "nearby": [
+      {
+        "layer": "relas-icons",
+        "id": "community-f6a9c0b56101c73acbe5de26",
+        "kind": "toll"
+      }
+    ]
+  }
+]

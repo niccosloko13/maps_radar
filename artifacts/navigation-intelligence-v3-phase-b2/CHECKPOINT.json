@@ -1,0 +1,6 @@
+{
+  "branch": "feat/navigation-v3-phase-b1",
+  "base_commit": "4943cd4f4be8db6817222433e995974bd8305a37",
+  "checkpoint_sha256": "dfc92e13f9fcfa57dc53b49dd47e73455ef54d136e67ac549f245d558b37f159",
+  "preserved_uncommitted_work": true
+}

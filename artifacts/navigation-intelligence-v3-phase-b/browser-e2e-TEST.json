@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "pipeline": {
+    "api": 11,
+    "testOnly": true,
+    "route": 11,
+    "counts": {
+      "event": 5,
+      "weather": 2,
+      "infrastructure": 4
+    },
+    "types": [
+      "ACCIDENT",
+      "ROADWORK",
+      "CLOSURE",
+      "FLOOD",
+      "CONGESTION",
+      "PRF_OPERATIONAL_UNIT",
+      "PMRV_POST",
+      "TOLL_PLAZA",
+      "SAU",
+      "HEAVY_RAIN",
+      "RAIN_STATION"
+    ]
+  },
+  "navigation": {
+    "eligible": 10,
+    "selected": "TEST-radar",
+    "priority": 0,
+    "radarFirst": true,
+    "voiceDefaultOff": true
+  }
+}

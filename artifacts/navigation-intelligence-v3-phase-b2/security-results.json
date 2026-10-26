@@ -1,0 +1,22 @@
+{
+  "CREDENTIAL_ROTATION_REQUIRED": "YES",
+  "backup_tracked": false,
+  "backup_ignored": true,
+  "history_blobs_examined": 330,
+  "history_matching_blob_ids": [],
+  "history_scope": "all locally reachable Git refs; cannot prove absence from deleted remote history",
+  "scanned_files": 304,
+  "public_matching_paths": [],
+  "private_ignored_matching_paths": [
+    "artifacts/navigation-intelligence-v3-phase-b2/private/neon-url.txt",
+    "artifacts/vercel-neon/backups/project-relink/env-before-relink.txt"
+  ],
+  "validity_by_variable_name": {
+    "NEON_MIGRATION_URL": "VALID_READ_ONLY_SELECT_PASSED",
+    "NEON_VALIDATION_URL": "VALID_READ_ONLY_SELECT_PASSED",
+    "DATABASE_URL": "VALID_READ_ONLY_SELECT_PASSED",
+    "NEON_VALIDATION_POOLED_URL": "VALID_READ_ONLY_SELECT_PASSED",
+    "VERCEL_OIDC_TOKEN": "EXPIRED_JWT_CLAIM_NOT_SIGNATURE_VALIDATED"
+  },
+  "external_credentials_changed": false
+}

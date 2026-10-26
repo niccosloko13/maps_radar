@@ -1,7 +1,7 @@
 // Fixtures are isolated in browser memory, never sent to a report/import endpoint.
 async(page)=>{
  const check=(v,m)=>{if(!v)throw Error(m)},out={errors:[],fixtures:true};
- await page.bringToFront();await page.goto('http://127.0.0.1:8815/?v=222');
+ await page.bringToFront();await page.goto('http://127.0.0.1:8815/?v=232');
  await page.evaluate(async()=>{stopTracking();for(const r of await navigator.serviceWorker.getRegistrations())await r.unregister();for(const k of await caches.keys())if(k.startsWith('relas-'))await caches.delete(k);localStorage.removeItem('relas-location-debug');localStorage.setItem('relas-location-engine-v2','0')});
  await page.reload();await page.waitForFunction(()=>window.relas?.state.catalog?.length>0);page.on('pageerror',e=>out.errors.push(e.message));
  await page.evaluate(()=>{stopTracking();relas.state.follow=false;relas.map.jumpTo({center:[-46.655,-23.563],zoom:15})});await page.waitForTimeout(1200);

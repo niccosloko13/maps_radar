@@ -1,0 +1,20 @@
+{
+  "scope": "Frontend and text artifacts outside private/backups",
+  "files_scanned": 199,
+  "actual_secret_matches": 0,
+  "matching_files": [],
+  "live_validation_fixture_records": 0,
+  "isolated_TEST_records": 11,
+  "actual_artesp_keys_configured": {
+    "ARTESP_OCCURRENCES_API_KEY": false,
+    "ARTESP_INTERVENTIONS_API_KEY": false
+  },
+  "secret_values_logged": false,
+  "status": "PASS",
+  "temporary_neon_url_file_removed": true,
+  "owned_test_servers_stopped": [
+    8815,
+    8816,
+    8818
+  ]
+}

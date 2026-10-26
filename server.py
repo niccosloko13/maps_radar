@@ -852,50 +852,20 @@ def _haversine_m(lat1,lon1,lat2,lon2):
   return 6371000*2*math.atan2(math.sqrt(a),math.sqrt(max(0,1-a)))
  except:return 10**12
 
-def autocomplete_text(q,near_lat=None,near_lon=None,limit=7):
+def autocomplete_text(q,near_lat=None,near_lon=None,limit=7,submitted=False):
+ from navigation_backend import search_address
  q=clean(q)
- if len(q)<2:return []
- limit=max(1,min(int(limit or 7),8)); items=[]; seen=set(); errors=[]
- def add(lat,lon,label,provider,kind='',details=None):
-  try:lat=float(lat);lon=float(lon)
-  except:return
-  if not (-25.6<lat<-19.0 and -54.6<lon<-43.5):return
-  key=(round(lat,5),round(lon,5),clean(label).lower())
-  if key in seen:return
-  seen.add(key); dist=_haversine_m(near_lat,near_lon,lat,lon) if near_lat is not None and near_lon is not None else None
-  items.append({'lat':lat,'lon':lon,'label':clean(label),'provider':provider,'type':kind or 'place','distance_m':round(dist) if dist is not None else None,'address':details or {}})
- # Photon is intentionally first because it supports proximity bias directly.
- try:
-  params={'q':q,'limit':8,'lang':'pt'}
-  if near_lat is not None and near_lon is not None:params.update({'lat':near_lat,'lon':near_lon})
-  raw,_,_,_=http_request('https://photon.komoot.io/api/?'+urllib.parse.urlencode(params),headers={'User-Agent':UA,'Accept':'application/json'},timeout=8,method='GET',attempts=1)
-  data=json.loads(raw.decode('utf-8'))
-  for f in data.get('features',[]):
-   co=(f.get('geometry') or {}).get('coordinates') or [];pr=f.get('properties') or {}
-   if len(co)<2:continue
-   bits=[]
-   for k in ('name','street','housenumber','district','city','state'):
-    v=pr.get(k)
-    if v and str(v) not in bits:bits.append(str(v))
-   add(co[1],co[0],', '.join(bits), 'photon', pr.get('type',''), pr)
- except Exception as e:errors.append('photon:'+type(e).__name__)
- # Nominatim complements address/house-number matching and gets a local viewbox boost.
- try:
-  params={'format':'jsonv2','limit':8,'countrycodes':'br','addressdetails':1,'layer':'address','q':q}
-  if near_lat is not None and near_lon is not None:
-   span=.32;params['viewbox']=f'{near_lon-span},{near_lat+span},{near_lon+span},{near_lat-span}'
-  raw,_,_,_=http_request(NOMINATIM_URL+'?'+urllib.parse.urlencode(params),headers={'User-Agent':UA,'Accept':'application/json','Referer':'http://radarsp.local/'},timeout=8,method='GET',attempts=1)
-  data=json.loads(raw.decode('utf-8'))
-  for x in data:add(x.get('lat'),x.get('lon'),x.get('display_name',''),'nominatim',x.get('type',''),x.get('address') or {})
- except Exception as e:errors.append('nominatim:'+type(e).__name__)
- # Rank nearby matches first, but keep textual results usable when no local match exists.
- def rank(x):
-  d=x.get('distance_m')
-  local=0 if d is not None and d<70000 else 1
-  house=0 if any(ch.isdigit() for ch in q) and any(ch.isdigit() for ch in x.get('label','')) else 1
-  return (local,house,d if d is not None else 10**12, len(x.get('label','')))
- items.sort(key=rank)
- return items[:limit]
+ if len(q)<3:return []
+ # Reuse existing persistent runtime cache in hosted mode, no schema change.
+ cache_path=DATA_DIR/'navigation_search_cache.json';cache=_load_json(cache_path,{})
+ key=json.dumps(['navigation-v2',q.casefold(),round(near_lat,2) if near_lat is not None and math.isfinite(near_lat) else None,round(near_lon,2) if near_lon is not None and math.isfinite(near_lon) else None,bool(submitted)],ensure_ascii=False)
+ entry=cache.get(key)
+ if entry and time.time()-entry['at']<(300 if entry['items'] else 30):return entry['items'][:limit]
+ items=search_address(q,http_request,UA,near_lat,near_lon,limit,submitted)
+ if len(cache)>=128:cache.pop(next(iter(cache)))
+ cache[key]={'at':time.time(),'items':items};_save_json(cache_path,cache)
+ return items
+
 
 def _santos_query_variants(name):
  out=[f'{name}, Santos, SP, Brasil']
@@ -1092,8 +1062,8 @@ def _route_osrm(flat,flon,tlat,tlon):
  for leg in r.get('legs',[]):
   for st in leg.get('steps',[]):
    man=st.get('maneuver') or {};typ=man.get('type','');mod=man.get('modifier','');name=st.get('name') or ''
-   instruction=(' '.join(x for x in [typ,mod,name] if x)).strip()
-   steps.append({'instruction':instruction,'distance':st.get('distance',0),'duration':st.get('duration',0),'name':name})
+   from navigation_backend import route_step
+   steps.append(route_step(st))
  return r,coords,steps
 
 def _finish_route(r,coords,steps,provider):
@@ -1120,7 +1090,9 @@ def build_route(flat,flon,tlat,tlon):
    if not routes:raise RuntimeError('sem rota')
    r=routes[0];coords=(r.get('geometry') or {}).get('coordinates') or [];steps=[]
    for leg in r.get('legs',[]):
-    for st in leg.get('steps',[]):steps.append({'instruction':st.get('maneuver',{}).get('instruction') or st.get('name') or '', 'distance':st.get('distance',0),'duration':st.get('duration',0),'name':st.get('name','')})
+    for st in leg.get('steps',[]):
+     from navigation_backend import route_step
+     steps.append(route_step(st))
    DEPENDENCY_STATE['valhalla']={'status':'ok','last_ok':now(),'last_error':None};return _finish_route(r,coords,steps,label)
   except Exception as e:
    errors.append(f'{label}: {type(e).__name__}: {e}')
@@ -2031,6 +2003,8 @@ class H(SimpleHTTPRequestHandler):
   except:return {}
  def do_POST(self):
   p=urlparse(self.path)
+  from road_data import api as road_api
+  if road_api.handles(p.path):return road_api.dispatch(sys.modules[__name__],self,p.path,parse_qs(p.query),'POST')
   if p.path.startswith("/api/map/") or p.path.startswith("/api/admin/community/"):
    if p.path.startswith("/api/admin/") and not _admin_authed_v15(self):return self.js({"error":"n?o autorizado"},401)
    try:
@@ -2089,6 +2063,8 @@ class H(SimpleHTTPRequestHandler):
   return self.js({'ok':False,'error':'endpoint não encontrado'},404)
  def do_GET(self):
   p=urlparse(self.path);q=parse_qs(p.query)
+  from road_data import api as road_api
+  if road_api.handles(p.path):return road_api.dispatch(sys.modules[__name__],self,p.path,q,'GET')
   if p.path in LEGACY_MUTATIONS and not _admin_authed_v15(self):return self.js({'error':'Admin authentication required'},401)
   if hosted() and p.path in LEGACY_MUTATIONS:return self.js({'error':'Use Admin POST operations'},405)
   if p.path in ['/api/map/features','/api/admin/community','/api/admin/community/export']:
@@ -2126,7 +2102,7 @@ class H(SimpleHTTPRequestHandler):
    try:
     qq=(q.get('q') or [''])[0];lat=(q.get('lat') or [None])[0];lon=(q.get('lon') or [None])[0]
     lat=float(lat) if lat not in (None,'') else None;lon=float(lon) if lon not in (None,'') else None
-    return self.js({'items':autocomplete_text(qq,lat,lon,7)})
+    return self.js({'items':autocomplete_text(qq,lat,lon,7,(q.get('submitted') or ['0'])[0]=='1')})
    except Exception as e:return self.js({'items':[],'error':f'{type(e).__name__}: {e}'})
   if p.path=='/api/geocode':
    try:return self.js({'items':geocode_text((q.get('q') or [''])[0],5)})

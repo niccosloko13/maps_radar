@@ -1,0 +1,27 @@
+{
+  "synthetic": true,
+  "node": "v22.14.0",
+  "platform": "win32",
+  "cases": [
+    {
+      "recording": false,
+      "fixes": 600,
+      "alerts": 200,
+      "medianMs": 0.00980000000000203,
+      "p95Ms": 0.03629999999999711,
+      "sessionBytes": 53,
+      "records": 0,
+      "replayMatchesLive": true
+    },
+    {
+      "recording": true,
+      "fixes": 600,
+      "alerts": 200,
+      "medianMs": 0.010199999999997544,
+      "p95Ms": 0.020299999999998875,
+      "sessionBytes": 324944,
+      "records": 600,
+      "replayMatchesLive": true
+    }
+  ]
+}

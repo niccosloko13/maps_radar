@@ -6,7 +6,7 @@ async(page)=>{
  await page.context().grantPermissions(['geolocation'],{origin:'http://127.0.0.1:8815'});
  await page.context().setGeolocation({longitude:-46.655,latitude:-23.563,accuracy:8});
  await page.setViewportSize({width:390,height:844});
- await page.goto('http://127.0.0.1:8815/?v=222');
+ await page.goto('http://127.0.0.1:8815/?v=232');
  await page.waitForFunction(()=>window.relas?.locationEngine&&relas.state.position&&relas.state.features.length>0);
  await page.evaluate(()=>{stopTracking();relas.state.follow=false;localStorage.removeItem('relas-location-debug');relas.setLocationMode('baseline')});
  result.defaults=await page.evaluate(()=>({mode:relas.state.locationMode,telemetryActive:relas.locationEngine.telemetry.active,debug:!!document.querySelector('#locationDebug')}));

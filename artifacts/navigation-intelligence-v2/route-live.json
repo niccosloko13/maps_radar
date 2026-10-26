@@ -1,0 +1,177 @@
+{
+  "http": 200,
+  "provider": "Valhalla demo 1",
+  "distance_m": 54350,
+  "error": null,
+  "steps": [
+    {
+      "instruction": "Inicie o trajeto",
+      "name": "",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "depart",
+      "modifier": null
+    },
+    {
+      "instruction": "Vire à direita",
+      "name": "",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "right"
+    },
+    {
+      "instruction": "Vire à direita para Avenida Aldino Pinotti",
+      "name": "Avenida Aldino Pinotti",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "end of road",
+      "modifier": "right"
+    },
+    {
+      "instruction": "Siga e faça o retorno para Avenida Aldino Pinotti",
+      "name": "Avenida Aldino Pinotti",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "continue",
+      "modifier": "uturn"
+    },
+    {
+      "instruction": "Vire levemente à direita para Rua Takeo Ino",
+      "name": "Rua Takeo Ino",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight right"
+    },
+    {
+      "instruction": "Mantenha-se levemente à esquerda para Rua Takeo Ino",
+      "name": "Rua Takeo Ino",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "fork",
+      "modifier": "slight left"
+    },
+    {
+      "instruction": "Vire à esquerda para Avenida Senador Vergueiro",
+      "name": "Avenida Senador Vergueiro",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "end of road",
+      "modifier": "left"
+    },
+    {
+      "instruction": "Vire levemente à esquerda para Avenida Lucas Nogueira Garcez",
+      "name": "Avenida Lucas Nogueira Garcez",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight left"
+    },
+    {
+      "instruction": "Vire levemente à direita para Rua Jurubatuba",
+      "name": "Rua Jurubatuba",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight right"
+    },
+    {
+      "instruction": "Vire levemente à direita para Avenida Rotary",
+      "name": "Avenida Rotary",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight right"
+    },
+    {
+      "instruction": "Vire levemente à direita",
+      "name": "",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight right"
+    },
+    {
+      "instruction": "Vire levemente à direita para Rodovia Anchieta · SP-150; BR-050",
+      "name": "Rodovia Anchieta",
+      "road_ref": "SP-150; BR-050",
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight right"
+    },
+    {
+      "instruction": "Mantenha-se levemente à esquerda para Rodovia Anchieta · SP-150; BR-050",
+      "name": "Rodovia Anchieta",
+      "road_ref": "SP-150; BR-050",
+      "road_class": null,
+      "maneuver_type": "fork",
+      "modifier": "slight left"
+    },
+    {
+      "instruction": "Mantenha-se levemente à esquerda para Rodovia Anchieta · SP-150",
+      "name": "Rodovia Anchieta",
+      "road_ref": "SP-150",
+      "road_class": null,
+      "maneuver_type": "fork",
+      "modifier": "slight left"
+    },
+    {
+      "instruction": "Mantenha-se levemente à esquerda para Avenida Martins Fontes",
+      "name": "Avenida Martins Fontes",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "fork",
+      "modifier": "slight left"
+    },
+    {
+      "instruction": "Vire levemente à direita para Avenida São Francisco",
+      "name": "Avenida São Francisco",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "slight right"
+    },
+    {
+      "instruction": "Vire à direita para Avenida Senador Feijó",
+      "name": "Avenida Senador Feijó",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "right"
+    },
+    {
+      "instruction": "Vire à direita para Rua Goiás",
+      "name": "Rua Goiás",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "right"
+    },
+    {
+      "instruction": "Vire à direita para Rua Tocantins",
+      "name": "Rua Tocantins",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "right"
+    },
+    {
+      "instruction": "Vire à esquerda",
+      "name": "",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "turn",
+      "modifier": "left"
+    },
+    {
+      "instruction": "Você chegou ao destino",
+      "name": "",
+      "road_ref": null,
+      "road_class": null,
+      "maneuver_type": "arrive",
+      "modifier": null
+    }
+  ],
+  "alerts": 0
+}

@@ -1,0 +1,10 @@
+{
+  "branch": "feat/navigation-v3-phase-b1",
+  "base_commit": "4943cd4f4be8db6817222433e995974bd8305a37",
+  "base_branch": "feat/navigation-v3-phase-b",
+  "uncommitted_work_preserved": true,
+  "checkpoint_sha256": "74df297a7324931394eec3e1cedd079de3513ce83304c2c0cde0db20e16d598f",
+  "prior_sqlite_backup": "private/baseline.sqlite",
+  "validation_copy": "private/validation.sqlite",
+  "production_modified": false
+}

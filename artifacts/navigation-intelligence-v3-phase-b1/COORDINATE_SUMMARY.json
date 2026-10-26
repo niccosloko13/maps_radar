@@ -1,0 +1,11 @@
+{
+  "prf_records": 27,
+  "prf_approved": 12,
+  "prf_conflicts": 5,
+  "tolls": 73,
+  "tolls_approved": 66,
+  "toll_conflicts": 7,
+  "no_geocoding_used": true,
+  "local_calibrated_BR_network_available": false,
+  "production_modified": false
+}

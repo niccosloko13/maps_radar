@@ -1,0 +1,279 @@
+{
+  "final_state": "READY_FOR_PHYSICAL_TEST_WITH_LIMITATIONS",
+  "full_phase_b_ready": false,
+  "approved_scope": "controlled LOCAL radar/GPS/route/SAU test only; stationary device preflight required",
+  "baseline": {
+    "javascript": 83,
+    "relevant_python": 38
+  },
+  "final_tests": {
+    "javascript": 83,
+    "python": 92,
+    "selftest": "PASS",
+    "syntax": "PASS",
+    "postgres": "PASS",
+    "exit_codes": {
+      "selftest": 0,
+      "postgres": 0,
+      "syntax": 0,
+      "javascript": 0,
+      "python": 0
+    },
+    "browser_pageerrors": []
+  },
+  "artesp_keys": {
+    "ARTESP_OCCURRENCES_API_KEY": "NOT_CONFIGURED",
+    "ARTESP_INTERVENTIONS_API_KEY": "NOT_CONFIGURED"
+  },
+  "artesp_ccm_live_tested": false,
+  "occurrences": 0,
+  "interventions": 0,
+  "prf": {
+    "total": 27,
+    "approved": 14,
+    "blocked": 13,
+    "resolved": 2
+  },
+  "antt": {
+    "retained": 73,
+    "approved": 66,
+    "coordinate_conflicts": 7,
+    "spatially_resolved": 0,
+    "exact_duplicates": 0,
+    "coordinate_groups": 29,
+    "physical_site_count": null
+  },
+  "artesp_assets": {
+    "workbook_rows": 34396,
+    "tolls": 239,
+    "toll_map_eligible": 211,
+    "sau": 249,
+    "sau_active": 246,
+    "sau_map_eligible": 225,
+    "latest_resource_revision": "2025-05-30"
+  },
+  "sibh": {
+    "inventory": 1120,
+    "states": {
+      "AGING": 20,
+      "FRESH": 991,
+      "STALE": 109
+    },
+    "current": 957,
+    "captured_at": "2026-10-26T05:25:33.610487+00:00",
+    "publication": "BLOCKED_LICENSE"
+  },
+  "source_status_counts": {
+    "AUTH_REQUIRED": 2,
+    "DEGRADED": 4,
+    "BLOCKED_LICENSE": 3
+  },
+  "route": [
+    {
+      "source": "artesp-interventions",
+      "status": "AUTH_REQUIRED",
+      "records_statewide": 0,
+      "records_spatially_eligible": 0,
+      "records_map_eligible": 0,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "NO_SOURCE_COVERAGE: AUTH_REQUIRED",
+      "nearest_approved_or_raw_geometry": null
+    },
+    {
+      "source": "artesp-occurrences",
+      "status": "AUTH_REQUIRED",
+      "records_statewide": 0,
+      "records_spatially_eligible": 0,
+      "records_map_eligible": 0,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "NO_SOURCE_COVERAGE: AUTH_REQUIRED",
+      "nearest_approved_or_raw_geometry": null
+    },
+    {
+      "source": "antt-tolls",
+      "status": "DEGRADED",
+      "records_statewide": 73,
+      "records_spatially_eligible": 66,
+      "records_map_eligible": 66,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "NO_SOURCE_COVERAGE: approved inventory geographically outside this route",
+      "nearest_approved_or_raw_geometry": {
+        "event_id": "antt-tolls:60080abf28c52c3138585ce6",
+        "distance_m": 18073.49,
+        "along_m": 55072.03,
+        "direction": "Decrescente"
+      }
+    },
+    {
+      "source": "artesp-tolls",
+      "status": "DEGRADED",
+      "records_statewide": 239,
+      "records_spatially_eligible": 211,
+      "records_map_eligible": 211,
+      "records_intersecting_corridor": 1,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "DIRECTION_FILTER",
+      "nearest_approved_or_raw_geometry": {
+        "event_id": "artesp-tolls:7396",
+        "distance_m": 28.49,
+        "along_m": 42407.61,
+        "direction": "Sul"
+      }
+    },
+    {
+      "source": "official-support",
+      "status": "DEGRADED",
+      "records_statewide": 249,
+      "records_spatially_eligible": 228,
+      "records_map_eligible": 225,
+      "records_intersecting_corridor": 1,
+      "records_direction_eligible": 1,
+      "records_initial_window": 1,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 1,
+      "records_alerted": 0,
+      "reason_for_zero": null,
+      "nearest_approved_or_raw_geometry": {
+        "event_id": "official-support:4166",
+        "distance_m": 2.26,
+        "along_m": 54190.47,
+        "direction": "Norte"
+      }
+    },
+    {
+      "source": "pmrv-sp",
+      "status": "BLOCKED_LICENSE",
+      "records_statewide": 0,
+      "records_spatially_eligible": 0,
+      "records_map_eligible": 0,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "LICENSE_BLOCK; NO_SOURCE_COVERAGE",
+      "nearest_approved_or_raw_geometry": null
+    },
+    {
+      "source": "prf-sp",
+      "status": "DEGRADED",
+      "records_statewide": 27,
+      "records_spatially_eligible": 14,
+      "records_map_eligible": 14,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "NO_SOURCE_COVERAGE: approved inventory geographically outside this route",
+      "nearest_approved_or_raw_geometry": {
+        "event_id": "prf-sp:fe7214de5e37119c7119",
+        "distance_m": 30915.63,
+        "along_m": 55459.29,
+        "direction": null
+      }
+    },
+    {
+      "source": "defesa-civil-sp",
+      "status": "BLOCKED_LICENSE",
+      "records_statewide": 0,
+      "records_spatially_eligible": 0,
+      "records_map_eligible": 0,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 0,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "LICENSE_BLOCK; NO_SOURCE_COVERAGE",
+      "nearest_approved_or_raw_geometry": null
+    },
+    {
+      "source": "sp-aguas",
+      "status": "BLOCKED_LICENSE",
+      "records_statewide": 1120,
+      "records_spatially_eligible": 1120,
+      "records_map_eligible": 0,
+      "records_intersecting_corridor": 0,
+      "records_direction_eligible": 0,
+      "records_initial_window": 0,
+      "current_observations_in_corridor": 3,
+      "records_rendered": 0,
+      "records_alerted": 0,
+      "reason_for_zero": "LICENSE_BLOCK",
+      "nearest_approved_or_raw_geometry": {
+        "event_id": "sp-aguas:1371",
+        "distance_m": 29.98,
+        "along_m": 23826.47,
+        "direction": null
+      }
+    }
+  ],
+  "route_objects_eligible": 1,
+  "route_geometry_intersections_before_direction": 2,
+  "route_objects_rendered": 1,
+  "actual_field_alerts": 0,
+  "map_real_layers_rendered_this_round": 2,
+  "official_toll_map_smoke": "FAILED_COLLISION_WITH_LEGACY_COMMUNITY_TOLL_SYMBOLS",
+  "admin_sources": 9,
+  "admin_matches_map": true,
+  "radar_P0": true,
+  "security": {
+    "CREDENTIAL_ROTATION_REQUIRED": "YES",
+    "backup_tracked": false,
+    "backup_ignored": true,
+    "history_blobs_examined": 330,
+    "history_matching_blob_ids": [],
+    "history_scope": "all locally reachable Git refs; cannot prove absence from deleted remote history",
+    "scanned_files": 304,
+    "public_matching_paths": [],
+    "private_ignored_matching_paths": [
+      "artifacts/navigation-intelligence-v3-phase-b2/private/neon-url.txt",
+      "artifacts/vercel-neon/backups/project-relink/env-before-relink.txt"
+    ],
+    "validity_by_variable_name": {
+      "NEON_MIGRATION_URL": "VALID_READ_ONLY_SELECT_PASSED",
+      "NEON_VALIDATION_URL": "VALID_READ_ONLY_SELECT_PASSED",
+      "DATABASE_URL": "VALID_READ_ONLY_SELECT_PASSED",
+      "NEON_VALIDATION_POOLED_URL": "VALID_READ_ONLY_SELECT_PASSED",
+      "VERCEL_OIDC_TOKEN": "EXPIRED_JWT_CLAIM_NOT_SIGNATURE_VALIDATED"
+    },
+    "external_credentials_changed": false
+  },
+  "real_database_fixture_rows": 0,
+  "production_modified": false,
+  "push": false,
+  "deploy": false,
+  "field_test_executed": false,
+  "known_limitations": [
+    "missing ARTESP CCM keys",
+    "SIBH license unconfirmed",
+    "PMRv/Defesa Civil source/license blocked",
+    "13 PRF and7 ANTT records blocked",
+    "official toll symbol collision unresolved",
+    "static ARTESP assets last revised2025-05-30",
+    "isolated runtime only; device secure-context preflight required",
+    "rotation of active backup credentials requires owner action"
+  ]
+}

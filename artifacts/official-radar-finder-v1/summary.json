@@ -1,0 +1,118 @@
+{
+  "query_date": "2026-10-25",
+  "psie_source_records_sp": 9444,
+  "psie_unique_equipment_sp": 9435,
+  "psie_praia_grande_records": 15,
+  "pg_unique_equipment": 15,
+  "municipal_records": 10,
+  "match_confidence": {
+    "CONFLICT": 5,
+    "MEDIUM": 5
+  },
+  "points_with_candidates": 10,
+  "points_resolved": 0,
+  "selected_with_serial": 10,
+  "selected_with_inmetro": 10,
+  "verified_municipal_points": 0,
+  "pg_instruments_with_current_approved_history": 10,
+  "missing_nominal_speed_pg": 15,
+  "source": {
+    "source_url": "https://servicos.rbmlq.gov.br/dados-abertos/SP/medidores.json",
+    "retrieved_at": "2026-10-25T17:38:00.664570+00:00",
+    "last_successful_fetch": "2026-10-25T17:38:00.664570+00:00",
+    "source_updated_at": "Thu, 01 Oct 2026 00:59:26 GMT",
+    "etag": "\"b77d81a4051dd1:0\"",
+    "sha256": "ac5cbc140a5c16738f01e0f18da5ef484709a1683bee503d4841f90d52b93e90",
+    "blob": "ac5cbc140a5c16738f01e0f18da5ef484709a1683bee503d4841f90d52b93e90.raw",
+    "checked_at": 1792949880.6645703,
+    "cached": true,
+    "stale": false,
+    "error": null
+  },
+  "municipal_source": {
+    "source_url": "https://www.praiagrande.sp.gov.br/cartaservicos/Servicos/consultaCS.asp",
+    "retrieved_at": "2026-10-25T17:38:28.713187+00:00",
+    "last_successful_fetch": "2026-10-25T17:38:28.713187+00:00",
+    "source_updated_at": null,
+    "etag": null,
+    "sha256": "0ee2a8c7a406998eb32222bf12e36b9f461742263e9d750e0cfb8e0560e199c3",
+    "blob": "0ee2a8c7a406998eb32222bf12e36b9f461742263e9d750e0cfb8e0560e199c3.raw",
+    "checked_at": 1792949908.7131872,
+    "cached": true,
+    "stale": false,
+    "error": null
+  },
+  "notices": [
+    {
+      "source_url": "https://www2.praiagrande.sp.gov.br/noticiaNP/id/363",
+      "metadata": {
+        "source_url": "https://www2.praiagrande.sp.gov.br/noticiaNP/id/363",
+        "retrieved_at": "2026-10-25T17:38:52.040115+00:00",
+        "last_successful_fetch": "2026-10-25T17:38:52.040115+00:00",
+        "source_updated_at": null,
+        "etag": null,
+        "sha256": "dc7491ca7f63a7f87a7b490e79abf7f5ebd7927e4b64d83c7f872d61aa30baf6",
+        "blob": "dc7491ca7f63a7f87a7b490e79abf7f5ebd7927e4b64d83c7f872d61aa30baf6.raw",
+        "checked_at": 1792949932.040115,
+        "cached": true,
+        "stale": false,
+        "error": null
+      },
+      "raw_reference": "f6aac36a4d02e590aa19b3da744e4de00874cb7a12d4e3c0246907027ae5e0a6",
+      "claim": "MUNICIPAL_NOTICE_REQUIRES_REVIEW"
+    },
+    {
+      "source_url": "https://www2.praiagrande.sp.gov.br/noticia/setran-e-ipem-realizam-afericoes-de-lombadas--eletronicas-e-radares-nesta-quintafeira-18",
+      "metadata": {
+        "source_url": "https://www2.praiagrande.sp.gov.br/noticia/setran-e-ipem-realizam-afericoes-de-lombadas--eletronicas-e-radares-nesta-quintafeira-18",
+        "retrieved_at": "2026-10-25T17:38:52.201115+00:00",
+        "last_successful_fetch": "2026-10-25T17:38:52.201115+00:00",
+        "source_updated_at": null,
+        "etag": null,
+        "sha256": "fc74021f1275a82d2f943ec4069567cfd732cd15ed576d978b41c4e66354f7ba",
+        "blob": "fc74021f1275a82d2f943ec4069567cfd732cd15ed576d978b41c4e66354f7ba.raw",
+        "checked_at": 1792949932.2011154,
+        "cached": true,
+        "stale": false,
+        "error": null
+      },
+      "raw_reference": "3590ad9e9d5ac279d5246667b4d8fa7628aa44d76db66a77e3172d420b60fd40",
+      "claim": "MUNICIPAL_NOTICE_REQUIRES_REVIEW"
+    },
+    {
+      "source_url": "https://www2.praiagrande.sp.gov.br/noticia/ipem-realiza-afericao-de-lombadas-eletronicas-e-radares-em-pg-",
+      "metadata": {
+        "source_url": "https://www2.praiagrande.sp.gov.br/noticia/ipem-realiza-afericao-de-lombadas-eletronicas-e-radares-em-pg-",
+        "retrieved_at": "2026-10-25T17:38:52.390101+00:00",
+        "last_successful_fetch": "2026-10-25T17:38:52.390101+00:00",
+        "source_updated_at": null,
+        "etag": null,
+        "sha256": "86ae028e31756a069817d800b023d0694a119232bf04591abd0273513ca85886",
+        "blob": "86ae028e31756a069817d800b023d0694a119232bf04591abd0273513ca85886.raw",
+        "checked_at": 1792949932.3901012,
+        "cached": true,
+        "stale": false,
+        "error": null
+      },
+      "raw_reference": "d36cc7f855f22165cfb98d09d196904ed1dd2da11cbac59596f238693de13c44",
+      "claim": "MUNICIPAL_NOTICE_REQUIRES_REVIEW"
+    }
+  ],
+  "archive_counts_before": {
+    "source_snapshots": 1,
+    "equipment": 9435,
+    "equipment_versions": 9444,
+    "equipment_verifications": 37367,
+    "equipment_evidence": 72434,
+    "municipal_versions": 10
+  },
+  "archive_counts_after": {
+    "source_snapshots": 5,
+    "equipment": 9435,
+    "equipment_versions": 9444,
+    "equipment_verifications": 37367,
+    "equipment_evidence": 72434,
+    "municipal_versions": 10
+  },
+  "repeat_snapshot_idempotent": true
+}

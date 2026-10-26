@@ -1,0 +1,8 @@
+# Security review - B.1
+PASS for publishable files within examined scope. Scanned 244 frontend/artifact text files; publishable real-secret matches0. One pre-existing ignored private environment backup matched a real secret: artifacts/vercel-neon/backups/project-relink/env-before-relink.txt. It remains private/Git-ignored and was not copied, printed or deleted. Thus this is NOT a claim that every local artifact contains no secret. Compared actual secret-bearing environment/.env values without printing them, plus credential-URI checks. Secret values never included in this report or endpoint logs. ARTESP keys absent; no protected upstream requests issued. Existing .env files/configuration preserved; .env.example has placeholders only.
+
+.env/.env.local and B.1/private are Git-ignored. Temporary Neon URL removed after isolated compatibility test. Branch explicitly guarded by endpoint, production unchanged. No push/deploy. Test-server session password/secret are marked local-only and not real credentials; no production auth changes.
+
+Real validation database TEST rows0. Fixtures confined to unit tests/explicit TEST server and isolated Neon compatibility check; they are not source readiness evidence. TEST server requires RELAS_ENABLE_TEST_FIXTURES=1 and blocks upstream sync. PostgreSQL controlled test rows cleaned up. Prior fixture UI screenshots are not B.1 map proof.
+
+Map screenshots/detail and Admin diagnostics inspected, no API credential fields displayed. Stored HTTP response metadata uses a rate-limit/terms allowlist; Authorization is not serialized. No absolute assertion about all historic/unexamined binary files. Machine evidence security-results.json.

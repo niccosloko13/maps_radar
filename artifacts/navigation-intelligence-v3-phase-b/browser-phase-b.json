@@ -1,0 +1,247 @@
+{
+  "errors": [],
+  "http": [],
+  "mobile": [
+    {
+      "width": 375,
+      "height": 812,
+      "overflow": false,
+      "buttons": true
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "buttons": true
+    },
+    {
+      "width": 430,
+      "height": 932,
+      "overflow": false,
+      "buttons": true
+    },
+    {
+      "width": 412,
+      "height": 915,
+      "overflow": false,
+      "buttons": true
+    }
+  ],
+  "real": {
+    "received": 1,
+    "source": 1,
+    "rendered": 1,
+    "health": [
+      {
+        "source_id": "artesp-interventions",
+        "name": "ARTESP · Intervenções",
+        "status": "AUTH_REQUIRED",
+        "freshness_status": "BROKEN",
+        "last_success_at": null,
+        "license": "CC BY-NC 4.0",
+        "attribution": "ARTESP"
+      },
+      {
+        "source_id": "artesp-occurrences",
+        "name": "ARTESP · Ocorrências",
+        "status": "AUTH_REQUIRED",
+        "freshness_status": "BROKEN",
+        "last_success_at": null,
+        "license": "CC BY-NC 4.0",
+        "attribution": "ARTESP"
+      },
+      {
+        "source_id": "antt-tolls",
+        "name": "ANTT · Praças de pedágio SP",
+        "status": "HEALTHY",
+        "freshness_status": "AGING",
+        "last_success_at": "2026-10-26T01:37:36.476181+00:00",
+        "license": "CC BY",
+        "attribution": "ANTT"
+      },
+      {
+        "source_id": "artesp-tolls",
+        "name": "ARTESP · Pedágios",
+        "status": "NOT_CONFIGURED",
+        "freshness_status": "BROKEN",
+        "last_success_at": null,
+        "license": "Not yet verified",
+        "attribution": "ARTESP"
+      },
+      {
+        "source_id": "official-support",
+        "name": "Bases e apoio oficiais",
+        "status": "NOT_CONFIGURED",
+        "freshness_status": "BROKEN",
+        "last_success_at": null,
+        "license": "Not yet verified",
+        "attribution": "DER/Concessionárias"
+      },
+      {
+        "source_id": "pmrv-sp",
+        "name": "PM Rodoviária SP",
+        "status": "NOT_CONFIGURED",
+        "freshness_status": "BROKEN",
+        "last_success_at": null,
+        "license": "Not yet verified",
+        "attribution": "PMESP/CPRv"
+      },
+      {
+        "source_id": "prf-sp",
+        "name": "PRF · Unidades SP",
+        "status": "HEALTHY",
+        "freshness_status": "FRESH",
+        "last_success_at": "2026-10-26T01:30:16.571062+00:00",
+        "license": "Not yet verified",
+        "attribution": "PRF"
+      },
+      {
+        "source_id": "defesa-civil-sp",
+        "name": "Defesa Civil SP",
+        "status": "NOT_CONFIGURED",
+        "freshness_status": "BROKEN",
+        "last_success_at": null,
+        "license": "Not yet verified",
+        "attribution": "Defesa Civil SP"
+      },
+      {
+        "source_id": "sp-aguas",
+        "name": "SP Águas · SIBH",
+        "status": "STALE",
+        "freshness_status": "STALE",
+        "last_success_at": "2026-10-26T01:44:01.858917+00:00",
+        "license": "Not yet verified",
+        "attribution": "SP Águas"
+      }
+    ]
+  },
+  "map": {
+    "source": 11,
+    "geometry": 2,
+    "rendered": [
+      "RAIN_STATION",
+      "SAU",
+      "ROADWORK"
+    ],
+    "layers": [
+      "road-weather-regions",
+      "road-traffic-lines",
+      "road-event-states",
+      "road-selected-state",
+      "road-events-clusters",
+      "road-events",
+      "road-traffic-events",
+      "prf-posts",
+      "pmrv-bases"
+    ]
+  },
+  "iconStates": true,
+  "cluster": [
+    11
+  ],
+  "individual": [
+    {
+      "type": "ACCIDENT",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "ROADWORK",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "CLOSURE",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "FLOOD",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "PRF_OPERATIONAL_UNIT",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "PMRV_POST",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "TOLL_PLAZA",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "SAU",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "RAIN_STATION",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "HEAVY_RAIN",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    },
+    {
+      "type": "CONGESTION",
+      "rendered": true,
+      "point": {
+        "x": 195,
+        "y": 422
+      },
+      "click": true
+    }
+  ],
+  "admin": {
+    "artesp": true,
+    "diagnostics": true
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "scope": "Phase A",
+  "assets": "v224",
+  "javascript": {"passed": 75, "failed": 0},
+  "python": {"passed": 47, "failed": 0},
+  "selftest": "PASS",
+  "py_compile": "PASS",
+  "asgi_assets_and_search_contract": "PASS",
+  "browser_map": "PASS",
+  "browser_navigation": "PASS",
+  "browser_road_mode": "PASS",
+  "browser_precision_v2_after_null_debug_fix": "PASS",
+  "opt_in_record_export_replay": "PASS",
+  "new_report_types_in_temporary_database": "PASS",
+  "real_street_number_search": "PASS",
+  "real_postcode_search_after_city_postcode_check": "PASS",
+  "street_test_with_physical_phone": "NOT EXECUTED",
+  "live_traffic_weather_official_bases": "DEFERRED TO PHASE B",
+  "production_database_writes": 0,
+  "deployed": false
+}

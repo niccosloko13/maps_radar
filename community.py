@@ -141,26 +141,26 @@ def route_points(s,coords,tolerance=55):
  for a,b in zip(coords,coords[1:]):
   length=dist(a,b);segments.append((a,b,cum,length));cum+=length
  grid={}
- for seg in segments:
+ for segment_index,seg in enumerate(segments):
   a,b,_,_=seg
   for x in range(math.floor((min(a[0],b[0])-.0007)*100),math.floor((max(a[0],b[0])+.0007)*100)+1):
-   for y in range(math.floor((min(a[1],b[1])-.0007)*100),math.floor((max(a[1],b[1])+.0007)*100)+1):grid.setdefault((x,y),[]).append(seg)
+   for y in range(math.floor((min(a[1],b[1])-.0007)*100),math.floor((max(a[1],b[1])+.0007)*100)+1):grid.setdefault((x,y),[]).append((*seg,segment_index))
  out=[]
  for f in rows:
   r=f['properties'];pt=f['geometry']['coordinates'];best=None
   if r.get('direction_type') is None and r.get('direction') is not None:
    hd=s._direction_bearing(r['direction'])
    if hd is not None:r=dict(r,direction=hd,direction_type=1)
-  for a,b,start,length in grid.get((math.floor(pt[0]*100),math.floor(pt[1]*100)),[]):
+  for a,b,start,length,segment_index in grid.get((math.floor(pt[0]*100),math.floor(pt[1]*100)),[]):
    if not(min(a[0],b[0])-.0007<=pt[0]<=max(a[0],b[0])+.0007 and min(a[1],b[1])-.0007<=pt[1]<=max(a[1],b[1])+.0007):continue
    d,t=s.point_seg_distance_m(pt,a,b)
-   if d<=35 and direction_matches(r,s.bearing_deg(a,b),tolerance) and (best is None or d<best[0]):best=(d,start+t*length)
-  if best:out.append(dict(r,along_m=round(best[1]),distance_from_route_m=round(best[0]),title=r.get('name') if r.get('source')=='public_report' else LABELS.get(r['kind'],'Alerta'),type=r['kind']))
+   if d<=35 and direction_matches(r,s.bearing_deg(a,b),tolerance) and (best is None or d<best[0]):best=(d,start+t*length,segment_index,s.bearing_deg(a,b))
+  if best:out.append(dict(r,along_m=round(best[1]),distance_from_route_m=round(best[0],2),segment_index=best[2],road_bearing=best[3],route_evidence='geometry_corridor',title=r.get('name') if r.get('source')=='public_report' else LABELS.get(r['kind'],'Alerta'),type=r['kind']))
  return sorted(out,key=lambda r:r['along_m'])
 def post(s,handler,path,data):
  if path=='/api/map/route-alerts':return {'alerts':route_points(s,data.get('coordinates',[]),max(10,min(90,float(data.get('tolerance',55)))))}
  if path=='/api/map/report':
-  kind=data.get('kind');allowed=['mobile','police','accident','stopped','obstacle','works','congestion','flood','pothole','broken_signal','fixed','bump','other']
+  kind=data.get('kind');allowed=['animal','closure','mobile','police','accident','stopped','obstacle','works','congestion','flood','pothole','broken_signal','fixed','bump','other']
   if kind not in allowed:raise ValueError('Tipo inválido')
   x,y=float(data['longitude']),float(data['latitude'])
   if not math.isfinite(x+y):raise ValueError('Coordenada inválida')

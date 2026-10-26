@@ -1,0 +1,12 @@
+# SIBH freshness analysis
+Real new GET succeeded. Received1106; SP normalized1094; IDs retained1113; current at collection1091. States: {"FRESH": 1085, "AGING": 7, "STALE": 21}. Reasons: {"WITHIN_TWO_NOMINAL_SAMPLES": 1085, "WITHIN_FOUR_NOMINAL_SAMPLES": 7, "STATION_READING_OLD": 2, "NOT_OBSERVED_IN_LATEST_COLLECTION": 19}. DEAD_STATION=0, UNKNOWN=0. One fresh daily record is not evidence of current road rainfall.
+
+The old954 snapshot became stale because the collector stopped after approximately01:44UTC; closure happened later. The unchanged max_date observation timestamps legitimately aged. Re-fetch returned new observations; there was no evidence requiring timezone correction. ISO offsets are respected; ingestion time is stored separately and never substituted for station time. This is not proof that every old station died.
+
+Nominal cadence comes from provider measurement_gap (minutes). Cadences in retained SP inventory: {"300.0": 1, "600.0": 357, "3600.0": 565, "86400.0": 1, "1200.0": 182, "900.0": 2, "1800.0": 5}. In a separate real provider sample, 696 records had multiple samples; observed average cadence examples: {10.0: 406, 20.0: 195, 15.0: 56, 30.0: 20, 12.5: 5, 25.0: 4, 13.33: 4, 40.0: 3}. Variable sampling/count coverage is preserved; no one-size ten-minute assumption.
+
+FRESH <=2 nominal samples; AGING <=4; STALE beyond4. Current eligibility additionally requires reading <=1hour and cadence <=1hour, matching the requested hours=1 window. A stale collector (>2poll intervals) means STALE cache, not DEAD_STATION. Only an explicitly observed provider reading older than max(24hours,12cadences) in a fresh collection can be DEAD_STATION. Missing cadence/time or future timestamp >5minutes is UNKNOWN and cannot alert. Missing latest observations stay historical/STALE. Snapshot is preserved on schema/network/auth errors.
+
+The new collection created152 IDs, updated942, expired18; duplicates0. Historical inventory1113 includes19 IDs absent from the latest response; two returned readings were old. No silent deletion.
+
+Source collection freshness FRESH at capture; public eligibility0: BLOCKED_LICENSE. [Portal](https://apps.spaguas.sp.gov.br/sibh/) reserves rights; no source-specific redistribution license was confirmed. Need license and scheduled backend collection before public use. Counts above describe capture time and naturally age; no recurring scheduler was installed or claimed.

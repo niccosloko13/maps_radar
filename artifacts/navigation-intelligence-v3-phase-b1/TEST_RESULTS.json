@@ -1,0 +1,249 @@
+{
+  "readiness": "NOT_READY_FOR_PHYSICAL_TEST",
+  "closed_at": "2026-10-26T05:07:52.984287+00:00",
+  "baseline": {
+    "javascript": 81,
+    "python": 71,
+    "selftest": "PASS"
+  },
+  "final": {
+    "javascript": 83,
+    "python": 85,
+    "exit_codes": {
+      "selftest": 0,
+      "compile": 0,
+      "postgres": 0,
+      "javascript": 0,
+      "python": 0
+    },
+    "postgres": "PASS",
+    "radar_P0": true
+  },
+  "source_status_counts": {
+    "AUTH_REQUIRED": 2,
+    "DEGRADED": 2,
+    "BLOCKED_ENDPOINT": 1,
+    "BLOCKED_LICENSE": 4
+  },
+  "real_collections": 3,
+  "partially_public_integrations": 2,
+  "fully_production_ready": 0,
+  "real_events": 0,
+  "prf": {
+    "total": 27,
+    "approved": 12,
+    "blocked": 15,
+    "conflicts": 5
+  },
+  "antt": {
+    "retained": 73,
+    "approved": 66,
+    "conflicts": 7,
+    "site_review": {
+      "retained": 73,
+      "duplicate_road_km_coordinate_tuples": 44,
+      "nonempty_fields": {
+        "concessionaria": 73,
+        "km_m": 73,
+        "latitude": 73,
+        "longitude": 73,
+        "rodovia": 73,
+        "situacao": 73
+      },
+      "exact_raw_duplicate_rows": 0,
+      "unique_road_km_coordinate_sites": 29,
+      "colocated_extra_rows": 44,
+      "interpretation": "Distinct source names/directions can share coordinates; not automatically duplicates. Free-flow co-location still needs semantic review; 73 records are not 73 distinct sites."
+    }
+  },
+  "sibh": {
+    "inventory": 1113,
+    "current": 1091,
+    "states": {
+      "FRESH": 1085,
+      "AGING": 7,
+      "STALE": 21
+    },
+    "reasons": {
+      "WITHIN_TWO_NOMINAL_SAMPLES": 1085,
+      "WITHIN_FOUR_NOMINAL_SAMPLES": 7,
+      "STATION_READING_OLD": 2,
+      "NOT_OBSERVED_IN_LATEST_COLLECTION": 19
+    },
+    "cadences_seconds": {
+      "300.0": 1,
+      "600.0": 357,
+      "3600.0": 565,
+      "86400.0": 1,
+      "1200.0": 182,
+      "900.0": 2,
+      "1800.0": 5
+    },
+    "eligible_map": 0
+  },
+  "map": {
+    "real_layers": 2,
+    "eligible_statewide": 78,
+    "toll_viewport_rendered": 1,
+    "prf_viewport_rendered": 1,
+    "first_prf_candidate_collision_suppressed": true
+  },
+  "route": {
+    "status": "REAL_ROUTE",
+    "from": "Praia Grande",
+    "to": "Sao Bernardo do Campo",
+    "distance_m": 56050,
+    "vertices": 1248,
+    "counts": {
+      "event": 0,
+      "weather": 0,
+      "infrastructure": 0
+    },
+    "items": [],
+    "source_health": [
+      {
+        "source_id": "artesp-interventions",
+        "name": "ARTESP · Intervenções",
+        "status": "AUTH_REQUIRED",
+        "freshness_status": "UNKNOWN",
+        "freshness_kind": "EVENT_FRESHNESS",
+        "last_success_at": null,
+        "license": "CC BY-NC 4.0",
+        "attribution": "ARTESP",
+        "blocker": "MISSING_API_KEY; LAST_FETCH_ERROR; NO_VALID_SNAPSHOT",
+        "next_action": "Configure backend intervention API credential"
+      },
+      {
+        "source_id": "artesp-occurrences",
+        "name": "ARTESP · Ocorrências",
+        "status": "AUTH_REQUIRED",
+        "freshness_status": "UNKNOWN",
+        "freshness_kind": "EVENT_FRESHNESS",
+        "last_success_at": null,
+        "license": "CC BY-NC 4.0",
+        "attribution": "ARTESP",
+        "blocker": "MISSING_API_KEY; LAST_FETCH_ERROR; NO_VALID_SNAPSHOT",
+        "next_action": "Configure backend occurrence API credential"
+      },
+      {
+        "source_id": "antt-tolls",
+        "name": "ANTT · Praças de pedágio SP",
+        "status": "DEGRADED",
+        "freshness_status": "FRESH",
+        "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+        "last_success_at": "2026-10-26T01:37:36.476181+00:00",
+        "license": "CC BY (catalog does not specify version)",
+        "attribution": "ANTT",
+        "blocker": "PARTIAL_COORDINATE_REVIEW",
+        "next_action": "Review conflicting coordinates; collect within daily cache interval"
+      },
+      {
+        "source_id": "artesp-tolls",
+        "name": "ARTESP · Pedágios",
+        "status": "BLOCKED_ENDPOINT",
+        "freshness_status": "UNKNOWN",
+        "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+        "last_success_at": null,
+        "license": "ARTESP portal data terms (June 2025)",
+        "attribution": "ARTESP",
+        "blocker": "ENDPOINT_NOT_VALIDATED; NO_VALID_SNAPSHOT",
+        "next_action": "Locate current geographic plaza inventory, not traffic statistics"
+      },
+      {
+        "source_id": "official-support",
+        "name": "Bases e apoio oficiais",
+        "status": "BLOCKED_LICENSE",
+        "freshness_status": "UNKNOWN",
+        "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+        "last_success_at": null,
+        "license": "UNVERIFIED",
+        "attribution": "DER/Concessionárias",
+        "blocker": "LICENSE_NOT_VERIFIED; ENDPOINT_NOT_VALIDATED; NO_VALID_SNAPSHOT",
+        "next_action": "Validate official support inventory, coordinates and license"
+      },
+      {
+        "source_id": "pmrv-sp",
+        "name": "PM Rodoviária SP",
+        "status": "BLOCKED_LICENSE",
+        "freshness_status": "UNKNOWN",
+        "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+        "last_success_at": null,
+        "license": "UNVERIFIED",
+        "attribution": "PMESP/CPRv",
+        "blocker": "LICENSE_NOT_VERIFIED; ENDPOINT_NOT_VALIDATED; NO_VALID_SNAPSHOT",
+        "next_action": "Obtain current official dataset/endpoint and redistribution terms"
+      },
+      {
+        "source_id": "prf-sp",
+        "name": "PRF · Unidades SP",
+        "status": "DEGRADED",
+        "freshness_status": "FRESH",
+        "freshness_kind": "INFRASTRUCTURE_FRESHNESS",
+        "last_success_at": "2026-10-26T01:30:16.571062+00:00",
+        "license": "CC BY (ANTT coordinates); CC BY-ND 3.0 (original PRF directory)",
+        "attribution": "PRF",
+        "blocker": "PARTIAL_COORDINATE_REVIEW",
+        "next_action": "Resolve coordinate conflicts; do not geocode-promote administrative units"
+      },
+      {
+        "source_id": "defesa-civil-sp",
+        "name": "Defesa Civil SP",
+        "status": "BLOCKED_LICENSE",
+        "freshness_status": "UNKNOWN",
+        "freshness_kind": "OBSERVATION_FRESHNESS",
+        "last_success_at": null,
+        "license": "UNVERIFIED",
+        "attribution": "Defesa Civil SP",
+        "blocker": "LICENSE_NOT_VERIFIED; ENDPOINT_NOT_VALIDATED; NO_VALID_SNAPSHOT",
+        "next_action": "Validate licensed machine-readable alert endpoint; HTML empty state is not a feed"
+      },
+      {
+        "source_id": "sp-aguas",
+        "name": "SP Águas · SIBH",
+        "status": "BLOCKED_LICENSE",
+        "freshness_status": "FRESH",
+        "freshness_kind": "OBSERVATION_FRESHNESS",
+        "last_success_at": "2026-10-26T04:59:47.805631+00:00",
+        "license": "UNVERIFIED",
+        "attribution": "SP Águas",
+        "blocker": "LICENSE_NOT_VERIFIED",
+        "next_action": "Obtain source-specific data license; configure scheduled backend collection"
+      }
+    ]
+  },
+  "admin": {
+    "sources": 9,
+    "counts_match": true,
+    "client_rendered": 1
+  },
+  "fixtures": {
+    "real_database_rows": 0,
+    "policy_test_only": true,
+    "prior_11_types_without_real_evidence": 8,
+    "prior_11_types_without_approved_map_evidence": 9
+  },
+  "production_modified": false,
+  "push": false,
+  "deploy": false,
+  "postgres_branch": "br-green-frost-b4ubujn6",
+  "screenshots": [
+    "antt-tolls-real-mobile.png",
+    "prf-approved-real-mobile.png",
+    "admin-real-diagnostics.png"
+  ],
+  "security": {
+    "scanned_text_files": 244,
+    "publishable_real_secret_matches": [],
+    "existing_gitignored_private_backup_matches": [
+      "artifacts/vercel-neon/backups/project-relink/env-before-relink.txt"
+    ],
+    "gitignored": {
+      ".env": true,
+      ".env.local": true,
+      "artifacts/navigation-intelligence-v3-phase-b1/private/neon-url.txt": true
+    },
+    "real_db_fixture_rows": 0,
+    "screenshots_review": "Map point details and Admin diagnostics inspected; no credential fields displayed",
+    "limits": "Exact known environment/.env values and credential URI pattern; not a forensic audit of all history or binary files"
+  }
+}

@@ -1,0 +1,8 @@
+# Admin validation
+Existing login flow actually passed in local isolated server. Authentication code unchanged; dedicated test-process credential is not a production credential. All9 sources visible with explicit source state/freshness/blocker/next_action. Added map_eligible and route_eligible to existing source tables; route count explicitly scoped to last captured client corridor, NOT an all-roads global count. No generic 'not operational'.
+
+Global counts: ANTT73/66eligible;PRF27/14eligible;ARTESP toll239/211eligible;SAU249retained,246active,225eligible;SIBH1120retained/0public. Source geographic approved totals may include3 inactive SAU entries; inactive records cannot publish. Raw ARTESP workbook34396 rows was filtered to existing toll and SAU components only; radar/equipment data was not ingested.
+
+Captured client diagnostics POST200. SAU route_eligible1/rendered1, alert0; exact persisted client values agree with map. Other route-source rendered0 is accurate, not replaced by statewide/API totals. Source/log/diagnostic tabs actually opened. BLOCKED_COORDINATES exists in policy for no approved PRF coordinates; current partially approved sources correctly DEGRADED. Prior HTTP/schema failures keep last valid snapshots; new adapter fails closed on license/header/empty-subset/unknown-status changes.
+
+Evidence browser-results.json:admin; collection-results.json; route-coverage.json. Latest source-review/ingestion/freshness dates shown independently. Admin event lists are bounded; use source filters rather than infer global totals from one paginated/bounded table. No production Admin changes deployed.

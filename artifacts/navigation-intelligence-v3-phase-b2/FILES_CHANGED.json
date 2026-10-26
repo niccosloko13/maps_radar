@@ -1,0 +1,23 @@
+[
+  ".gitignore",
+  "app/admin.html",
+  "app/app.js",
+  "app/boot.js",
+  "app/index.html",
+  "app/navigation/phase-b.js",
+  "app/navigation/road-runtime.js",
+  "app/road-admin.js",
+  "app/sw.js",
+  "road_data/artesp_assets.py",
+  "road_data/registry.py",
+  "road_data/service.py",
+  "scripts/phase-b2-coverage.py",
+  "scripts/phase-b2-postgres-check.py",
+  "scripts/phase-b2-real-browser.js",
+  "scripts/phase-b2-real-server.py",
+  "scripts/phase-b2-report.py",
+  "scripts/phase-b2-review.py",
+  "scripts/phase-b2-security.py",
+  "selftest.py",
+  "test_artesp_assets.py"
+]

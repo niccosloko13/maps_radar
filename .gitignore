@@ -43,3 +43,21 @@ artifacts/location-precision-v2/private/
 
 artifacts/map-ui-v3/*.tmp
 artifacts/map-ui-v3/*.log
+
+artifacts/official-radar-finder-v1/private/
+artifacts/official-radar-finder-v1/*.tmp
+artifacts/official-radar-finder-v1/*.log
+
+artifacts/navigation-intelligence-v2/*.tmp
+artifacts/navigation-intelligence-v2/*.log
+artifacts/navigation-intelligence-v2/private/
+artifacts/navigation-intelligence-v3-phase-b/private/
+artifacts/navigation-intelligence-v3-phase-b1/private/
+artifacts/navigation-intelligence-v3-phase-b2/private/
+artifacts/navigation-intelligence-v3-phase-b2/*.log
+artifacts/navigation-intelligence-v3-phase-b2/*.tmp
+artifacts/navigation-intelligence-v3-phase-b1/*.tmp
+artifacts/navigation-intelligence-v3-phase-b1/*.log
+artifacts/navigation-intelligence-v3-phase-b/*.log
+artifacts/navigation-intelligence-v3-phase-b/*.tmp
+*.phase-b-*.backup

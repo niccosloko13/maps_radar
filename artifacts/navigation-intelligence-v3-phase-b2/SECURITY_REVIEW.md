@@ -1,0 +1,8 @@
+# Security - immediate credential review
+CREDENTIAL_ROTATION_REQUIRED = YES
+
+Backup remains private/Git-ignored and untracked. It was not printed, deleted or copied into any public report. Four stored PostgreSQL connection settings still passed read-only SELECT1. Corresponding credentials, full URLs AND extracted database passwords were searched in all330 locally reachable historical blobs:0matches. Public examined artifact/frontend matches0. Scope cannot prove absence from deleted remote history, remote forks or unexamined binary files.
+
+OIDC token's decoded exp is expired; signature/server validity not asserted. No authenticated Vercel mutation attempted. No external credential rotation performed. Rotation recommended/required as a security maintenance action because active credentials survive in an old backup: owner should rotate affected Neon role password(s), update authorized runtime environments, verify reads/writes, then decide backup retention. Do not paste values in chat/Git. Rotation is outside B.2 authorization; no attempt made.
+
+Source APIs/metadata contain no keys. ARTESP key statuses NOT_CONFIGURED only. Query errors/logs use class/status and allowlisted rate/terms headers. .env/.env.local/private database/backups are ignored; .env.example remains placeholders. Temporary test-branch URL removed after tests. Isolated PostgreSQL fixture rows explicitly TEST and cleaned; real SQLite fixture rows0. Reviewed point-detail/diagnostic screenshots show no credential fields. No push/deploy, no production writes. Exact scan scope/evidence security-results.json; values never serialized there.

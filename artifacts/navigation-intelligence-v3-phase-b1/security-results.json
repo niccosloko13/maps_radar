@@ -1,0 +1,15 @@
+{
+  "scanned_text_files": 244,
+  "publishable_real_secret_matches": [],
+  "existing_gitignored_private_backup_matches": [
+    "artifacts/vercel-neon/backups/project-relink/env-before-relink.txt"
+  ],
+  "gitignored": {
+    ".env": true,
+    ".env.local": true,
+    "artifacts/navigation-intelligence-v3-phase-b1/private/neon-url.txt": true
+  },
+  "real_db_fixture_rows": 0,
+  "screenshots_review": "Map point details and Admin diagnostics inspected; no credential fields displayed",
+  "limits": "Exact known environment/.env values and credential URI pattern; not a forensic audit of all history or binary files"
+}

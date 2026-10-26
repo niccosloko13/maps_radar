@@ -1,0 +1,13 @@
+{
+  "new_official_radar_tests": {"passed": 21, "failed": 0},
+  "full_python_suite": {"passed": 38, "failed": 0},
+  "existing_javascript_suite": {"passed": 53, "failed": 0},
+  "selftest": "PASS",
+  "compileall": "PASS",
+  "same_snapshot_reimport": "PASS: archive counts unchanged",
+  "private_archive_gitignored": true,
+  "production_database_mutations": 0,
+  "map_files_changed": false,
+  "captcha_automation": false,
+  "ready_for_official_only_map_migration": false
+}

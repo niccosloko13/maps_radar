@@ -1,0 +1,37 @@
+{
+  "errors": [],
+  "toll": {
+    "api": 1,
+    "source": 1,
+    "rendered": [
+      {
+        "id": "antt-tolls:97e25777c812270455770fdf",
+        "source": "ANTT",
+        "updated": "2026-07-28T11:00:43.601569+00:00",
+        "tariff": null
+      }
+    ]
+  },
+  "rain": {
+    "api": 1,
+    "source": 1,
+    "rendered": [
+      {
+        "id": "sp-aguas:33683",
+        "reading": "2026-10-26T01:30:00+00:00",
+        "mm": 0
+      }
+    ]
+  },
+  "admin": {
+    "sp-aguas": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nSP Águas · SIBH\n\nHEALTHY · FRESH\n\nCredencial configurada: não exigida",
+    "prf-sp": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nPRF · Unidades SP\n\nHEALTHY · FRESH\n\nCredencial configurada: não exigi",
+    "artesp-tolls": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nANTT · Praças de pedágio SP\n\nHEALTHY · AGING\n\nCredencial configurada:",
+    "pmrv-sp": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nPM Rodoviária SP\n\nNOT_CONFIGURED · BROKEN\n\nCredencial configurada: nã",
+    "defesa-civil-sp": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nDefesa Civil SP\n\nNOT_CONFIGURED · BROKEN\n\nCredencial configurada: não",
+    "official-support": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nBases e apoio oficiais\n\nNOT_CONFIGURED · BROKEN\n\nCredencial configura",
+    "logs": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nsource_id\tstarted_at\tfinished_at\tstatus\thttp_status\trecords_received\t",
+    "events": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\nTodos\nAtivos\nFinalizados\nFiltrar\nevent_type\tsource_id\troad\tdirection\t",
+    "diagnostics": "Visão Geral\nARTESP\nSP Águas\nDefesa Civil\nPRF\nPM Rodoviária\nPedágios\nBases/Apoio\nEventos\nLogs\nLayer Diagnostics\n\nRenderizados e alertados só vêm de diagnóstico explícito do navegado"
+  }
+}

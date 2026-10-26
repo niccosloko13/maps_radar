@@ -1,0 +1,16 @@
+{
+  "retained": 73,
+  "duplicate_road_km_coordinate_tuples": 44,
+  "nonempty_fields": {
+    "concessionaria": 73,
+    "km_m": 73,
+    "latitude": 73,
+    "longitude": 73,
+    "rodovia": 73,
+    "situacao": 73
+  },
+  "exact_raw_duplicate_rows": 0,
+  "unique_road_km_coordinate_sites": 29,
+  "colocated_extra_rows": 44,
+  "interpretation": "Distinct source names/directions can share coordinates; not automatically duplicates. Free-flow co-location still needs semantic review; 73 records are not 73 distinct sites."
+}

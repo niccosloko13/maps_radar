@@ -1,0 +1,105 @@
+{
+  "environment": "isolated validation SQLite; no production writes",
+  "captured_at": "2026-10-26T04:03:24.488873+00:00",
+  "sources": [
+    {
+      "source_id": "artesp-interventions",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "AUTH_REQUIRED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "artesp-occurrences",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "AUTH_REQUIRED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "antt-tolls",
+      "stored_including_history": 73,
+      "active_unexpired": 73,
+      "with_geometry": 73,
+      "active_map_eligible": 73,
+      "status": "HEALTHY",
+      "freshness": "AGING",
+      "last_success_at": "2026-10-26T01:37:36.476181+00:00",
+      "last_source_timestamp": "2026-07-28T11:00:43.601569+00:00"
+    },
+    {
+      "source_id": "artesp-tolls",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "official-support",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "pmrv-sp",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "prf-sp",
+      "stored_including_history": 27,
+      "active_unexpired": 27,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "HEALTHY",
+      "freshness": "AGING",
+      "last_success_at": "2026-10-26T01:30:16.571062+00:00",
+      "last_source_timestamp": "2026-09-15T00:00:00-03:00"
+    },
+    {
+      "source_id": "defesa-civil-sp",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "sp-aguas",
+      "stored_including_history": 961,
+      "active_unexpired": 0,
+      "with_geometry": 961,
+      "active_map_eligible": 0,
+      "status": "STALE",
+      "freshness": "STALE",
+      "last_success_at": "2026-10-26T01:44:01.858917+00:00",
+      "last_source_timestamp": "2026-10-26T01:40:00+00:00"
+    }
+  ]
+}

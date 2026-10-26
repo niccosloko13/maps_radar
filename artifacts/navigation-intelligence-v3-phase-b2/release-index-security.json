@@ -1,0 +1,8 @@
+{
+  "staged_files": 300,
+  "bytes": 18421130,
+  "real_secret_matching_paths": [],
+  "unsafe_paths": [],
+  "files_over_50MB": [],
+  "scope": "actual environment/.env/private-backup values and database passwords, staged index blobs"
+}

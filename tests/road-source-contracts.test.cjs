@@ -1,0 +1,5 @@
+const {test}=require('node:test'),assert=require('node:assert/strict'),C=require('../app/navigation/source-contracts.js');
+const source={source:'fixture-official',source_type:'official',updated_at:'2026-10-25T00:00:00Z',retrieved_at:'2026-10-25T00:00:00Z',geometry:{type:'Point',coordinates:[-46.65,-23.56]}};
+test('static bases cannot be inferred from community reports',()=>{assert.throws(()=>C.normalize({...source,type:'PRF_POST',source_type:'community'},Date.now()));assert.equal(C.normalize({...source,type:'PRF_POST'},0).identity_status,'SOURCE_EVIDENCE_PENDING')});
+test('temporary events expire; static station geometry has no automatic TTL',()=>{assert.equal(C.normalize({...source,type:'ROADWORK',valid_until:'2026-01-01'},Date.parse('2026-10-25')),null);assert.equal(C.normalize({...source,type:'SAU'},Date.parse('2030-01-01')).expires_at,null)});
+test('each contract has a dedicated mapped icon and no automatic verification',()=>{for(const type of [...C.STATIC_TYPES,...C.EVENT_TYPES])assert.ok(C.ICONS[type]);assert.equal(C.normalize({...source,type:'ACCIDENT',source_type:'community',valid_until:'2030-01-01'},0).identity_status,'COMMUNITY_DISCOVERY')});

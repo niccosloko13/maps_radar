@@ -1,0 +1,280 @@
+{
+  "scope": "Phase B, incomplete integrations explicitly reported",
+  "status": "INCOMPLETE / BLOCKED - NOT READY FOR PHYSICAL TEST",
+  "asset_version": "v231",
+  "baseline": {
+    "javascript": 75,
+    "python": 47,
+    "selftest": "PASS"
+  },
+  "final": {
+    "javascript_passed": 81,
+    "javascript_failed": 0,
+    "python_passed": 71,
+    "python_failed": 0,
+    "selftest": "PASS",
+    "compile": "PASS",
+    "syntax_checks": "PASS",
+    "diff_check": "PASS"
+  },
+  "browser_phase_b": "PASS, four mobile viewports and 11 individually rendered/clicked TEST types",
+  "browser_e2e": "PASS, isolated TEST DB/API/map/corridor/AlertManager; radar P0",
+  "browser_real_sources": "PASS, ANTT 1/1/1 and SIBH 1/1/1; admin selected real toll",
+  "browser_legacy_map": "PASS, including settled semaphores 198/198/198",
+  "browser_navigation_final": "PASS, including moving chevron and service worker v231 update safety",
+  "browser_precision": "PASS, one intentional fallback diagnostic",
+  "postgres": "PASS, isolated branch migration/CRUD/rollback/upsert/reconnect, legacy counts unchanged",
+  "real_route": "PASS, Praia Grande to Sao Bernardo, 56036m, 26 steps, 1256 coordinates",
+  "physical_test": "NOT EXECUTED",
+  "artesp_authenticated_real": "NOT EXECUTED, user has no API keys",
+  "defesa_civil_real": "NOT INTEGRATED, timeout/endpoint not validated",
+  "pmrv_real": "NOT INTEGRATED, no current validated feed",
+  "official_support_real": "NOT INTEGRATED, no current validated feed",
+  "production_database_mutations": 0,
+  "push": false,
+  "deploy": false,
+  "phase_status": "INCOMPLETE",
+  "closure_policy": "Freeze current work; no refinements, external retries, push or deploy",
+  "final_closure_round": {
+    "python": "71 PASS / 0 FAIL",
+    "log": "final-closure-python.txt",
+    "reason": "Last backend freshness/disabled-source corrections required full Python validation",
+    "javascript": "81 PASS retained; unchanged and not rerun at closure",
+    "selftest": "PASS retained",
+    "browser": "Completed PASS evidence retained; interrupted redundant repeat not counted as a new PASS"
+  },
+  "source_counts": {
+    "registered_and_present_in_admin": 9,
+    "adapters_with_real_collection": 3,
+    "without_operation": 6,
+    "production_ready_declared": 0,
+    "real_event_records_obtained": 0,
+    "real_weather_alerts_obtained": 0,
+    "last_snapshot_rain_station_records": 954,
+    "historical_rain_station_ids": 961,
+    "prf_records": 27,
+    "prf_operational_units": 17,
+    "prf_official_coordinates": 0,
+    "antt_tolls_sp": 73,
+    "artesp_occurrences": 0,
+    "artesp_interventions": 0,
+    "pmrv_records": 0,
+    "artesp_tolls": 0,
+    "support_bases": 0,
+    "station_records_currently_eligible": 0,
+    "fully_operational_new_event_feeds": 0
+  },
+  "rendering": {
+    "real_new_layers": [
+      "toll-plazas",
+      "rain-stations"
+    ],
+    "real_dedicated_api_source_render": {
+      "antt_toll": [
+        1,
+        1,
+        1
+      ],
+      "sibh_station": [
+        1,
+        1,
+        1
+      ]
+    },
+    "TEST_individual_types_rendered_and_clicked": 11,
+    "TEST_points_source": 11,
+    "TEST_geometries_loaded": 2,
+    "TEST_cluster_count": 11
+  },
+  "privacy": {
+    "scope": "Frontend and text artifacts outside private/backups",
+    "files_scanned": 199,
+    "actual_secret_matches": 0,
+    "matching_files": [],
+    "live_validation_fixture_records": 0,
+    "isolated_TEST_records": 11,
+    "actual_artesp_keys_configured": {
+      "ARTESP_OCCURRENCES_API_KEY": false,
+      "ARTESP_INTERVENTIONS_API_KEY": false
+    },
+    "secret_values_logged": false,
+    "status": "PASS",
+    "temporary_neon_url_file_removed": true,
+    "owned_test_servers_stopped": [
+      8815,
+      8816,
+      8818
+    ]
+  },
+  "radar_priority": "P0 confirmed in unit, navigation and isolated E2E TEST",
+  "freshness_snapshot": [
+    {
+      "source_id": "artesp-interventions",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "AUTH_REQUIRED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "artesp-occurrences",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "AUTH_REQUIRED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "antt-tolls",
+      "stored_including_history": 73,
+      "active_unexpired": 73,
+      "with_geometry": 73,
+      "active_map_eligible": 73,
+      "status": "HEALTHY",
+      "freshness": "AGING",
+      "last_success_at": "2026-10-26T01:37:36.476181+00:00",
+      "last_source_timestamp": "2026-07-28T11:00:43.601569+00:00"
+    },
+    {
+      "source_id": "artesp-tolls",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "official-support",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "pmrv-sp",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "prf-sp",
+      "stored_including_history": 27,
+      "active_unexpired": 27,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "HEALTHY",
+      "freshness": "AGING",
+      "last_success_at": "2026-10-26T01:30:16.571062+00:00",
+      "last_source_timestamp": "2026-09-15T00:00:00-03:00"
+    },
+    {
+      "source_id": "defesa-civil-sp",
+      "stored_including_history": 0,
+      "active_unexpired": 0,
+      "with_geometry": 0,
+      "active_map_eligible": 0,
+      "status": "NOT_CONFIGURED",
+      "freshness": "BROKEN",
+      "last_success_at": null,
+      "last_source_timestamp": null
+    },
+    {
+      "source_id": "sp-aguas",
+      "stored_including_history": 961,
+      "active_unexpired": 0,
+      "with_geometry": 961,
+      "active_map_eligible": 0,
+      "status": "STALE",
+      "freshness": "STALE",
+      "last_success_at": "2026-10-26T01:44:01.858917+00:00",
+      "last_source_timestamp": "2026-10-26T01:40:00+00:00"
+    }
+  ],
+  "external_sources_retried_at_closure": false,
+  "integrations": [
+    {
+      "source_id": "artesp-interventions",
+      "phase_status": "BLOCKED_EXTERNAL_API_KEY",
+      "operational_status": "AUTH_REQUIRED",
+      "freshness": "BROKEN"
+    },
+    {
+      "source_id": "artesp-occurrences",
+      "phase_status": "BLOCKED_EXTERNAL_API_KEY",
+      "operational_status": "AUTH_REQUIRED",
+      "freshness": "BROKEN"
+    },
+    {
+      "source_id": "antt-tolls",
+      "phase_status": "VALIDATED_ISOLATED_NOT_PRODUCTION_READY",
+      "operational_status": "HEALTHY",
+      "freshness": "AGING"
+    },
+    {
+      "source_id": "artesp-tolls",
+      "phase_status": "BLOCKED_EXTERNAL_FEED_ENDPOINT_LICENSE_VALIDATION",
+      "operational_status": "NOT_CONFIGURED",
+      "freshness": "BROKEN"
+    },
+    {
+      "source_id": "official-support",
+      "phase_status": "BLOCKED_EXTERNAL_FEED_ENDPOINT_LICENSE_VALIDATION",
+      "operational_status": "NOT_CONFIGURED",
+      "freshness": "BROKEN"
+    },
+    {
+      "source_id": "pmrv-sp",
+      "phase_status": "BLOCKED_EXTERNAL_FEED_ENDPOINT_LICENSE_VALIDATION",
+      "operational_status": "NOT_CONFIGURED",
+      "freshness": "BROKEN"
+    },
+    {
+      "source_id": "prf-sp",
+      "phase_status": "INCOMPLETE_COORDINATES",
+      "operational_status": "HEALTHY",
+      "freshness": "AGING"
+    },
+    {
+      "source_id": "defesa-civil-sp",
+      "phase_status": "BLOCKED_EXTERNAL_FEED_ENDPOINT_LICENSE_VALIDATION",
+      "operational_status": "NOT_CONFIGURED",
+      "freshness": "BROKEN"
+    },
+    {
+      "source_id": "sp-aguas",
+      "phase_status": "INCOMPLETE_REGIONAL_WEATHER_AND_LICENSE",
+      "operational_status": "STALE",
+      "freshness": "STALE"
+    }
+  ],
+  "final_data_snapshot_at": "2026-10-26T04:03:24.488873+00:00",
+  "no_external_fetch_at_closure": true,
+  "cleanup": {
+    "owned_test_servers_stopped": [
+      8815,
+      8816,
+      8818
+    ],
+    "temporary_neon_url_file_removed": true,
+    "code_rollback_performed": false
+  },
+  "interrupted_browser_repeat": "INTERRUPTED_NOT_RECOUNTED; earlier complete evidence retained"
+}
